@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xmlns:websocket="http://www.springframework.org/schema/websocket"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+    http://www.springframework.org/schema/beans/spring-beans.xsd
+    http://www.springframework.org/schema/context
+    http://www.springframework.org/schema/context/spring-context.xsd
+    http://www.springframework.org/schema/mvc
+    http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd
+    http://www.springframework.org/schema/websocket
+    https://www.springframework.org/schema/websocket/spring-websocket.xsd">
+
+    <mvc:annotation-driven/>
+    <context:component-scan base-package="com.microthings.monitor_management"/>
+
+    <mvc:resources mapping="/assets/**" location="/assets/"/>
+
+    <!-- 配置freeMarker视图解析器 -->
+    <bean id="viewResolverFtl" class="org.springframework.web.servlet.view.freemarker.FreeMarkerViewResolver">
+        <property name="viewClass" value="org.springframework.web.servlet.view.freemarker.FreeMarkerView"/>
+        <property name="contentType" value="text/html; charset=utf-8"/>
+        <property name="cache" value="false"/>
+        <property name="suffix" value=".ftl"/>
+        <property name="order" value="0"/>
+        <property name="requestContextAttribute" value="request"/>
+    </bean>
+
+    <!-- freemarker的配置 -->
+    <bean id="freemarkerConfig" class="org.springframework.web.servlet.view.freemarker.FreeMarkerConfigurer">
+        <property name="templateLoaderPath" value="/WEB-INF/pages/"></property><!--解析路径-->
+        <property name="freemarkerSettings"><!-- 设置FreeMarker环境属性 -->
+            <props>
+                <prop key="template_update_delay">5</prop><!--刷新模板的周期，单位为秒 -->
+                <prop key="default_encoding">UTF-8</prop><!--模板的编码格式 -->
+                <prop key="locale">UTF-8</prop><!-- 本地化设置 -->
+                <prop key="datetime_format">yyyy-MM-dd HH:mm:ss</prop>
+                <prop key="time_format">HH:mm:ss</prop>
+                <prop key="number_format">0.####</prop>
+                <prop key="boolean_format">true,false</prop>
+                <prop key="whitespace_stripping">true</prop>
+                <prop key="tag_syntax">auto_detect</prop>
+                <prop key="url_escaping_charset">UTF-8</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

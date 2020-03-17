@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.microthings.monitor_management.mapper.DeviceMapper" >
+  <resultMap id="BaseResultMap" type="com.microthings.monitor_management.pojo.Device" >
+    <id column="device_id" property="deviceId" jdbcType="INTEGER" />
+    <result column="device_name" property="deviceName" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="BIGINT" />
+    <result column="device_sn" property="deviceSn" jdbcType="VARCHAR" />
+    <result column="device_status" property="deviceStatus" jdbcType="BIGINT" />
+    <result column="building_id" property="buildingId" jdbcType="INTEGER" />
+    <result column="device_position" property="devicePosition" jdbcType="VARCHAR" />
+    <result column="device_floor" property="deviceFloor" jdbcType="BIGINT" />
+    <result column="device_scaling" property="deviceScaling" jdbcType="DOUBLE" />
+    <result column="device_angle" property="deviceAngle" jdbcType="DOUBLE" />
+    <result column="map_position_x" property="mapPositionX" jdbcType="DOUBLE" />
+    <result column="map_position_y" property="mapPositionY" jdbcType="DOUBLE" />
+    <result column="monitor_ahead" property="monitorAhead" jdbcType="DOUBLE" />
+    <result column="monitor_left" property="monitorLeft" jdbcType="DOUBLE" />
+    <result column="monitor_right" property="monitorRight" jdbcType="DOUBLE" />
+    <result column="ip" property="ip" jdbcType="VARCHAR" />
+    <result column="port" property="port" jdbcType="VARCHAR" />
+    <result column="association_mmwave_sn" property="associationMmwaveSn" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    device_id, device_name, device_type, device_sn, device_status, building_id, device_position, 
+    device_floor, device_scaling, device_angle, map_position_x, map_position_y, monitor_ahead, 
+    monitor_left, monitor_right, ip, port, association_mmwave_sn, create_time
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.microthings.monitor_management.pojo.DeviceExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from device
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from device
+    where device_id = #{deviceId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from device
+    where device_id = #{deviceId,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.microthings.monitor_management.pojo.DeviceExample" >
+    delete from device
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.microthings.monitor_management.pojo.Device" >
+    insert into device (device_id, device_name, device_type, 
+      device_sn, device_status, building_id, 
+      device_position, device_floor, device_scaling, 
+      device_angle, map_position_x, map_position_y, 
+      monitor_ahead, monitor_left, monitor_right, 
+      ip, port, association_mmwave_sn, 
+      create_time)
+    values (#{deviceId,jdbcType=INTEGER}, #{deviceName,jdbcType=VARCHAR}, #{deviceType,jdbcType=BIGINT}, 
+      #{deviceSn,jdbcType=VARCHAR}, #{deviceStatus,jdbcType=BIGINT}, #{buildingId,jdbcType=INTEGER}, 
+      #{devicePosition,jdbcType=VARCHAR}, #{deviceFloor,jdbcType=BIGINT}, #{deviceScaling,jdbcType=DOUBLE}, 
+      #{deviceAngle,jdbcType=DOUBLE}, #{mapPositionX,jdbcType=DOUBLE}, #{mapPositionY,jdbcType=DOUBLE}, 
+      #{monitorAhead,jdbcType=DOUBLE}, #{monitorLeft,jdbcType=DOUBLE}, #{monitorRight,jdbcType=DOUBLE}, 
+      #{ip,jdbcType=VARCHAR}, #{port,jdbcType=VARCHAR}, #{associationMmwaveSn,jdbcType=VARCHAR}, 
+      #{createTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.microthings.monitor_management.pojo.Device" >
+    insert into device
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="deviceId != null" >
+        device_id,
+      </if>
+      <if test="deviceName != null" >
+        device_name,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+      <if test="deviceSn != null" >
+        device_sn,
+      </if>
+      <if test="deviceStatus != null" >
+        device_status,
+      </if>
+      <if test="buildingId != null" >
+        building_id,
+      </if>
+      <if test="devicePosition != null" >
+        device_position,
+      </if>
+      <if test="deviceFloor != null" >
+        device_floor,
+      </if>
+      <if test="deviceScaling != null" >
+        device_scaling,
+      </if>
+      <if test="deviceAngle != null" >
+        device_angle,
+      </if>
+      <if test="mapPositionX != null" >
+        map_position_x,
+      </if>
+      <if test="mapPositionY != null" >
+        map_position_y,
+      </if>
+      <if test="monitorAhead != null" >
+        monitor_ahead,
+      </if>
+      <if test="monitorLeft != null" >
+        monitor_left,
+      </if>
+      <if test="monitorRight != null" >
+        monitor_right,
+      </if>
+      <if test="ip != null" >
+        ip,
+      </if>
+      <if test="port != null" >
+        port,
+      </if>
+      <if test="associationMmwaveSn != null" >
+        association_mmwave_sn,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="deviceId != null" >
+        #{deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="deviceName != null" >
+        #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=BIGINT},
+      </if>
+      <if test="deviceSn != null" >
+        #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceStatus != null" >
+        #{deviceStatus,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null" >
+        #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="devicePosition != null" >
+        #{devicePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceFloor != null" >
+        #{deviceFloor,jdbcType=BIGINT},
+      </if>
+      <if test="deviceScaling != null" >
+        #{deviceScaling,jdbcType=DOUBLE},
+      </if>
+      <if test="deviceAngle != null" >
+        #{deviceAngle,jdbcType=DOUBLE},
+      </if>
+      <if test="mapPositionX != null" >
+        #{mapPositionX,jdbcType=DOUBLE},
+      </if>
+      <if test="mapPositionY != null" >
+        #{mapPositionY,jdbcType=DOUBLE},
+      </if>
+      <if test="monitorAhead != null" >
+        #{monitorAhead,jdbcType=DOUBLE},
+      </if>
+      <if test="monitorLeft != null" >
+        #{monitorLeft,jdbcType=DOUBLE},
+      </if>
+      <if test="monitorRight != null" >
+        #{monitorRight,jdbcType=DOUBLE},
+      </if>
+      <if test="ip != null" >
+        #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="associationMmwaveSn != null" >
+        #{associationMmwaveSn,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.microthings.monitor_management.pojo.DeviceExample" resultType="java.lang.Integer" >
+    select count(*) from device
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update device
+    <set >
+      <if test="record.deviceId != null" >
+        device_id = #{record.deviceId,jdbcType=INTEGER},
+      </if>
+      <if test="record.deviceName != null" >
+        device_name = #{record.deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceType != null" >
+        device_type = #{record.deviceType,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceSn != null" >
+        device_sn = #{record.deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceStatus != null" >
+        device_status = #{record.deviceStatus,jdbcType=BIGINT},
+      </if>
+      <if test="record.buildingId != null" >
+        building_id = #{record.buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="record.devicePosition != null" >
+        device_position = #{record.devicePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="record.deviceFloor != null" >
+        device_floor = #{record.deviceFloor,jdbcType=BIGINT},
+      </if>
+      <if test="record.deviceScaling != null" >
+        device_scaling = #{record.deviceScaling,jdbcType=DOUBLE},
+      </if>
+      <if test="record.deviceAngle != null" >
+        device_angle = #{record.deviceAngle,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mapPositionX != null" >
+        map_position_x = #{record.mapPositionX,jdbcType=DOUBLE},
+      </if>
+      <if test="record.mapPositionY != null" >
+        map_position_y = #{record.mapPositionY,jdbcType=DOUBLE},
+      </if>
+      <if test="record.monitorAhead != null" >
+        monitor_ahead = #{record.monitorAhead,jdbcType=DOUBLE},
+      </if>
+      <if test="record.monitorLeft != null" >
+        monitor_left = #{record.monitorLeft,jdbcType=DOUBLE},
+      </if>
+      <if test="record.monitorRight != null" >
+        monitor_right = #{record.monitorRight,jdbcType=DOUBLE},
+      </if>
+      <if test="record.ip != null" >
+        ip = #{record.ip,jdbcType=VARCHAR},
+      </if>
+      <if test="record.port != null" >
+        port = #{record.port,jdbcType=VARCHAR},
+      </if>
+      <if test="record.associationMmwaveSn != null" >
+        association_mmwave_sn = #{record.associationMmwaveSn,jdbcType=VARCHAR},
+      </if>
+      <if test="record.createTime != null" >
+        create_time = #{record.createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update device
+    set device_id = #{record.deviceId,jdbcType=INTEGER},
+      device_name = #{record.deviceName,jdbcType=VARCHAR},
+      device_type = #{record.deviceType,jdbcType=BIGINT},
+      device_sn = #{record.deviceSn,jdbcType=VARCHAR},
+      device_status = #{record.deviceStatus,jdbcType=BIGINT},
+      building_id = #{record.buildingId,jdbcType=INTEGER},
+      device_position = #{record.devicePosition,jdbcType=VARCHAR},
+      device_floor = #{record.deviceFloor,jdbcType=BIGINT},
+      device_scaling = #{record.deviceScaling,jdbcType=DOUBLE},
+      device_angle = #{record.deviceAngle,jdbcType=DOUBLE},
+      map_position_x = #{record.mapPositionX,jdbcType=DOUBLE},
+      map_position_y = #{record.mapPositionY,jdbcType=DOUBLE},
+      monitor_ahead = #{record.monitorAhead,jdbcType=DOUBLE},
+      monitor_left = #{record.monitorLeft,jdbcType=DOUBLE},
+      monitor_right = #{record.monitorRight,jdbcType=DOUBLE},
+      ip = #{record.ip,jdbcType=VARCHAR},
+      port = #{record.port,jdbcType=VARCHAR},
+      association_mmwave_sn = #{record.associationMmwaveSn,jdbcType=VARCHAR},
+      create_time = #{record.createTime,jdbcType=TIMESTAMP}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.microthings.monitor_management.pojo.Device" >
+    update device
+    <set >
+      <if test="deviceName != null" >
+        device_name = #{deviceName,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=BIGINT},
+      </if>
+      <if test="deviceSn != null" >
+        device_sn = #{deviceSn,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceStatus != null" >
+        device_status = #{deviceStatus,jdbcType=BIGINT},
+      </if>
+      <if test="buildingId != null" >
+        building_id = #{buildingId,jdbcType=INTEGER},
+      </if>
+      <if test="devicePosition != null" >
+        device_position = #{devicePosition,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceFloor != null" >
+        device_floor = #{deviceFloor,jdbcType=BIGINT},
+      </if>
+      <if test="deviceScaling != null" >
+        device_scaling = #{deviceScaling,jdbcType=DOUBLE},
+      </if>
+      <if test="deviceAngle != null" >
+        device_angle = #{deviceAngle,jdbcType=DOUBLE},
+      </if>
+      <if test="mapPositionX != null" >
+        map_position_x = #{mapPositionX,jdbcType=DOUBLE},
+      </if>
+      <if test="mapPositionY != null" >
+        map_position_y = #{mapPositionY,jdbcType=DOUBLE},
+      </if>
+      <if test="monitorAhead != null" >
+        monitor_ahead = #{monitorAhead,jdbcType=DOUBLE},
+      </if>
+      <if test="monitorLeft != null" >
+        monitor_left = #{monitorLeft,jdbcType=DOUBLE},
+      </if>
+      <if test="monitorRight != null" >
+        monitor_right = #{monitorRight,jdbcType=DOUBLE},
+      </if>
+      <if test="ip != null" >
+        ip = #{ip,jdbcType=VARCHAR},
+      </if>
+      <if test="port != null" >
+        port = #{port,jdbcType=VARCHAR},
+      </if>
+      <if test="associationMmwaveSn != null" >
+        association_mmwave_sn = #{associationMmwaveSn,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where device_id = #{deviceId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.microthings.monitor_management.pojo.Device" >
+    update device
+    set device_name = #{deviceName,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=BIGINT},
+      device_sn = #{deviceSn,jdbcType=VARCHAR},
+      device_status = #{deviceStatus,jdbcType=BIGINT},
+      building_id = #{buildingId,jdbcType=INTEGER},
+      device_position = #{devicePosition,jdbcType=VARCHAR},
+      device_floor = #{deviceFloor,jdbcType=BIGINT},
+      device_scaling = #{deviceScaling,jdbcType=DOUBLE},
+      device_angle = #{deviceAngle,jdbcType=DOUBLE},
+      map_position_x = #{mapPositionX,jdbcType=DOUBLE},
+      map_position_y = #{mapPositionY,jdbcType=DOUBLE},
+      monitor_ahead = #{monitorAhead,jdbcType=DOUBLE},
+      monitor_left = #{monitorLeft,jdbcType=DOUBLE},
+      monitor_right = #{monitorRight,jdbcType=DOUBLE},
+      ip = #{ip,jdbcType=VARCHAR},
+      port = #{port,jdbcType=VARCHAR},
+      association_mmwave_sn = #{associationMmwaveSn,jdbcType=VARCHAR},
+      create_time = #{createTime,jdbcType=TIMESTAMP}
+    where device_id = #{deviceId,jdbcType=INTEGER}
+  </update>
+</mapper>
