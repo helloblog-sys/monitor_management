@@ -50,8 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <#--<th width="40">ID</th>-->
-            <th width="200">用户名称</th>
+            <th width="240">用户名称</th>
             <th>用户角色</th>
             <th width="300">创建时间</th>
             <th width="70">操作</th>
@@ -62,14 +61,11 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${userList.userId}" name="checkbox"></td>
                 <td>${userList_index+1}</td>
-                <#--<td>${userList.userId}</td>-->
                 <td>${userList.userName}</td>
                 <#if userList.roleId==1>
                     <td>超级管理员</td>
                 <#elseif userList.roleId==2>
-                    <td>普通用户</td>
-                <#elseif userList.roleId==3>
-                    <td>咖啡街</td></#if>
+                    <td>普通用户</td></#if>
                 <td>${userList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="user_edit('用户编辑',${userList.userId},${userList_index+1})"
@@ -110,14 +106,16 @@
 			<select class="select" name="roleId" size="1">
 				<option value="1">超级管理员</option>
 				<option value="2">普通用户</option>
-                <option value="3">咖啡街</option>
 			</select>
 			</span></div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button class="btn btn-success radius" id="user_save"
+                <button class="btn btn-success radius" id="user_save">
                 <i class="icon-ok"></i> 确定
+                </button>
+                <button class="btn btn-success radius" style="background-color: red" id="user_cancel">
+                <i class="icon-ok"></i> 取消
                 </button>
             </div>
         </div>
@@ -145,6 +143,7 @@
             maxmin: true,
             shade: 0.4,
             title: title,
+            closeBtn:0,
             content: $('#user_edit')
         });
     }
@@ -153,7 +152,7 @@
     function user_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('userId').value = id;
-        document.getElementById('userName').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
+        document.getElementById('userName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
         document.getElementById('userPassword').value = 123456;
         $("input").remove("[name = '_method']");
         layer.open({
@@ -163,6 +162,7 @@
             maxmin: true,
             shade: 0.4,
             title: title,
+            closeBtn:0,
             content: $('#user_edit')
         });
     }
@@ -237,6 +237,10 @@
                     required: true,
                 },
             },
+            //验证用户名称是否重复
+            required:function(){
+
+            }
             onkeyup: false,
             focusCleanup: true,
             success: "valid",
@@ -263,6 +267,11 @@
                 });
             }
         })
+    })
+
+    //取消用户编辑
+    $('#user_cancel').click(function () {
+        layer.close();
     })
 </script>
 </body>

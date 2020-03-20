@@ -50,8 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <th width="40">ID</th>
-            <th width="300">权限名称</th>
+            <th width="340">权限名称</th>
             <th>权限描述</th>
             <th width="70">操作</th>
         </tr>
@@ -61,7 +60,6 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${rolePermissionVoList.rpId}" name="checkbox"></td>
                 <td>${rolePermissionVoList_index+1}</td>
-                <td>${rolePermissionVoList.rpId}</td>
                 <td>${rolePermissionVoList.permission.permissionName}</td>
                 <td>${rolePermissionVoList.permission.permissionStr}</td>
                 <td class="f-14">
@@ -88,8 +86,11 @@
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button class="btn btn-success radius" id="permission_save"
+                <button class="btn btn-success radius" id="permission_save">
                 <i class="icon-ok"></i> 确定
+                </button>
+                <button class="btn btn-success radius" style="background-color: red" id="user_cancel">
+                    <i class="icon-ok"></i> 取消
                 </button>
             </div>
         </div>
@@ -116,6 +117,7 @@
             maxmin: true,
             shade: 0.4,
             title: title,
+            closeBtn:0,
             content: $('#permission_edit')
         });
     }
@@ -124,8 +126,8 @@
     function permission_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('permissionId').value = id;
-        document.getElementById('permissionName').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
-        document.getElementById('permissionStr').value = $('tbody tr:eq(' + tid + ') td:eq(4)').text();
+        document.getElementById('permissionName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
+        document.getElementById('permissionStr').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
         ;
         $("input").remove("[name = '_method']");
         layer.open({
@@ -135,6 +137,7 @@
             maxmin: true,
             shade: 0.4,
             title: title,
+            closeBtn:0,
             content: $('#permission_edit')
         });
     }
@@ -234,6 +237,11 @@
                 });
             }
         })
+    })
+
+    //取消用户编辑
+    $('#user_cancel').click(function () {
+        layer.close();
     })
 </script>
 </body>
