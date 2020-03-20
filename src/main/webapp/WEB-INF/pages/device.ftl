@@ -53,7 +53,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <th width="40">ID</th>
+            <#--<th width="40">ID</th>-->
             <th width="200">设备名称</th>
             <th width="100">设备类型</th>
             <th width="100">设备sn</th>
@@ -75,7 +75,7 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${deviceList.deviceId}" name="checkbox"></td>
                 <td>${deviceList_index+1}</td>
-                <td>${deviceList.deviceId}</td>
+                <#--<td>${deviceList.deviceId}</td>-->
                 <td>${deviceList.deviceName}</td>
                 <td>${deviceList.deviceType}</td>
                 <td>${deviceList.deviceSn}</td>
@@ -184,35 +184,35 @@
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备监控前距：</label>
+            <label class="form-label col-xs-4 col-sm-3">设备监控前距：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" placeholder="请填写设备监控前距（可不填）" id="monitorAhead"
                        name="monitorAhead">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备监控左距：</label>
+            <label class="form-label col-xs-4 col-sm-3">设备监控左距：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" placeholder="请填写设备监控左距（可不填）" id="monitorLeft"
                        name="monitorLeft">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备监控右距：</label>
+            <label class="form-label col-xs-4 col-sm-3">设备监控右距：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" placeholder="请填写设备监控右距（可不填）" id="monitorRight"
                        name="monitorRight">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>摄像头端口号：</label>
+            <label class="form-label col-xs-4 col-sm-3">摄像头端口号：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" placeholder="摄像头在推流服务器上的端口号（可不填）" id="port"
                        name="port">
             </div>
         </div>
         <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备关联雷达sn：</label>
+            <label class="form-label col-xs-4 col-sm-3">设备关联雷达sn：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" placeholder="请填写于设备有重叠区域的雷达sn（可不填）"
                        id="associationMmwaveSn"
@@ -245,7 +245,7 @@
         $("input").remove("[name = 'deviceId']");
         layer.open({
             type: 1,
-            area: ['800px', '800px'],
+            area: ['600px', '600px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -273,7 +273,7 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', '800px'],
+            area: ['600px', '600px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
