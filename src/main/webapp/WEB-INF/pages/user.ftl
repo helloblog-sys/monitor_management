@@ -50,7 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <th width="40">ID</th>
+            <#--<th width="40">ID</th>-->
             <th width="200">用户名称</th>
             <th>用户角色</th>
             <th width="300">创建时间</th>
@@ -62,12 +62,14 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${userList.userId}" name="checkbox"></td>
                 <td>${userList_index+1}</td>
-                <td>${userList.userId}</td>
+                <#--<td>${userList.userId}</td>-->
                 <td>${userList.userName}</td>
                 <#if userList.roleId==1>
                     <td>超级管理员</td>
                 <#elseif userList.roleId==2>
-                    <td>普通用户</td></#if>
+                    <td>普通用户</td>
+                <#elseif userList.roleId==3>
+                    <td>咖啡街</td></#if>
                 <td>${userList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="user_edit('用户编辑',${userList.userId},${userList_index+1})"
@@ -108,6 +110,7 @@
 			<select class="select" name="roleId" size="1">
 				<option value="1">超级管理员</option>
 				<option value="2">普通用户</option>
+                <option value="3">咖啡街</option>
 			</select>
 			</span></div>
         </div>

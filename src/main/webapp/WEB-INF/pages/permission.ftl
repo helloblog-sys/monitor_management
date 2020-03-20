@@ -50,7 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <th width="40">ID</th>
+            <#--<th width="40">ID</th>-->
             <th width="200">权限名称</th>
             <th>权限描述</th>
             <th width="300">创建时间</th>
@@ -62,9 +62,9 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${permissionList.permissionId}" name="checkbox"></td>
                 <td>${permissionList_index+1}</td>
-                <td>${permissionList.permissionId}</td>
-                <td>${permissionList.permissionName}</td>
+                <#--<td>${permissionList.permissionId}</td>-->
                 <td>${permissionList.permissionStr}</td>
+                <td>${permissionList.permissionName}</td>
                 <td>${permissionList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="permission_edit('权限编辑',${permissionList.permissionId},${permissionList_index+1})"

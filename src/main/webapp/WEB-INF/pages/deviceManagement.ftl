@@ -35,7 +35,7 @@
         .viewmode-group {
             position: absolute;
             right: 12px;
-            top: 30%;
+            top: 50%;
             border-radius: 6px;
             border: none;
         }
@@ -92,7 +92,6 @@
             float: left;
             width: 242px;
             margin-left: -249px;
-            height: 100%;
             min-height: 200px;
         }
 
@@ -106,7 +105,7 @@
 
         .main {
             padding-left: 240px;
-            height: 100%;
+            height: 580px;
         }
 
         .breadcrumb {
@@ -129,8 +128,8 @@
     </a>
 </nav>
 <div class="main">
-    <div class="f-left" style="max-width:700px;float:left">
-        <form id="putDevice" class="smart-green">
+    <div class="f-left" style="max-width:700px;float:left;">
+        <form id="putDevice" class="smart-green" style="overflow: scroll;height:590px">
             <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" id="deviceId" name="deviceId"/>
             <div class="form-group">
@@ -176,21 +175,21 @@
                 <label for="mapPositionX" class="control-label">设备位置Y:</label>
                 <input type="text" class="form-control" id="mapPositionY" name="mapPositionY" placeholder="地图Y坐标">
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group" style="">
                 <label for="monitorAhead" class="control-label">监控范围-前:</label>
                 <input type="text" class="form-control" id="monitorAhead" name="monitorAhead" placeholder="单位：m（可不填）"
                        value="0">
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group" style="">
                 <label for="monitorLeft" class="control-label">监控范围-左:</label>
                 <input type="text" class="form-control" id="monitorLeft" name="monitorLeft" placeholder="单位：m（可不填）">
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group" style="">
                 <label for="monitorRight" class="control-label">监控范围-右:</label>
                 <input type="text" class="form-control" id="monitorRight" name="monitorRight" placeholder="单位：m（可不填）"
                        value="0">
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group" style="">
                 <label for="monitorRight" class="control-label">ip:</label>
                 <input type="text" class="form-control" id="ip" name="ip" placeholder="单位：m（可不填）">
             </div>
@@ -202,7 +201,7 @@
                 <label for="port" class="control-label">设备port:</label>
                 <input type="text" class="form-control" id="port" name="port" placeholder="摄像头标识（可不填）" value="">
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group" style="">
                 <label for="port" class="control-label">设备关联雷达sn：</label>
                 <input type="text" class="form-control" id="associationMmwaveSn" name="associationMmwaveSn"
                        placeholder="有重叠区域的雷达sn（可不填）" value="">
@@ -237,7 +236,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close" value="删除"><span
                                 aria-hidden="true">&times;</span></button>
                     <h4 class="modal-title" id="gridSystemModalLabel">提示</h4>
                 </div>
@@ -258,7 +257,7 @@
 <#--<script src="/assets/esmap/js/config.js"></script>-->
 <script src="/assets/esmap/js/esmap.min.js"></script>
 <script src="/assets/esmap/js/jquery-2.1.4.min.js"></script>
-<#--<script src="/assets/js/bootstrap.min.js">-->
+<script src="/assets/js/bootstrap.min.js">
 <script src="/assets/esmap/js/jquery.qrcode.min.js"></script>
 <script src="/assets/js/devicemanager.js"></script>
 <script type="text/javascript">

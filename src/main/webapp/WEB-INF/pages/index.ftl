@@ -30,36 +30,36 @@
         <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">楼宇可视化物联系统管理后台</a>
             <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
-            <nav class="nav navbar-nav">
-                <ul class="cl">
-                    <li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i
-                            class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>
-                        <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i
-                                    class="Hui-iconfont">&#xe616;</i> 资讯</a></li>
-                            <li><a href="javascript:;" onclick="picture_add('添加资讯','picture-add.html')"><i
-                                    class="Hui-iconfont">&#xe613;</i> 图片</a></li>
-                            <li><a href="javascript:;" onclick="product_add('添加资讯','product-add.html')"><i
-                                    class="Hui-iconfont">&#xe620;</i> 产品</a></li>
-                            <li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i
-                                    class="Hui-iconfont">&#xe60d;</i> 用户</a></li>
-                        </ul>
-                    </li>
-                </ul>
-            </nav>
+            <#--<nav class="nav navbar-nav">-->
+                <#--<ul class="cl">-->
+                    <#--<li class="dropDown dropDown_hover"><a href="javascript:;" class="dropDown_A"><i-->
+                            <#--class="Hui-iconfont">&#xe600;</i> 新增 <i class="Hui-iconfont">&#xe6d5;</i></a>-->
+                        <#--<ul class="dropDown-menu menu radius box-shadow">-->
+                            <#--<li><a href="javascript:;" onclick="article_add('添加资讯','article-add.html')"><i-->
+                                    <#--class="Hui-iconfont">&#xe616;</i> 资讯</a></li>-->
+                            <#--<li><a href="javascript:;" onclick="picture_add('添加图片','picture-add.html')"><i-->
+                                    <#--class="Hui-iconfont">&#xe613;</i> 图片</a></li>-->
+                            <#--<li><a href="javascript:;" onclick="product_add('添加产品','product-add.html')"><i-->
+                                    <#--class="Hui-iconfont">&#xe620;</i> 产品</a></li>-->
+                            <#--<li><a href="javascript:;" onclick="member_add('添加用户','member-add.html','','510')"><i-->
+                                    <#--class="Hui-iconfont">&#xe60d;</i> 用户</a></li>-->
+                        <#--</ul>-->
+                    <#--</li>-->
+                <#--</ul>-->
+            <#--</nav>-->
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
                     <li>超级管理员</li>
                     <li class="dropDown dropDown_hover">
                         <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
-                            <li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>
-                            <li><a href="#">切换账户</a></li>
-                            <li><a href="#">退出</a></li>
+                            <#--<li><a href="javascript:;" onClick="myselfinfo()">个人信息</a></li>-->
+                            <#--<li><a href="#">切换账户</a></li>-->
+                            <li><a href="login.html">退出</a></li>
                         </ul>
                     </li>
-                    <li id="Hui-msg"><a href="#" title="消息"><span class="badge badge-danger">1</span><i
-                            class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a></li>
+                    <#--<li id="Hui-msg"><a href="#" title="消息"><span class="badge badge-danger">1</span><i-->
+                            <#--class="Hui-iconfont" style="font-size:18px">&#xe68a;</i></a></li>-->
                     <li id="Hui-skin" class="dropDown right dropDown_hover"><a href="javascript:;" class="dropDown_A"
                                                                                title="换肤"><i class="Hui-iconfont"
                                                                                              style="font-size:18px">&#xe62a;</i></a>
@@ -101,49 +101,53 @@
                 </ul>
             </dd>
         </dl>
-        <dl id="menu-map">
-            <dt><i class="Hui-iconfont">&#xe613;</i> 地图管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="picture-list.html" data-title="地图管理" href="javascript:void(0)">地图管理</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-monitor">
-            <dt><i class="Hui-iconfont">&#xe650;</i> 监控管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="product-brand.html" data-title="摄像头管理" href="javascript:void(0)">摄像头管理</a></li>
-                    <li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">监控权限管理</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-tongji">
-            <dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">折线图</a></li>
-                    <li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">时间轴折线图</a></li>
-                    <li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">区域图</a></li>
-                    <li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>
-                    <li><a data-href="charts-5.html" data-title="饼状图" href="javascript:void(0)">饼状图</a></li>
-                    <li><a data-href="charts-6.html" data-title="3D柱状图" href="javascript:void(0)">3D柱状图</a></li>
-                    <li><a data-href="charts-7.html" data-title="3D饼状图" href="javascript:void(0)">3D饼状图</a></li>
-                </ul>
-            </dd>
-        </dl>
-        <dl id="menu-system">
-            <dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
-            <dd>
-                <ul>
-                    <li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>
-                    <li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>
-                    <li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>
-                    <li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>
-                    <li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>
-                </ul>
-            </dd>
-        </dl>
+        <!--地图管理-->
+        <#--<dl id="menu-map">-->
+            <#--<dt><i class="Hui-iconfont">&#xe613;</i> 地图管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+            <#--<dd>-->
+                <#--<ul>-->
+                    <#--<li><a data-href="picture-list.html" data-title="地图管理" href="javascript:void(0)">地图管理</a></li>-->
+                <#--</ul>-->
+            <#--</dd>-->
+        <#--</dl>-->
+        <!--监控管理-->
+        <#--<dl id="menu-monitor">-->
+            <#--<dt><i class="Hui-iconfont">&#xe650;</i> 监控管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+            <#--<dd>-->
+                <#--<ul>-->
+                    <#--<li><a data-href="product-brand.html" data-title="摄像头管理" href="javascript:void(0)">摄像头管理</a></li>-->
+                    <#--<li><a data-href="product-category.html" data-title="分类管理" href="javascript:void(0)">监控权限管理</a></li>-->
+                <#--</ul>-->
+            <#--</dd>-->
+        <#--</dl>-->
+        <!--系统设计-->
+        <#--<dl id="menu-tongji">-->
+            <#--<dt><i class="Hui-iconfont">&#xe61a;</i> 系统统计<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+            <#--<dd>-->
+                <#--<ul>-->
+                    <#--<li><a data-href="charts-1.html" data-title="折线图" href="javascript:void(0)">折线图</a></li>-->
+                    <#--<li><a data-href="charts-2.html" data-title="时间轴折线图" href="javascript:void(0)">时间轴折线图</a></li>-->
+                    <#--<li><a data-href="charts-3.html" data-title="区域图" href="javascript:void(0)">区域图</a></li>-->
+                    <#--<li><a data-href="charts-4.html" data-title="柱状图" href="javascript:void(0)">柱状图</a></li>-->
+                    <#--<li><a data-href="charts-5.html" data-title="饼状图" href="javascript:void(0)">饼状图</a></li>-->
+                    <#--<li><a data-href="charts-6.html" data-title="3D柱状图" href="javascript:void(0)">3D柱状图</a></li>-->
+                    <#--<li><a data-href="charts-7.html" data-title="3D饼状图" href="javascript:void(0)">3D饼状图</a></li>-->
+                <#--</ul>-->
+            <#--</dd>-->
+        <#--</dl>-->
+        <!--系统管理-->
+        <#--<dl id="menu-system">-->
+            <#--<dt><i class="Hui-iconfont">&#xe62e;</i> 系统管理<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>-->
+            <#--<dd>-->
+                <#--<ul>-->
+                    <#--<li><a data-href="system-base.html" data-title="系统设置" href="javascript:void(0)">系统设置</a></li>-->
+                    <#--<li><a data-href="system-category.html" data-title="栏目管理" href="javascript:void(0)">栏目管理</a></li>-->
+                    <#--<li><a data-href="system-data.html" data-title="数据字典" href="javascript:void(0)">数据字典</a></li>-->
+                    <#--<li><a data-href="system-shielding.html" data-title="屏蔽词" href="javascript:void(0)">屏蔽词</a></li>-->
+                    <#--<li><a data-href="system-log.html" data-title="系统日志" href="javascript:void(0)">系统日志</a></li>-->
+                <#--</ul>-->
+            <#--</dd>-->
+        <#--</dl>-->
     </div>
 </aside>
 <div class="dislpayArrow hidden-xs"><a class="pngfix" href="javascript:void(0);" onClick="displaynavbar(this)"></a>

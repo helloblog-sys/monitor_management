@@ -50,7 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <th width="40">ID</th>
+            <#--<th width="40">ID</th>-->
             <th width="200">角色名称</th>
             <th>角色描述</th>
             <th width="100">权限</th>
@@ -63,9 +63,9 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${roleList.roleId}" name="checkbox"></td>
                 <td>${roleList_index+1}</td>
-                <td>${roleList.roleId}</td>
-                <td>${roleList.roleName}</td>
+                <#--<td>${roleList.roleId}</td>-->
                 <td>${roleList.roleStr}</td>
+                <td>${roleList.roleName}</td>
                 <td><a onclick="role_permission(${roleList.roleId},${roleList_index+1})">
                         <span class="label label-success radius">点击查看</span></a></td>
                 <td>${roleList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
