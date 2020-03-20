@@ -65,7 +65,9 @@
                 <#if userList.roleId==1>
                     <td>超级管理员</td>
                 <#elseif userList.roleId==2>
-                    <td>普通用户</td></#if>
+                    <td>普通用户</td>
+                <#elseif userList.roleId==3>
+                    <td>咖啡街管理员</td></#if>
                 <td>${userList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="user_edit('用户编辑',${userList.userId},${userList_index+1})"
@@ -106,6 +108,7 @@
 			<select class="select" name="roleId" size="1">
 				<option value="1">超级管理员</option>
 				<option value="2">普通用户</option>
+                <option value="3">咖啡街管理员</option>
 			</select>
 			</span></div>
         </div>
