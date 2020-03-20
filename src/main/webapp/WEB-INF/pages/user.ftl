@@ -237,10 +237,6 @@
                     required: true,
                 },
             },
-            //验证用户名称是否重复
-            required:function(){
-
-            }
             onkeyup: false,
             focusCleanup: true,
             success: "valid",
