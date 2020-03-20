@@ -80,7 +80,9 @@
                 <#if deviceList.deviceType==1>
                     <td>雷达</td>
                 <#elseif deviceList.deviceType==2>
-                    <td>摄像头</td></#if>
+                    <td>摄像头</td>
+                <#else>
+                    <td>其他</td></#if>
                 <#--<td>${deviceList.deviceType}</td>-->
                 <td>${deviceList.deviceSn}</td>
                 <#if deviceList.deviceStatus==0>
@@ -132,6 +134,7 @@
 			<select class="select" id="deviceType" name="deviceType" size="1">
 				<option value="1">雷达</option>
 				<option value="2">摄像头</option>
+                <option value="3">其他</option>
 			</select>
 			</span></div>
             <#--<div class="formControls col-xs-7 col-sm-7">-->
@@ -285,9 +288,11 @@
         var temp = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
         if (temp === '雷达') {
             temp = '1';
+        } else if(temp === '摄像头'){
+            temp = '2';
         }
         else {
-            temp = '2';
+            temp = '3';
         }
         document.getElementById('deviceType').value = temp;
         document.getElementById('deviceSn').value = $('tbody tr:eq(' + tid + ') td:eq(4)').text();
