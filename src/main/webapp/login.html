@@ -67,6 +67,12 @@
 <script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/H-ui.min.js"></script>
 <script type="text/javascript">
+
+    //在iframe中超时跳转到主窗口
+    if(window!=top){
+        top.location.href = location.href;
+    }
+
     $("#submit").click(function () {
         $.ajax({
             url: '/login',
