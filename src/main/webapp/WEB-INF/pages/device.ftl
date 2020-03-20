@@ -37,8 +37,8 @@
         <span class="l">
             <a href="javascript:;" onclick="devices_delete()" class="btn btn-danger radius"><i
                         class="Hui-iconfont">&#xe6e2;</i> 批量删除</a>
-            <a class="btn btn-primary radius" href="javascript:;" onclick="device_add('添加设备','device_add')"><i
-                        class="Hui-iconfont">&#xe600;</i> 添加设备</a>
+            <#--<a class="btn btn-primary radius" href="javascript:;" onclick="device_add('添加设备','device_add')"><i-->
+                        <#--class="Hui-iconfont">&#xe600;</i> 添加设备</a>-->
             <#if '${buildingId}'!='all'>
             <a class="btn btn-primary radius" href="/device/map/${buildingId}"><i
                         class="Hui-iconfont">&#xe68d;</i> 进入地图模式</a></#if>
@@ -77,9 +77,19 @@
                 <td>${deviceList_index+1}</td>
                 <#--<td>${deviceList.deviceId}</td>-->
                 <td>${deviceList.deviceName}</td>
-                <td>${deviceList.deviceType}</td>
+                <#if deviceList.deviceType==1>
+                    <td>雷达</td>
+                <#elseif deviceList.deviceType==2>
+                    <td>摄像头</td></#if>
+                <#--<td>${deviceList.deviceType}</td>-->
                 <td>${deviceList.deviceSn}</td>
-                <td>${deviceList.deviceStatus}</td>
+                <#if deviceList.deviceStatus==0>
+                    <td>下线</td>
+                <#elseif deviceList.deviceStatus==1>
+                    <td>在线</td>
+                <#elseif deviceList.deviceStatus==2>
+                    <td>故障</td></#if>
+                <#--<td>${deviceList.deviceStatus}</td>-->
                 <td>${deviceList.devicePosition}</td>
                 <td>${deviceList.buildingId}</td>
                 <td>${deviceList.deviceFloor}</td>
@@ -107,7 +117,7 @@
 </div>
 <!--设备添加/编辑模块-->
 <div id="device_add" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 2%" id="form_device">
+        <form class="form form-horizontal" style="padding-top: 2%" id="form_device">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="deviceId" id="deviceId" value=""/>
         <div class="row cl">
@@ -118,9 +128,15 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备类型：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备类型" id="deviceType" name="deviceType">
-            </div>
+            <div class="formControls col-xs-7 col-sm-7"> <span class="select-box" style="width:150px;">
+			<select class="select" id="deviceType" name="deviceType" size="1">
+				<option value="1">雷达</option>
+				<option value="2">摄像头</option>
+			</select>
+			</span></div>
+            <#--<div class="formControls col-xs-7 col-sm-7">-->
+                <#--<input type="text" class="input-text" value="" placeholder="请填写设备类型" id="deviceType" name="deviceType">-->
+            <#--</div>-->
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备sn：</label>
@@ -130,10 +146,17 @@
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备状态：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="0:下线，1:在线，2:故障" id="deviceStatus"
-                       name="deviceStatus">
-            </div>
+            <div class="formControls col-xs-7 col-sm-7"> <span class="select-box" style="width:150px;">
+			<select class="select" id="deviceStatus" name="deviceStatus" size="1" disabled="disabled">
+				<option value="0">下线</option>
+				<option value="1">在线</option>
+                <option value="2">故障</option>
+			</select>
+			</span></div>
+            <#--<div class="formControls col-xs-7 col-sm-7">-->
+                <#--<input type="text" class="input-text" value="" placeholder="0:下线，1:在线，2:故障" id="deviceStatus"-->
+                       <#--name="deviceStatus">-->
+            <#--</div>-->
         </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位置：</label>
@@ -245,7 +268,7 @@
         $("input").remove("[name = 'deviceId']");
         layer.open({
             type: 1,
-            area: ['600px', '600px'],
+            area: ['800px', '500px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -258,22 +281,37 @@
     function device_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('deviceId').value = id;
-        document.getElementById('deviceName').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
-        document.getElementById('deviceType').value = $('tbody tr:eq(' + tid + ') td:eq(4)').text();
-        document.getElementById('deviceSn').value = $('tbody tr:eq(' + tid + ') td:eq(5)').text();
-        document.getElementById('deviceStatus').value = $('tbody tr:eq(' + tid + ') td:eq(6)').text();
-        document.getElementById('devicePosition').value = $('tbody tr:eq(' + tid + ') td:eq(7)').text();
-        document.getElementById('buildingId').value = $('tbody tr:eq(' + tid + ') td:eq(8)').text();
-        document.getElementById('deviceFloor').value = $('tbody tr:eq(' + tid + ') td:eq(9)').text();
-        document.getElementById('deviceAngle').value = $('tbody tr:eq(' + tid + ') td:eq(10)').text();
-        document.getElementById('mapPositionX').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
-        document.getElementById('mapPositionY').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
-        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
-        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(14)').text();
+        document.getElementById('deviceName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
+        var temp = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
+        if (temp === '雷达') {
+            temp = '1';
+        }
+        else {
+            temp = '2';
+        }
+        document.getElementById('deviceType').value = temp;
+        document.getElementById('deviceSn').value = $('tbody tr:eq(' + tid + ') td:eq(4)').text();
+        var tempStatus = $('tbody tr:eq(' + tid + ') td:eq(5)').text();
+        if (tempStatus === '下线') {
+            tempStatus = '0';
+        } else if(tempStatus === '在线'){
+            tempStatus = '1';
+        }else{
+            tempStatus = '2';
+        }
+        document.getElementById('deviceStatus').value = tempStatus;
+        document.getElementById('devicePosition').value = $('tbody tr:eq(' + tid + ') td:eq(6)').text();
+        document.getElementById('buildingId').value = $('tbody tr:eq(' + tid + ') td:eq(7)').text();
+        document.getElementById('deviceFloor').value = $('tbody tr:eq(' + tid + ') td:eq(8)').text();
+        document.getElementById('deviceAngle').value = $('tbody tr:eq(' + tid + ') td:eq(9)').text();
+        document.getElementById('mapPositionX').value = $('tbody tr:eq(' + tid + ') td:eq(10)').text();
+        document.getElementById('mapPositionY').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
+        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
+        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['600px', '600px'],
+            area: ['800px', '500px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -375,12 +413,12 @@
                         alert("请检查网络连接");
                     }
                 });
-            }
-        })
-    })
-    function switchToMap() {
-        window.location.href="/device/map/"+buildingId;
-    }
+}
+})
+})
+function switchToMap() {
+window.location.href="/device/map/"+buildingId;
+}
 </script>
 </body>
 </html>
