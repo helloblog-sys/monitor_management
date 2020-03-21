@@ -61,8 +61,8 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${permissionList.permissionId}" name="checkbox"></td>
                 <td>${permissionList_index+1}</td>
-                <td>${permissionList.permissionName}</td>
                 <td>${permissionList.permissionStr}</td>
+                <td>${permissionList.permissionName}</td>
                 <td>${permissionList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="permission_edit('权限编辑',${permissionList.permissionId},${permissionList_index+1})"
