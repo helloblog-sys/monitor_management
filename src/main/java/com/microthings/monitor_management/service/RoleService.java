@@ -1,7 +1,10 @@
 package com.microthings.monitor_management.service;
 
+
 import com.microthings.monitor_management.mapper.RoleMapper;
-import com.microthings.monitor_management.pojo.Role;
+import com.microthings.monitor_management.mapper.RolePermissionMapper;
+import com.microthings.monitor_management.mapper.UserMapper;
+import com.microthings.monitor_management.pojo.*;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +22,10 @@ public class RoleService {
 
     @Resource
     RoleMapper roleMapper;
+    @Resource
+    private RolePermissionMapper rolePermissionMapper;
+    @Resource
+    private UserMapper userMapper;
     /**
     * @Description: 添加角色
     * @Param: [role]
@@ -37,7 +44,25 @@ public class RoleService {
     * @Author: hms
     * @Date: 2019/10/24 22:17
     */
-    public void deleteRole(int id){
+    public void deleteRole(int id) {
+        //删除角色权限表中该角色的相关记录
+        RolePermissionExample rolePermissionExample=new RolePermissionExample();
+        rolePermissionExample.createCriteria().andRoleIdEqualTo(id);
+        List<RolePermission> rolePermissionList=rolePermissionMapper.selectByExample(rolePermissionExample);
+        for (RolePermission rolePermission:
+             rolePermissionList) {
+            rolePermissionMapper.deleteByPrimaryKey(rolePermission.getRpId());
+        }
+        //修改用户表中该角色的用户的角色为普通用户
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andRoleIdEqualTo(id);
+        List<User> userList = userMapper.selectByExample(userExample);
+        for (User user :
+                userList) {
+            user.setRoleId(2);
+            userMapper.updateByPrimaryKey(user);
+        }
+        //删除角色
         roleMapper.deleteByPrimaryKey(id);
     }
     /**
