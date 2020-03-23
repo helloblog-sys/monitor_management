@@ -3,6 +3,7 @@ package com.microthings.monitor_management.controller;
 import com.microthings.monitor_management.pojo.Role;
 import com.microthings.monitor_management.service.RoleService;
 import com.microthings.monitor_management.util.AjaxResponse;
+import com.microthings.monitor_management.util.CanntDeleteException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -55,6 +56,9 @@ public class RoleController {
     public AjaxResponse deleteRole(@PathVariable int roleId){
         try {
             roleService.deleteRole(roleId);
+        } catch (CanntDeleteException e){
+            e.printStackTrace();
+            return AjaxResponse.FAILED("删除失败! 无法删除！");
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("删除失败！请重试！");
@@ -76,6 +80,9 @@ public class RoleController {
             for(int roleId:roleIds){
                 roleService.deleteRole(roleId);
             }
+        } catch (CanntDeleteException e){
+            e.printStackTrace();
+            return AjaxResponse.FAILED("删除失败! 无法删除！");
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("删除失败！请重试！");

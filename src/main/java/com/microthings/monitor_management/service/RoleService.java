@@ -5,6 +5,7 @@ import com.microthings.monitor_management.mapper.RoleMapper;
 import com.microthings.monitor_management.mapper.RolePermissionMapper;
 import com.microthings.monitor_management.mapper.UserMapper;
 import com.microthings.monitor_management.pojo.*;
+import com.microthings.monitor_management.util.CanntDeleteException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -44,26 +45,28 @@ public class RoleService {
     * @Author: hms
     * @Date: 2019/10/24 22:17
     */
-    public void deleteRole(int id) {
-        //删除角色权限表中该角色的相关记录
-        RolePermissionExample rolePermissionExample=new RolePermissionExample();
-        rolePermissionExample.createCriteria().andRoleIdEqualTo(id);
-        List<RolePermission> rolePermissionList=rolePermissionMapper.selectByExample(rolePermissionExample);
-        for (RolePermission rolePermission:
-             rolePermissionList) {
-            rolePermissionMapper.deleteByPrimaryKey(rolePermission.getRpId());
-        }
-        //修改用户表中该角色的用户的角色为普通用户
+    public void deleteRole(int id) throws Exception {
+        //如果角色无关联用户，删除角色权限表中记录，删除角色
         UserExample userExample = new UserExample();
         userExample.createCriteria().andRoleIdEqualTo(id);
         List<User> userList = userMapper.selectByExample(userExample);
-        for (User user :
-                userList) {
-            user.setRoleId(2);
-            userMapper.updateByPrimaryKey(user);
+        if (userList.isEmpty()){
+            //删除角色权限表中该角色的相关记录
+            RolePermissionExample rolePermissionExample=new RolePermissionExample();
+            rolePermissionExample.createCriteria().andRoleIdEqualTo(id);
+            List<RolePermission> rolePermissionList=rolePermissionMapper.selectByExample(rolePermissionExample);
+            for (RolePermission rolePermission:
+                    rolePermissionList) {
+                rolePermissionMapper.deleteByPrimaryKey(rolePermission.getRpId());
+            }
+            //删除角色
+            roleMapper.deleteByPrimaryKey(id);
         }
-        //删除角色
-        roleMapper.deleteByPrimaryKey(id);
+        else{
+            //如果角色有关联用户，则无法删除
+            throw new CanntDeleteException();
+        }
+
     }
     /**
     * @Description: 更新角色信息
