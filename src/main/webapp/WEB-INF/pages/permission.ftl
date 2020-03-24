@@ -61,8 +61,8 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${permissionList.permissionId}" name="checkbox"></td>
                 <td>${permissionList_index+1}</td>
-                <td>${permissionList.permissionName}</td>
                 <td>${permissionList.permissionStr}</td>
+                <td>${permissionList.permissionName}</td>
                 <td>${permissionList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="permission_edit('权限编辑',${permissionList.permissionId},${permissionList_index+1})"
@@ -80,7 +80,7 @@
     </table>
 </div>
 <div id="permission_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%" id="form_permission">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_permission">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="permissionId" id="permissionId" value=""/>
         <div class="row cl">
@@ -100,9 +100,6 @@
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <button class="btn btn-success radius" id="permission_save">
                 <i class="icon-ok"></i> 确定
-                </button>
-                <button class="btn btn-success radius" style="background-color: red" id="user_cancel">
-                    <i class="icon-ok"></i> 取消
                 </button>
             </div>
         </div>
@@ -125,13 +122,15 @@
         $("input").remove("[name = 'permissionId']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
-            closeBtn:0,
             shade: 0.4,
             title: title,
-            content: $('#permission_edit')
+            content: $('#permission_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -144,13 +143,15 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
-            closeBtn:0,
             shade: 0.4,
             title: title,
-            content: $('#permission_edit')
+            content: $('#permission_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -247,11 +248,6 @@
                 });
             }
         })
-    })
-
-    //取消用户编辑
-    $('#user_cancel').click(function () {
-        layer.close();
     })
 </script>
 </body>
