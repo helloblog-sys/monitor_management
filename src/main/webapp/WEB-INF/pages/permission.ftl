@@ -50,8 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <#--<th width="40">ID</th>-->
-            <th width="200">权限名称</th>
+            <th width="240">权限名称</th>
             <th>权限描述</th>
             <th width="300">创建时间</th>
             <th width="70">操作</th>
@@ -62,7 +61,6 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${permissionList.permissionId}" name="checkbox"></td>
                 <td>${permissionList_index+1}</td>
-                <#--<td>${permissionList.permissionId}</td>-->
                 <td>${permissionList.permissionStr}</td>
                 <td>${permissionList.permissionName}</td>
                 <td>${permissionList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
@@ -82,7 +80,7 @@
     </table>
 </div>
 <div id="permission_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%" id="form_permission">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_permission">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="permissionId" id="permissionId" value=""/>
         <div class="row cl">
@@ -100,7 +98,7 @@
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button class="btn btn-success radius" id="permission_save"
+                <button class="btn btn-success radius" id="permission_save">
                 <i class="icon-ok"></i> 确定
                 </button>
             </div>
@@ -124,12 +122,15 @@
         $("input").remove("[name = 'permissionId']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            content: $('#permission_edit')
+            content: $('#permission_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -137,17 +138,20 @@
     function permission_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('permissionId').value = id;
-        document.getElementById('permissionName').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
-        document.getElementById('permissionStr').value = $('tbody tr:eq(' + tid + ') td:eq(4)').text();;
+        document.getElementById('permissionName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
+        document.getElementById('permissionStr').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();;
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            content: $('#permission_edit')
+            content: $('#permission_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 

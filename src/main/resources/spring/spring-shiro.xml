@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+
+    <!-- spring-shiro.xml需要配置在spring的context下-->
+
+    <!-- Shiro 核心配置  -->
+    <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+        <!--1 配置缓存 -->
+        <property name="cacheManager" ref="cacheManager"/>
+        <property name="realm" ref="jdbcRealm"/>
+    </bean>
+
+
+
+    <!-- 1配置缓存-->
+    <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
+        <property name="cacheManagerConfigFile" value="classpath:/spring/ehcache.xml"/>
+    </bean>
+
+    <!-- 2 自定义Realm 由SecurityManager用来访问安全数据（用户，角色等）。
+     Shiro 从 Realm 获取安全数据（如用户、角色、权限）
+     -->
+    <bean id="jdbcRealm" class="com.microthings.monitor_management.shiro.ShiroRealm">
+
+    </bean>
+
+    <!-- =========================================================
+        Shiro Spring特定的集成
+         ========================================================= -->
+    <!-- Spring 会为Shiro BEAN后置处理器。自动为Shiro bean调用init/destory方法-->
+    <bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor"/>
+
+    <!-- 启动Shiro注解操作 为Spring配置的bean启用Shiro注释。仅在lifecycleBeanProcessor运行后运行 -->
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
+          depends-on="lifecycleBeanPostProcessor"/>
+    <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
+        <property name="securityManager" ref="securityManager"/>
+    </bean>
+
+
+
+    <!--  bean id必须要和 web.xml Filter name 要一致  -->
+    <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+        <property name="securityManager" ref="securityManager"/>
+        <property name="loginUrl" value="/login.html"/>    <!--未认证  登录页面 -->
+        <property name="successUrl" value="/index.ftl"/>    <!-- 认证成功后访问页面 -->
+
+
+
+        <!--在程序中编写授权拦截器-->
+        <property name="filterChainDefinitions">
+             <value>
+
+                 /login= anon
+                 /logout= logout
+                 /assets/** = anon
+                 **.html = anon
+                 /checkCode=anon
+                 /** = authc
+             </value>
+         </property>
+
+    </bean>
+
+</beans>

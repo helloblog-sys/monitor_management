@@ -20,6 +20,8 @@ public class AjaxResponse implements Serializable {
             -100101, "您输入的账号不存在");
     public static final AjaxResponse PASSWORD_NOT_PASSED = new AjaxResponse(
             -100102, "您输入的账号密码不正确");
+    public static final AjaxResponse CHECKCODE_NOT_CHECKED = new AjaxResponse(
+            -100103, "您输入的验证码不正确");
 
     /**
      * 状态码

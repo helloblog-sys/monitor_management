@@ -50,8 +50,7 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <#--<th width="40">ID</th>-->
-            <th width="200">用户名称</th>
+            <th width="240">用户名称</th>
             <th>用户角色</th>
             <th width="300">创建时间</th>
             <th width="70">操作</th>
@@ -62,14 +61,13 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${userList.userId}" name="checkbox"></td>
                 <td>${userList_index+1}</td>
-                <#--<td>${userList.userId}</td>-->
                 <td>${userList.userName}</td>
                 <#if userList.roleId==1>
                     <td>超级管理员</td>
                 <#elseif userList.roleId==2>
                     <td>普通用户</td>
                 <#elseif userList.roleId==3>
-                    <td>咖啡街</td></#if>
+                    <td>咖啡街管理员</td></#if>
                 <td>${userList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="user_edit('用户编辑',${userList.userId},${userList_index+1})"
@@ -88,7 +86,7 @@
 </div>
 <!--用户新增、编辑模块-->
 <div id="user_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%" id="form_user">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_user">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="userId" id="userId" value=""/>
         <div class="row cl">
@@ -110,13 +108,13 @@
 			<select class="select" name="roleId" size="1">
 				<option value="1">超级管理员</option>
 				<option value="2">普通用户</option>
-                <option value="3">咖啡街</option>
+                <option value="3">咖啡街管理员</option>
 			</select>
 			</span></div>
         </div>
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button class="btn btn-success radius" id="user_save"
+                <button class="btn btn-success radius" id="user_save">
                 <i class="icon-ok"></i> 确定
                 </button>
             </div>
@@ -140,12 +138,15 @@
         $("input").remove("[name = 'userId']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            content: $('#user_edit')
+            content: $('#user_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -153,17 +154,20 @@
     function user_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('userId').value = id;
-        document.getElementById('userName').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
+        document.getElementById('userName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
         document.getElementById('userPassword').value = 123456;
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            content: $('#user_edit')
+            content: $('#user_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
