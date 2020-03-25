@@ -119,139 +119,165 @@
 </div>
 <!--设备添加/编辑模块-->
 <div id="device_add" style="display: none">
-        <form class="form form-horizontal" style="padding-top: 2%" id="form_device">
+    <form class="form form-horizontal" style="padding-top: 1%" id="form_device">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="deviceId" id="deviceId" value=""/>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备名称：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备名称" id="deviceName" name="deviceName">
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceName"><span class="c-red">*</span>设备名称：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备名称" id="deviceName"
+                           name="deviceName">
+                </div>
+            </div>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备类型：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                        <span class="select-box">
+                        <select class="select" id="deviceType" name="deviceType" size="1">
+                            <option value="1">雷达</option>
+                            <option value="2">摄像头</option>
+                            <option value="3">其他</option>
+                        </select>
+			            </span>
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备类型：</label>
-            <div class="formControls col-xs-7 col-sm-7"> <span class="select-box" style="width:150px;">
-			<select class="select" id="deviceType" name="deviceType" size="1">
-				<option value="1">雷达</option>
-				<option value="2">摄像头</option>
-                <option value="3">其他</option>
-			</select>
-			</span></div>
-            <#--<div class="formControls col-xs-7 col-sm-7">-->
-                <#--<input type="text" class="input-text" value="" placeholder="请填写设备类型" id="deviceType" name="deviceType">-->
-            <#--</div>-->
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备sn：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备sn" id="deviceSn" name="deviceSn">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceSn"><span class="c-red">*</span>设备sn：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备sn" id="deviceSn" name="deviceSn">
+                </div>
+            </div>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备状态：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                        <span class="select-box">
+                        <select class="select" id="deviceStatus" name="deviceStatus" size="1" disabled="disabled">
+                            <option value="0">下线</option>
+                            <option value="1">在线</option>
+                            <option value="2">故障</option>
+			            </select>
+                        </span>
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备状态：</label>
-            <div class="formControls col-xs-7 col-sm-7"> <span class="select-box" style="width:150px;">
-			<select class="select" id="deviceStatus" name="deviceStatus" size="1" disabled="disabled">
-				<option value="0">下线</option>
-				<option value="1">在线</option>
-                <option value="2">故障</option>
-			</select>
-			</span></div>
-            <#--<div class="formControls col-xs-7 col-sm-7">-->
-                <#--<input type="text" class="input-text" value="" placeholder="0:下线，1:在线，2:故障" id="deviceStatus"-->
-                       <#--name="deviceStatus">-->
-            <#--</div>-->
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备位置：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="devicePosition"
-                       name="devicePosition">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="devicePosition"><span class="c-red">*</span>设备位置：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="devicePosition"
+                           name="devicePosition">
+                </div>
+            </div>
+            <div class="row row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="buildingId"><span class="c-red">*</span>楼栋ID：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="buildingId"
+                           name="buildingId">
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>楼栋ID：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="buildingId"
-                       name="buildingId">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceFloor"><span class="c-red">*</span>设备楼层：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备楼层" id="deviceFloor"
+                           name="deviceFloor">
+                </div>
+            </div>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceAngle"><span class="c-red">*</span>设备角度：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备角度" id="deviceAngle"
+                           name="deviceAngle">
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备楼层：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备楼层" id="deviceFloor"
-                       name="deviceFloor">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="mapPositionX"><span class="c-red">*</span>设备X坐标：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备X坐标" id="mapPositionX"
+                           name="mapPositionX">
+                </div>
+            </div>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="mapPositionY"><span class="c-red">*</span>设备Y坐标：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备Y坐标" id="mapPositionY"
+                           name="mapPositionY">
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备角度：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备角度" id="deviceAngle"
-                       name="deviceAngle">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceScaling"><span class="c-red">*</span>坐标缩放：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="1" placeholder="请填写坐标缩放比例" id="deviceScaling"
+                           name="deviceScaling">
+                </div>
+            </div>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="monitorAhead">设备监控前距：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备监控前距（可不填）" id="monitorAhead"
+                           name="monitorAhead">
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备X坐标：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备X坐标" id="mapPositionX"
-                       name="mapPositionX">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="monitorLeft">设备监控左距：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备监控左距（可不填）" id="monitorLeft"
+                           name="monitorLeft">
+                </div>
+            </div>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="monitorRight">设备监控右距：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写设备监控右距（可不填）" id="monitorRight"
+                           name="monitorRight">
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>设备Y坐标：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备Y坐标" id="mapPositionY"
-                       name="mapPositionY">
+
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="port">摄像头端口号：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="摄像头在推流服务器上的端口号（可不填）" id="port"
+                           name="port">
+                </div>
             </div>
-        </div><div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>坐标缩放：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="1" placeholder="请填写坐标缩放比例" id="deviceScaling"
-                       name="deviceScaling">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">设备监控前距：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备监控前距（可不填）" id="monitorAhead"
-                       name="monitorAhead">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="associationMmwaveSn">设备关联雷达sn：</label>
+                <div class="formControls col-xs-7 col-sm-7">
+                    <input type="text" class="input-text" value="" placeholder="请填写于设备有重叠区域的雷达sn（可不填）"
+                           id="associationMmwaveSn"
+                           name="associationMmwaveSn">
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">设备监控左距：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备监控左距（可不填）" id="monitorLeft"
-                       name="monitorLeft">
+
+        <div class="container-fluid">
+            <div class="row cl">
+                <div class="col-xs-12 col-xs-offset-5" >
+                    <button class="btn btn-success radius size-L" id="device_save">
+                        <i class="icon-ok"></i> 确定
+                    </button>
+                </div>
             </div>
         </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">设备监控右距：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写设备监控右距（可不填）" id="monitorRight"
-                       name="monitorRight">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">摄像头端口号：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="摄像头在推流服务器上的端口号（可不填）" id="port"
-                       name="port">
-            </div>
-        </div>
-        <div class="row cl">
-            <label class="form-label col-xs-4 col-sm-3">设备关联雷达sn：</label>
-            <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" placeholder="请填写于设备有重叠区域的雷达sn（可不填）"
-                       id="associationMmwaveSn"
-                       name="associationMmwaveSn">
-            </div>
-        </div>
-        <div class="row cl">
-            <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
-                <button class="btn btn-success radius size-L" id="device_save">
-                    <i class="icon-ok"></i> 确定
-                </button>
-            </div>
-        </div>
+
     </form>
 </div>
 <!--_footer 作为公共模版分离出去-->
@@ -265,14 +291,16 @@
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<#--<script type="text/javascript" src="/assets/lib/layui/layui.all.js"></script>-->
 <script type="text/javascript">
     /*设备-添加*/
     function device_add(title) {
         $("input").remove("[name = 'deviceId']");
         layer.open({
             type: 1,
-            area: ['800px', '500px'],
-            fix: false, //不固定
+            area: ['97%','100%'],
+            offset: ['10px'],
+            fix: true, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
@@ -281,6 +309,15 @@
     }
 
     /*设备-编辑*/
+
+    // var layerIndex;
+    // var layerInitWidth;
+    // var layerInitHeight;
+    // var $;
+    //
+    // layui.use(['form', 'jquery'], function () {
+    //     var form = layui.form;
+    //     $ = layui.jquery;
     function device_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('deviceId').value = id;
@@ -314,16 +351,44 @@
         document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
         document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
         $("input").remove("[name = '_method']");
+
         layer.open({
             type: 1,
-            area: ['800px', '500px'],
-            fix: false, //不固定
+            area: ['97%','100%'],
+            offset: ['10px'],
+            fix: true, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            content: $('#device_add')
+            content: $('#device_add'),
+
+            // success: function (layero, index) {
+            //     //获取当前弹出窗口的索引及初始大小
+            //     layerIndex = index;
+            //     layerInitWidth = $("#layui-layer" + layerIndex).width();
+            //     layerInitHeight = $("#layui-layer" + layerIndex).height();
+            //     resizeLayer(layerIndex, layerInitWidth, layerInitHeight);
+            //     form.render();
+            // }
         });
     }
+    // });
+
+
+    // function resizeLayer(layerIndex, layerInitWidth, layerInitHeight) {
+    //     var windowWidth = $(document).width();
+    //     var windowHeight = $(document).height();
+    //     var minWidth = layerInitWidth > windowWidth ? windowWidth : layerInitWidth;
+    //     var minHeight = layerInitHeight > windowHeight ? windowHeight : layerInitHeight;
+    //     console.log("win:", windowWidth, windowHeight);
+    //     console.log("lay:", layerInitWidth, layerInitHeight);
+    //     console.log("min:", minWidth, minHeight);
+    //     layer.style(layerIndex, {
+    //         top: 0,
+    //         width: minWidth,
+    //         height: minHeight
+    //     });
+    // }
 
     /*设备-单个删除*/
     function device_delete(obj, id) {
