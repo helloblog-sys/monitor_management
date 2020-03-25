@@ -122,9 +122,9 @@
     <form class="form form-horizontal" style="padding-top: 1%" id="form_device">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="deviceId" id="deviceId" value=""/>
-        <div class="row cl">
+        <div class="container-fluid">
             <div class="row col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备名称：</label>
+                <label class="form-label col-xs-5 col-sm-5" for="deviceName"><span class="c-red">*</span>设备名称：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备名称" id="deviceName"
                            name="deviceName">
@@ -144,9 +144,9 @@
             </div>
         </div>
 
-        <div class="row cl">
+        <div class="container-fluid">
             <div class="row col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备sn：</label>
+                <label class="form-label col-xs-5 col-sm-5" for="deviceSn"><span class="c-red">*</span>设备sn：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备sn" id="deviceSn" name="deviceSn">
                 </div>
@@ -165,16 +165,16 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备位置：</label>
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="devicePosition"><span class="c-red">*</span>设备位置：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="devicePosition"
                            name="devicePosition">
                 </div>
             </div>
-            <div class="row row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>楼栋ID：</label>
+            <div class="row row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="buildingId"><span class="c-red">*</span>楼栋ID：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="buildingId"
                            name="buildingId">
@@ -182,16 +182,16 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备楼层：</label>
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceFloor"><span class="c-red">*</span>设备楼层：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备楼层" id="deviceFloor"
                            name="deviceFloor">
                 </div>
             </div>
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备角度：</label>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceAngle"><span class="c-red">*</span>设备角度：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备角度" id="deviceAngle"
                            name="deviceAngle">
@@ -199,16 +199,16 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备X坐标：</label>
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="mapPositionX"><span class="c-red">*</span>设备X坐标：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备X坐标" id="mapPositionX"
                            name="mapPositionX">
                 </div>
             </div>
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备Y坐标：</label>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="mapPositionY"><span class="c-red">*</span>设备Y坐标：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备Y坐标" id="mapPositionY"
                            name="mapPositionY">
@@ -216,16 +216,16 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>坐标缩放：</label>
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="deviceScaling"><span class="c-red">*</span>坐标缩放：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="1" placeholder="请填写坐标缩放比例" id="deviceScaling"
                            name="deviceScaling">
                 </div>
             </div>
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5">设备监控前距：</label>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="monitorAhead">设备监控前距：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备监控前距（可不填）" id="monitorAhead"
                            name="monitorAhead">
@@ -233,16 +233,16 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5">设备监控左距：</label>
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="monitorLeft">设备监控左距：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备监控左距（可不填）" id="monitorLeft"
                            name="monitorLeft">
                 </div>
             </div>
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5">设备监控右距：</label>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="monitorRight">设备监控右距：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写设备监控右距（可不填）" id="monitorRight"
                            name="monitorRight">
@@ -250,16 +250,16 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5">摄像头端口号：</label>
+        <div class="container-fluid">
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="port">摄像头端口号：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="摄像头在推流服务器上的端口号（可不填）" id="port"
                            name="port">
                 </div>
             </div>
-            <div class="row col-xs-6 col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5">设备关联雷达sn：</label>
+            <div class="row col-sm-6">
+                <label class="form-label col-xs-5 col-sm-5" for="associationMmwaveSn">设备关联雷达sn：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写于设备有重叠区域的雷达sn（可不填）"
                            id="associationMmwaveSn"
@@ -268,11 +268,13 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="col-xs-offset-6 col-sm-offset-6">
-                <button class="btn btn-success radius size-L" id="device_save">
-                    <i class="icon-ok"></i> 确定
-                </button>
+        <div class="container-fluid">
+            <div class="row cl">
+                <div class="col-xs-12 col-xs-offset-5" >
+                    <button class="btn btn-success radius size-L" id="device_save">
+                        <i class="icon-ok"></i> 确定
+                    </button>
+                </div>
             </div>
         </div>
 
