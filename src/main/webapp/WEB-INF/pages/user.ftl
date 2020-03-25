@@ -86,7 +86,7 @@
 </div>
 <!--用户新增、编辑模块-->
 <div id="user_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%" id="form_user">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_user">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="userId" id="userId" value=""/>
         <div class="row cl">
@@ -117,9 +117,6 @@
                 <button class="btn btn-success radius" id="user_save">
                 <i class="icon-ok"></i> 确定
                 </button>
-                <button class="btn btn-success radius" style="background-color: red" id="user_cancel">
-                <i class="icon-ok"></i> 取消
-                </button>
             </div>
         </div>
     </form>
@@ -141,13 +138,15 @@
         $("input").remove("[name = 'userId']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            closeBtn:0,
-            content: $('#user_edit')
+            content: $('#user_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -160,13 +159,15 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            closeBtn:0,
-            content: $('#user_edit')
+            content: $('#user_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -266,11 +267,6 @@
                 });
             }
         })
-    })
-
-    //取消用户编辑
-    $('#user_cancel').click(function () {
-        layer.close();
     })
 </script>
 </body>
