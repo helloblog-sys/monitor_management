@@ -41,7 +41,7 @@
             </div>
             <div class="row cl">
                 <div class="formControls col-xs-8 col-xs-offset-3">
-                    <input class="input-text size-L" type="text" placeholder="验证码"
+                    <input id="checkcode" name="checkcode" class="input-text size-L" type="text" placeholder="验证码"
                            onblur="if(this.value==''){this.value='验证码:'}"
                            onclick="if(this.value=='验证码:'){this.value='';}" value="验证码:" style="width:150px;">
                     <img src="/checkCode" id="checkCodeImg"> <a onclick="changImg()">看不清，换一张</a></div>
@@ -67,6 +67,12 @@
 <script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/H-ui.min.js"></script>
 <script type="text/javascript">
+
+    //在iframe中超时跳转到主窗口
+    if(window!=top){
+        top.location.href = location.href;
+    }
+
     $("#submit").click(function () {
         $.ajax({
             url: '/login',
@@ -78,6 +84,7 @@
                     location.href = "/welcome";
                 } else {
                     alert("错误代码：" + data.s + "\t" + data.d);
+                    changImg();
                 }
             },
             error: function (data) {
