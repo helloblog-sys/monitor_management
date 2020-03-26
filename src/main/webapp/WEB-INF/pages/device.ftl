@@ -258,7 +258,7 @@
                            name="port">
                 </div>
             </div>
-            <div class="row col-sm-6">
+            <div class="row col-sm-6" style="margin-bottom: 10px;">
                 <label class="form-label col-xs-5 col-sm-5" for="associationMmwaveSn">设备关联雷达sn：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写于设备有重叠区域的雷达sn（可不填）"
@@ -268,13 +268,11 @@
             </div>
         </div>
 
-        <div class="container-fluid">
-            <div class="row cl">
-                <div class="col-xs-12 col-xs-offset-5" >
-                    <button class="btn btn-success radius size-L" id="device_save">
-                        <i class="icon-ok"></i> 确定
-                    </button>
-                </div>
+        <div class="row cl">
+            <div class="col-xs-7 col-xs-offset-5">
+                <button class="btn btn-success radius size-L" id="device_save">
+                    <i class="icon-ok"></i> 确定
+                </button>
             </div>
         </div>
 
@@ -309,15 +307,6 @@
     }
 
     /*设备-编辑*/
-
-    // var layerIndex;
-    // var layerInitWidth;
-    // var layerInitHeight;
-    // var $;
-    //
-    // layui.use(['form', 'jquery'], function () {
-    //     var form = layui.form;
-    //     $ = layui.jquery;
     function device_edit(title, id, index) {
         var tid = index - 1;
         document.getElementById('deviceId').value = id;
@@ -361,34 +350,8 @@
             shade: 0.4,
             title: title,
             content: $('#device_add'),
-
-            // success: function (layero, index) {
-            //     //获取当前弹出窗口的索引及初始大小
-            //     layerIndex = index;
-            //     layerInitWidth = $("#layui-layer" + layerIndex).width();
-            //     layerInitHeight = $("#layui-layer" + layerIndex).height();
-            //     resizeLayer(layerIndex, layerInitWidth, layerInitHeight);
-            //     form.render();
-            // }
         });
     }
-    // });
-
-
-    // function resizeLayer(layerIndex, layerInitWidth, layerInitHeight) {
-    //     var windowWidth = $(document).width();
-    //     var windowHeight = $(document).height();
-    //     var minWidth = layerInitWidth > windowWidth ? windowWidth : layerInitWidth;
-    //     var minHeight = layerInitHeight > windowHeight ? windowHeight : layerInitHeight;
-    //     console.log("win:", windowWidth, windowHeight);
-    //     console.log("lay:", layerInitWidth, layerInitHeight);
-    //     console.log("min:", minWidth, minHeight);
-    //     layer.style(layerIndex, {
-    //         top: 0,
-    //         width: minWidth,
-    //         height: minHeight
-    //     });
-    // }
 
     /*设备-单个删除*/
     function device_delete(obj, id) {
