@@ -3,7 +3,7 @@ package com.microthings.monitor_management.controller;
 import com.microthings.monitor_management.pojo.Role;
 import com.microthings.monitor_management.service.RoleService;
 import com.microthings.monitor_management.util.AjaxResponse;
-import com.microthings.monitor_management.util.CanntDeleteException;
+import com.microthings.monitor_management.exception.CanntDeleteException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;

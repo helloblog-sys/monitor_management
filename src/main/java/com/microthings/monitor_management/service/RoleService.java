@@ -5,7 +5,7 @@ import com.microthings.monitor_management.mapper.RoleMapper;
 import com.microthings.monitor_management.mapper.RolePermissionMapper;
 import com.microthings.monitor_management.mapper.UserMapper;
 import com.microthings.monitor_management.pojo.*;
-import com.microthings.monitor_management.util.CanntDeleteException;
+import com.microthings.monitor_management.exception.CanntDeleteException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
