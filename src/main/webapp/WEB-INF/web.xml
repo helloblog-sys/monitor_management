@@ -62,4 +62,15 @@
     <welcome-file-list>
         <welcome-file>login.html</welcome-file>
     </welcome-file-list>
+
+    <session-config>
+        <session-timeout>3000</session-timeout>
+        <cookie-config>
+            <name>mySessionId_1</name>
+            <domain>localhost</domain>
+            <path>/</path>
+        </cookie-config>
+        <tracking-mode>COOKIE</tracking-mode>
+    </session-config>
+
 </web-app>
