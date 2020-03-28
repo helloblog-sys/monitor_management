@@ -84,6 +84,7 @@
                     location.href = "/welcome";
                 } else {
                     alert("错误代码：" + data.s + "\t" + data.d);
+                    changImg();
                 }
             },
             error: function (data) {

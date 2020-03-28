@@ -21,6 +21,11 @@
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <title>角色列表</title>
+    <style>
+        p:nth-child(even){
+            background: #ccc;
+        }
+    </style>
 </head>
 <body>
 <nav class="breadcrumb">
@@ -84,7 +89,7 @@
 </div>
 <!--新增、编辑角色模块-->
 <div id="role_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%" id="form_role">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_role">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="roleId" id="roleId" value=""/>
         <div class="row cl">
@@ -105,9 +110,6 @@
                 <button class="btn btn-success radius" id="role_save">
                 <i class="icon-ok"></i> 确定
                 </button>
-                <button class="btn btn-success radius" style="background-color: red" id="user_cancel">
-                    <i class="icon-ok"></i> 取消
-                </button>
             </div>
         </div>
     </form>
@@ -116,7 +118,7 @@
 <div id="list_role_permission" style="display: none">
     <div class="panel panel-secondary mt-20">
         <div class="panel-header"><h4 id="title"></h4></div>
-        <div class="panel-body"><h4 class="text-c" id="body"></h4></div>
+        <table id="mytable"></table>
     </div>
     <div class="text-c" style="padding-top: 4%;padding-bottom: 2%">
         <a id="permission_edit" href="">
@@ -143,13 +145,15 @@
         $("input").remove("[name = 'roleId']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            closeBtn:0,
-            content: $('#role_edit')
+            content: $('#role_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -163,13 +167,15 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', '400px'],
+            area: ['800px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: title,
-            closeBtn:0,
-            content: $('#role_edit')
+            content: $('#role_edit'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
 
@@ -289,26 +295,35 @@
 
     //查看角色-权限窗口
     function layer_role_permission(data, index, roleId) {
-        var permissionList = data.join("\n");
         var tid = index - 1;
+
         document.getElementById("title").innerHTML = $('tbody tr:eq(' + tid + ') td:eq(2)').text() + "权限:";
-        document.getElementById("body").innerText = permissionList;
+
+        $("#mytable").append("<tr><td>&nbsp;</<td></tr>");
+        for(var p in data){
+            if(p%2==0){
+                $("#mytable").append("<tr><td><p class='text-c' style='font-size: 18px'>"+data[p]+"</p></<td></tr>");
+            }
+            else{
+                $("#mytable").append("<tr><td><p class='text-c' style='font-size: 18px;background-color: #DDDDDD'>"+data[p]+"</p></<td></tr>");
+            }
+        }
+        $("#mytable").append("<tr><td>&nbsp;</<td></tr>");
+
         document.getElementById("permission_edit").href = "/rolePermission/" + roleId;
         layer.open({
             type: 1,
-            area: ['300px', '450px'],
+            area: ['300px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
             title: '角色权限',
-            content: $('#list_role_permission')
+            content: $('#list_role_permission'),
+            cancel: function(){
+                location.replace(location.href);
+            }
         });
     }
-
-    //取消用户编辑
-    $('#user_cancel').click(function () {
-        layer.close();
-    })
 </script>
 </body>
 </html>
