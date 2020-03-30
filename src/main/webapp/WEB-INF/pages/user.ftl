@@ -62,12 +62,13 @@
                 <td><input type="checkbox" value="${userList.userId}" name="checkbox"></td>
                 <td>${userList_index+1}</td>
                 <td>${userList.userName}</td>
-                <#if userList.roleId==1>
-                    <td>超级管理员</td>
-                <#elseif userList.roleId==2>
-                    <td>普通用户</td>
-                <#elseif userList.roleId==3>
-                    <td>咖啡街管理员</td></#if>
+                <#--<#if userList.roleId==1>-->
+                    <#--<td>超级管理员</td>-->
+                <#--<#elseif userList.roleId==2>-->
+                    <#--<td>普通用户</td>-->
+                <#--<#elseif userList.roleId==3>-->
+                    <#--<td>咖啡街管理员</td></#if>-->
+                <td>${userList.getRoleTypeEnum().message}</td>
                 <td>${userList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="user_edit('用户编辑',${userList.userId},${userList_index+1})"
@@ -86,23 +87,23 @@
 </div>
 <!--用户新增、编辑模块-->
 <div id="user_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_user">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:480px" id="form_user">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="userId" id="userId" value=""/>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名称：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" id="userName" name="userName">
             </div>
         </div>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户密码：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="password" class="input-text" value="" placeholder="请填写用户密码" id="userPassword"
                        name="userPassword">
             </div>
         </div>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户角色：</label>
             <div class="formControls col-xs-7 col-sm-7"> <span class="select-box" style="width:150px;">
 			<select class="select" name="roleId" size="1">
@@ -112,7 +113,7 @@
 			</select>
 			</span></div>
         </div>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <button class="btn btn-success radius" id="user_save">
                 <i class="icon-ok"></i> 确定
@@ -138,7 +139,7 @@
         $("input").remove("[name = 'userId']");
         layer.open({
             type: 1,
-            area: ['800px', 'auto'],
+            area: ['500px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -159,7 +160,7 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', 'auto'],
+            area: ['500px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,

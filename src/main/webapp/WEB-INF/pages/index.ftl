@@ -27,7 +27,8 @@
 <body>
 <header class="navbar-wrapper">
     <div class="navbar navbar-fixed-top">
-        <div class="container-fluid cl"><a class="logo navbar-logo f-l mr-10 hidden-xs" href="/aboutHui.shtml">楼宇可视化物联系统管理后台</a>
+        <div class="container-fluid cl">
+            <span class="logo navbar-logo f-l mr-10 hidden-xs">楼宇可视化物联系统管理后台</span>
             <span class="logo navbar-slogan f-l mr-10 hidden-xs">v1.0</span>
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <#--<nav class="nav navbar-nav">-->
@@ -97,7 +98,7 @@
                     <li><a data-href="/device/28" data-title="28号楼" href="javascript:void(0)">28号楼</a></li>
                     <li><a data-href="/device/29" data-title="29号楼" href="javascript:void(0)">29号楼</a></li>
                     <li><a data-href="/device/2" data-title="咖啡街" href="javascript:void(0)">咖啡街</a></li>
-                    <li><a data-href="/device/3" data-title="主楼四区" href="javascript:void(0)">主楼四区</a></li>
+                    <#--<li><a data-href="/device/3" data-title="主楼四区" href="javascript:void(0)">主楼四区</a></li>-->
                 </ul>
             </dd>
         </dl>
@@ -186,74 +187,74 @@
 <script type="text/javascript" src="/assets/js/H-ui.min.js"></script>
 <script type="text/javascript" src="/assets/js/H-ui.admin.js"></script> <!--/_footer 作为公共模版分离出去-->
 
-<!--请在下方写此页面业务相关的脚本-->
-<script type="text/javascript" src="/assets/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>
-<script type="text/javascript">
-    $(function () {
-        /*$("#min_title_list li").contextMenu('Huiadminmenu', {
-            bindings: {
-                'closethis': function(t) {
-                    console.log(t);
-                    if(t.find("i")){
-                        t.find("i").trigger("click");
-                    }
-                },
-                'closeall': function(t) {
-                    alert('Trigger was '+t.id+'\nAction was Email');
-                },
-            }
-        });*/
-    });
+<#--<!--请在下方写此页面业务相关的脚本&ndash;&gt;-->
+<#--<script type="text/javascript" src="/assets/lib/jquery.contextmenu/jquery.contextmenu.r2.js"></script>-->
+<#--<script type="text/javascript">-->
+    <#--$(function () {-->
+        <#--/*$("#min_title_list li").contextMenu('Huiadminmenu', {-->
+            <#--bindings: {-->
+                <#--'closethis': function(t) {-->
+                    <#--console.log(t);-->
+                    <#--if(t.find("i")){-->
+                        <#--t.find("i").trigger("click");-->
+                    <#--}-->
+                <#--},-->
+                <#--'closeall': function(t) {-->
+                    <#--alert('Trigger was '+t.id+'\nAction was Email');-->
+                <#--},-->
+            <#--}-->
+        <#--});*/-->
+    <#--});-->
 
-    /*个人信息*/
-    function myselfinfo() {
-        layer.open({
-            type: 1,
-            area: ['300px', '200px'],
-            fix: false, //不固定
-            maxmin: true,
-            shade: 0.4,
-            title: '查看信息',
-            content: '<div>管理员信息</div>'
-        });
-    }
+    <#--/*个人信息*/-->
+    <#--function myselfinfo() {-->
+        <#--layer.open({-->
+            <#--type: 1,-->
+            <#--area: ['300px', '200px'],-->
+            <#--fix: false, //不固定-->
+            <#--maxmin: true,-->
+            <#--shade: 0.4,-->
+            <#--title: '查看信息',-->
+            <#--content: '<div>管理员信息</div>'-->
+        <#--});-->
+    <#--}-->
 
-    /*资讯-添加*/
-    function article_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
+    <#--/*资讯-添加*/-->
+    <#--function article_add(title, url) {-->
+        <#--var index = layer.open({-->
+            <#--type: 2,-->
+            <#--title: title,-->
+            <#--content: url-->
+        <#--});-->
+        <#--layer.full(index);-->
+    <#--}-->
 
-    /*图片-添加*/
-    function picture_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
+    <#--/*图片-添加*/-->
+    <#--function picture_add(title, url) {-->
+        <#--var index = layer.open({-->
+            <#--type: 2,-->
+            <#--title: title,-->
+            <#--content: url-->
+        <#--});-->
+        <#--layer.full(index);-->
+    <#--}-->
 
-    /*产品-添加*/
-    function product_add(title, url) {
-        var index = layer.open({
-            type: 2,
-            title: title,
-            content: url
-        });
-        layer.full(index);
-    }
+    <#--/*产品-添加*/-->
+    <#--function product_add(title, url) {-->
+        <#--var index = layer.open({-->
+            <#--type: 2,-->
+            <#--title: title,-->
+            <#--content: url-->
+        <#--});-->
+        <#--layer.full(index);-->
+    <#--}-->
 
-    /*用户-添加*/
-    function member_add(title, url, w, h) {
-        layer_show(title, url, w, h);
-    }
+    <#--/*用户-添加*/-->
+    <#--function member_add(title, url, w, h) {-->
+        <#--layer_show(title, url, w, h);-->
+    <#--}-->
 
 
-</script>
+<#--</script>-->
 </body>
 </html>

@@ -54,8 +54,7 @@
         <div class="row cl">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <button class="btn btn-success radius" id="user_save"
-                <i
-                        class="icon-ok"></i> 确定
+                <i class="icon-ok"></i> 确定
                 </button>
             </div>
         </div>

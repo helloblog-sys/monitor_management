@@ -17,19 +17,19 @@ switch(buildingId){
     case 28:
         mapId = "xdqd_2801";
         themeID = '2001';
-        defaultScaleLevel=13;
+        defaultScaleLevel=16;
         tiltAngle=70;
         break;
     case 29:
         mapId = "xdqd_2901";
         themeID = '2001';
-        defaultScaleLevel=13;
+        defaultScaleLevel=16;
         tiltAngle=70;
         break;
     case 2:
         mapId = "20190929";
         themeID = '1005';
-        defaultScaleLevel=3;
+        defaultScaleLevel=6;
         tiltAngle = 60;
         break;
     case 3:
@@ -46,7 +46,7 @@ map = new esmap.ESMap({
     container: document.getElementById('container'), //渲染dom
     mapDataSrc: "/assets/esmap/data", //地图数据位置
     mapThemeSrc: "/assets/esmap/data/theme", //主题数据位置
-    defaultScaleLevel:15,//初始显示缩放等级,
+    defaultScaleLevel:defaultScaleLevel,//初始显示缩放等级,
     focusAlphaMode: true, // 对不可见图层启用透明设置 默认为true
     focusAnimateMode: true, // 开启聚焦层切换的动画显示
     focusAlpha: 0.8, // 对不聚焦图层启用透明设置，当focusAlphaMode = true时有效
@@ -177,7 +177,7 @@ function addImage(x, y, focusFloorNum, type) {
 
 
 function addAngle() { //改变角度  增加旋转角度
-    if (cameraFlag) {
+    if (cameraFlag||radarFlag||modifyFlag||smokeFlag||fireFlag) {
         var angle = $("#deviceAngle").val();
         angle = Number(angle) + 10;
         $("#deviceAngle").val(angle);
@@ -187,7 +187,7 @@ function addAngle() { //改变角度  增加旋转角度
 }
 
 function cutAngle() { //改变角度  减少旋转角度
-    if (cameraFlag) {
+    if (cameraFlag||radarFlag||modifyFlag||smokeFlag||fireFlag) {
         var angle = $("#deviceAngle").val();
         angle = Number(angle) - 10;
         $("#deviceAngle").val(angle);
