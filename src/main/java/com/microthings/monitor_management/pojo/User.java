@@ -1,5 +1,9 @@
 package com.microthings.monitor_management.pojo;
 
+import com.microthings.monitor_management.Enum.RoleTypeEnum;
+import com.microthings.monitor_management.util.EnumUtil;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.Date;
 
 public class User {
@@ -51,5 +55,14 @@ public class User {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    /**
+     * 角色枚举方法
+     * @return
+     */
+    @JsonIgnore
+    public RoleTypeEnum getRoleTypeEnum(){
+        return EnumUtil.getByCode(roleId,RoleTypeEnum.class);
     }
 }

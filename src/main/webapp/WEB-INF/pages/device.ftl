@@ -59,7 +59,7 @@
             <th width="100">设备sn</th>
             <th width="100">设备状态</th>
             <th width="200">设备位置</th>
-            <th width="100">楼栋ID</th>
+            <#--<th width="100">楼栋ID</th>-->
             <th width="100">设备楼层</th>
             <th width="100">设备角度</th>
             <th width="200">地图坐标X</th>
@@ -77,23 +77,11 @@
                 <td>${deviceList_index+1}</td>
                 <#--<td>${deviceList.deviceId}</td>-->
                 <td>${deviceList.deviceName}</td>
-                <#if deviceList.deviceType==1>
-                    <td>雷达</td>
-                <#elseif deviceList.deviceType==2>
-                    <td>摄像头</td>
-                <#else>
-                    <td>其他</td></#if>
-                <#--<td>${deviceList.deviceType}</td>-->
+                <td>${deviceList.getDeviceTypeEnum().message}</td>
                 <td>${deviceList.deviceSn}</td>
-                <#if deviceList.deviceStatus==0>
-                    <td>下线</td>
-                <#elseif deviceList.deviceStatus==1>
-                    <td>在线</td>
-                <#elseif deviceList.deviceStatus==2>
-                    <td>故障</td></#if>
-                <#--<td>${deviceList.deviceStatus}</td>-->
+                <td>${deviceList.getDeviceStatusEnum().message}</td>
                 <td>${deviceList.devicePosition}</td>
-                <td>${deviceList.buildingId}</td>
+                <#--<td>${deviceList.buildingId}</td>-->
                 <td>${deviceList.deviceFloor}</td>
                 <td>${deviceList.deviceAngle}</td>
                 <td>${deviceList.mapPositionX}</td>
@@ -137,7 +125,10 @@
                         <select class="select" id="deviceType" name="deviceType" size="1">
                             <option value="1">雷达</option>
                             <option value="2">摄像头</option>
-                            <option value="3">其他</option>
+                            <option value="3">烟感设备</option>
+                            <option value="4">火灾报警设备</option>
+                            <option value="5">灯泡</option>
+                            <option value="6">人脸识别设备</option>
                         </select>
 			            </span>
                 </div>
@@ -155,8 +146,8 @@
                 <label class="form-label col-xs-5 col-sm-5"><span class="c-red">*</span>设备状态：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                         <span class="select-box">
-                        <select class="select" id="deviceStatus" name="deviceStatus" size="1" disabled="disabled">
-                            <option value="0">下线</option>
+                        <select class="select" id="deviceStatus" name="deviceStatus" size="1">
+                            <option value="0">离线</option>
                             <option value="1">在线</option>
                             <option value="2">故障</option>
 			            </select>
@@ -173,13 +164,13 @@
                            name="devicePosition">
                 </div>
             </div>
-            <div class="row row col-sm-6">
-                <label class="form-label col-xs-5 col-sm-5" for="buildingId"><span class="c-red">*</span>楼栋ID：</label>
-                <div class="formControls col-xs-7 col-sm-7">
-                    <input type="text" class="input-text" value="" placeholder="请填写设备位置" id="buildingId"
-                           name="buildingId">
-                </div>
-            </div>
+            <#--<div class="row row col-sm-6">-->
+                <#--<label class="form-label col-xs-5 col-sm-5" for="buildingId"><span class="c-red">*</span>楼栋ID：</label>-->
+                <#--<div class="formControls col-xs-7 col-sm-7">-->
+                    <#--<input type="text" class="input-text" value="" placeholder="请填写设备位置" id="buildingId"-->
+                           <#--name="buildingId">-->
+                <#--</div>-->
+            <#--</div>-->
         </div>
 
         <div class="container-fluid">
@@ -258,7 +249,7 @@
                            name="port">
                 </div>
             </div>
-            <div class="row col-sm-6" style="margin-bottom: 10px;">
+            <div class="row col-sm-6">
                 <label class="form-label col-xs-5 col-sm-5" for="associationMmwaveSn">设备关联雷达sn：</label>
                 <div class="formControls col-xs-7 col-sm-7">
                     <input type="text" class="input-text" value="" placeholder="请填写于设备有重叠区域的雷达sn（可不填）"
@@ -268,11 +259,13 @@
             </div>
         </div>
 
-        <div class="row cl">
-            <div class="col-xs-7 col-xs-offset-5">
-                <button class="btn btn-success radius size-L" id="device_save">
-                    <i class="icon-ok"></i> 确定
-                </button>
+        <div class="container-fluid">
+            <div class="row cl">
+                <div class="col-xs-12 col-xs-offset-5" style="padding-top: 10px">
+                    <button class="btn btn-success radius size-L" id="device_save">
+                        <i class="icon-ok"></i> 确定
+                    </button>
+                </div>
             </div>
         </div>
 
@@ -316,9 +309,15 @@
             temp = '1';
         } else if(temp === '摄像头'){
             temp = '2';
-        }
-        else {
+        }else if(temp === '烟感设备'){
             temp = '3';
+        }else if(temp === '火灾报警设备'){
+            temp = '4';
+        }else if(temp === '灯泡'){
+            temp = '5';
+        }
+        else if(temp === '人脸识别设备'){
+            temp = '6';
         }
         document.getElementById('deviceType').value = temp;
         document.getElementById('deviceSn').value = $('tbody tr:eq(' + tid + ') td:eq(4)').text();
@@ -332,13 +331,13 @@
         }
         document.getElementById('deviceStatus').value = tempStatus;
         document.getElementById('devicePosition').value = $('tbody tr:eq(' + tid + ') td:eq(6)').text();
-        document.getElementById('buildingId').value = $('tbody tr:eq(' + tid + ') td:eq(7)').text();
-        document.getElementById('deviceFloor').value = $('tbody tr:eq(' + tid + ') td:eq(8)').text();
-        document.getElementById('deviceAngle').value = $('tbody tr:eq(' + tid + ') td:eq(9)').text();
-        document.getElementById('mapPositionX').value = $('tbody tr:eq(' + tid + ') td:eq(10)').text();
-        document.getElementById('mapPositionY').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
-        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
-        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
+        // document.getElementById('buildingId').value = $('tbody tr:eq(' + tid + ') td:eq(7)').text();
+        document.getElementById('deviceFloor').value = $('tbody tr:eq(' + tid + ') td:eq(7)').text();
+        document.getElementById('deviceAngle').value = $('tbody tr:eq(' + tid + ') td:eq(8)').text();
+        document.getElementById('mapPositionX').value = $('tbody tr:eq(' + tid + ') td:eq(9)').text();
+        document.getElementById('mapPositionY').value = $('tbody tr:eq(' + tid + ') td:eq(10)').text();
+        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
+        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
         $("input").remove("[name = '_method']");
 
         layer.open({
@@ -352,6 +351,8 @@
             content: $('#device_add'),
         });
     }
+
+
 
     /*设备-单个删除*/
     function device_delete(obj, id) {

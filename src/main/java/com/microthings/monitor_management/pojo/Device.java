@@ -1,5 +1,10 @@
 package com.microthings.monitor_management.pojo;
 
+import com.microthings.monitor_management.Enum.DeviceStatusEnum;
+import com.microthings.monitor_management.Enum.DeviceTypeEnum;
+import com.microthings.monitor_management.util.EnumUtil;
+import org.codehaus.jackson.annotate.JsonIgnore;
+
 import java.util.Date;
 
 public class Device {
@@ -191,5 +196,23 @@ public class Device {
 
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
+    }
+
+    /**
+     * 设备类型枚举方法
+     * @return
+     */
+    @JsonIgnore
+    public DeviceTypeEnum getDeviceTypeEnum(){
+        return EnumUtil.getLongByCode(deviceType,DeviceTypeEnum.class);
+    }
+
+    /**
+     * 设备状态枚举方法
+     * @return
+     */
+    @JsonIgnore
+    public DeviceStatusEnum getDeviceStatusEnum(){
+        return EnumUtil.getLongByCode(deviceStatus,DeviceStatusEnum.class);
     }
 }

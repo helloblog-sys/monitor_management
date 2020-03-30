@@ -138,11 +138,24 @@
             </div>
             <div class="form-group">
                 <label for="deviceType" class="control-label">设备类型:</label>
-                <input type="text" class="form-control" id="deviceType" name="deviceType" placeholder="1:雷达，2：摄像头">
+                <select class="form-control" id="deviceType" name="deviceType" style="width: 165px">
+                    <option value="1">雷达</option>
+                    <option value="2">摄像头</option>
+                    <option value="3">烟感设备</option>
+                    <option value="4">火灾报警设备</option>
+                    <option value="5">灯泡</option>
+                    <option value="6">人脸识别设备</option>
+                </select>
+                <#--<input type="text" class="form-control" id="deviceType" name="deviceType" placeholder="1:雷达，2：摄像头">-->
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group">
                 <label for="deviceStatus" class="control-label">设备状态:</label>
-                <input type="text" class="form-control" id="deviceType" name="deviceStatus" value="1">
+                <select class="form-control" id="deviceType" name="deviceType" style="width: 165px">
+                    <option value="0">离线</option>
+                    <option value="1">在线</option>
+                    <option value="2">故障</option>
+                </select>
+                <#--<input type="text" class="form-control" id="deviceType" name="deviceStatus" value="1">-->
             </div>
             <div class="form-group">
                 <label for="deviceSn" class="control-label">设备sn:</label>
@@ -175,45 +188,47 @@
                 <label for="mapPositionX" class="control-label">设备位置Y:</label>
                 <input type="text" class="form-control" id="mapPositionY" name="mapPositionY" placeholder="地图Y坐标">
             </div>
-            <div class="form-group" style="">
-                <label for="monitorAhead" class="control-label">监控范围-前:</label>
-                <input type="text" class="form-control" id="monitorAhead" name="monitorAhead" placeholder="单位：m（可不填）"
-                       value="0">
-            </div>
-            <div class="form-group" style="">
-                <label for="monitorLeft" class="control-label">监控范围-左:</label>
-                <input type="text" class="form-control" id="monitorLeft" name="monitorLeft" placeholder="单位：m（可不填）">
-            </div>
-            <div class="form-group" style="">
-                <label for="monitorRight" class="control-label">监控范围-右:</label>
-                <input type="text" class="form-control" id="monitorRight" name="monitorRight" placeholder="单位：m（可不填）"
-                       value="0">
-            </div>
-            <div class="form-group" style="">
-                <label for="monitorRight" class="control-label">ip:</label>
-                <input type="text" class="form-control" id="ip" name="ip" placeholder="单位：m（可不填）">
-            </div>
-            <div class="form-group">
-                <label for="deviceScaling" class="control-label">地图缩放比例:</label>
-                <input type="text" class="form-control" id="deviceScaling" name="deviceScaling" placeholder="地图缩放比例" value="">
-            </div>
+            <#--<div class="form-group" style="">-->
+                <#--<label for="monitorAhead" class="control-label">监控范围-前:</label>-->
+                <#--<input type="text" class="form-control" id="monitorAhead" name="monitorAhead" placeholder="单位：m（可不填）"-->
+                       <#--value="0">-->
+            <#--</div>-->
+            <#--<div class="form-group" style="">-->
+                <#--<label for="monitorLeft" class="control-label">监控范围-左:</label>-->
+                <#--<input type="text" class="form-control" id="monitorLeft" name="monitorLeft" placeholder="单位：m（可不填）">-->
+            <#--</div>-->
+            <#--<div class="form-group" style="">-->
+                <#--<label for="monitorRight" class="control-label">监控范围-右:</label>-->
+                <#--<input type="text" class="form-control" id="monitorRight" name="monitorRight" placeholder="单位：m（可不填）"-->
+                       <#--value="0">-->
+            <#--</div>-->
+            <#--<div class="form-group" style="">-->
+                <#--<label for="monitorRight" class="control-label">ip:</label>-->
+                <#--<input type="text" class="form-control" id="ip" name="ip" placeholder="单位：m（可不填）">-->
+            <#--</div>-->
+            <#--<div class="form-group">-->
+                <#--<label for="deviceScaling" class="control-label">地图缩放比例:</label>-->
+                <#--<input type="text" class="form-control" id="deviceScaling" name="deviceScaling" placeholder="地图缩放比例" value="">-->
+            <#--</div>-->
             <div class="form-group">
                 <label for="port" class="control-label">设备port:</label>
                 <input type="text" class="form-control" id="port" name="port" placeholder="摄像头标识（可不填）" value="">
             </div>
-            <div class="form-group" style="">
+            <div hidden class="form-group" style="">
                 <label for="port" class="control-label">设备关联雷达sn：</label>
                 <input type="text" class="form-control" id="associationMmwaveSn" name="associationMmwaveSn"
                        placeholder="有重叠区域的雷达sn（可不填）" value="">
             </div>
             <div class="form-group">
-                <input type="button" class="mybutton" id="submit" value="保存"
+                <#--<button id="submit" type="submit" class="btn btn-success radius size-L">&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;</button>-->
+                <#--<button type="reset" class="btn btn-default radius size-L">&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;-->
+                <input type="button" class="btn btn-success radius size-L"  id="submit" value="保存"
                        style="color:rgb(67, 104, 133);font-weight:700;border-radius:3px">
             </div>
         </form>
     </div>
-    <div class="f-right">
-        <div style="background:rgba(255,186,78,0.24);float:left" id="container"></div>
+    <div class="f-right" style="overflow: hidden;">
+        <div style="height:108%;background:rgba(255,186,78,0.24);float:left" id="container"></div>
         <div style="position:relative;top:610px;background:#fff;height:0px;width:100%"></div>
     </div>
     <!--2D、3D按钮组  -->

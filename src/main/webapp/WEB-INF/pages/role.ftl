@@ -67,8 +67,8 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${roleList.roleId}" name="checkbox"></td>
                 <td>${roleList_index+1}</td>
-                <td>${roleList.roleName}</td>
                 <td>${roleList.roleStr}</td>
+                <td>${roleList.roleName}</td>
                 <td><a onclick="role_permission(${roleList.roleId},${roleList_index+1})">
                         <span class="label label-success radius">点击查看</span></a></td>
                 <td>${roleList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
@@ -89,23 +89,23 @@
 </div>
 <!--新增、编辑角色模块-->
 <div id="role_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:780px" id="form_role">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:480px" id="form_role">
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="roleId" id="roleId" value=""/>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色名称：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" id="roleName" name="roleName">
             </div>
         </div>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>角色描述：</label>
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="text" class="input-text" value="" placeholder="请填写角色描述" id="roleStr"
                        name="roleStr">
             </div>
         </div>
-        <div class="row cl">
+        <div class="row cl" style="padding-left: 50px">
             <div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
                 <button class="btn btn-success radius" id="role_save">
                 <i class="icon-ok"></i> 确定
@@ -145,7 +145,7 @@
         $("input").remove("[name = 'roleId']");
         layer.open({
             type: 1,
-            area: ['800px', 'auto'],
+            area: ['500px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -167,7 +167,7 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', 'auto'],
+            area: ['500px', 'auto'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
