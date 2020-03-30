@@ -1,9 +1,11 @@
 package com.microthings.monitor_management.service;
 
 import com.microthings.monitor_management.mapper.PermissionMapper;
+import com.microthings.monitor_management.mapper.RolePermissionMapper;
 import com.microthings.monitor_management.mapper.RolePermissionMapperCustom;
 import com.microthings.monitor_management.pojo.Permission;
-import com.sun.corba.se.impl.interceptors.PICurrent;
+import com.microthings.monitor_management.pojo.RolePermission;
+import com.microthings.monitor_management.pojo.RolePermissionExample;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -23,6 +25,8 @@ public class PermissionService {
     private PermissionMapper permissionMapper;
     @Resource
     private RolePermissionMapperCustom permissionMapperCustom;
+    @Resource
+    private RolePermissionMapper rolePermissionMapper;
 
 
     /**
@@ -43,7 +47,16 @@ public class PermissionService {
     * @Author: hms
     * @Date: 2019/10/25 10:07
     */
-    public void deletePermission(int id){
+    public void deletePermission(int id) {
+        //删除角色权限表中该权限的相关记录
+        RolePermissionExample rolePermissionExample=new RolePermissionExample();
+        rolePermissionExample.createCriteria().andPermissionIdEqualTo(id);
+        List<RolePermission> rolePermissionList=rolePermissionMapper.selectByExample(rolePermissionExample);
+        for (RolePermission rolePermission:
+             rolePermissionList) {
+            rolePermissionMapper.deleteByPrimaryKey(rolePermission.getRpId());
+        }
+        //删除权限
         permissionMapper.deleteByPrimaryKey(id);
     }
 

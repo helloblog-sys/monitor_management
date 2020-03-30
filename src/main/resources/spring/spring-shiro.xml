@@ -36,7 +36,10 @@
 
     <!-- 启动Shiro注解操作 为Spring配置的bean启用Shiro注释。仅在lifecycleBeanProcessor运行后运行 -->
     <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator"
-          depends-on="lifecycleBeanPostProcessor"/>
+          depends-on="lifecycleBeanPostProcessor">
+        <!--     代理器配置一致，避免所使用的代理器混乱   -->
+        <property name="proxyTargetClass" value="true"/>
+    </bean>
     <bean class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor">
         <property name="securityManager" ref="securityManager"/>
     </bean>

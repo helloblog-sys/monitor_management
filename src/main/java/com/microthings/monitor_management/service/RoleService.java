@@ -1,7 +1,11 @@
 package com.microthings.monitor_management.service;
 
+
 import com.microthings.monitor_management.mapper.RoleMapper;
-import com.microthings.monitor_management.pojo.Role;
+import com.microthings.monitor_management.mapper.RolePermissionMapper;
+import com.microthings.monitor_management.mapper.UserMapper;
+import com.microthings.monitor_management.pojo.*;
+import com.microthings.monitor_management.exception.CanntDeleteException;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -19,6 +23,10 @@ public class RoleService {
 
     @Resource
     RoleMapper roleMapper;
+    @Resource
+    private RolePermissionMapper rolePermissionMapper;
+    @Resource
+    private UserMapper userMapper;
     /**
     * @Description: 添加角色
     * @Param: [role]
@@ -37,8 +45,28 @@ public class RoleService {
     * @Author: hms
     * @Date: 2019/10/24 22:17
     */
-    public void deleteRole(int id){
-        roleMapper.deleteByPrimaryKey(id);
+    public void deleteRole(int id) throws Exception {
+        //如果角色无关联用户，删除角色权限表中记录，删除角色
+        UserExample userExample = new UserExample();
+        userExample.createCriteria().andRoleIdEqualTo(id);
+        List<User> userList = userMapper.selectByExample(userExample);
+        if (userList.isEmpty()){
+            //删除角色权限表中该角色的相关记录
+            RolePermissionExample rolePermissionExample=new RolePermissionExample();
+            rolePermissionExample.createCriteria().andRoleIdEqualTo(id);
+            List<RolePermission> rolePermissionList=rolePermissionMapper.selectByExample(rolePermissionExample);
+            for (RolePermission rolePermission:
+                    rolePermissionList) {
+                rolePermissionMapper.deleteByPrimaryKey(rolePermission.getRpId());
+            }
+            //删除角色
+            roleMapper.deleteByPrimaryKey(id);
+        }
+        else{
+            //如果角色有关联用户，则无法删除
+            throw new CanntDeleteException();
+        }
+
     }
     /**
     * @Description: 更新角色信息
