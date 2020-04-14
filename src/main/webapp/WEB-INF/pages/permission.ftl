@@ -134,10 +134,10 @@
     $("form :input").blur(function(){
         var $parent = $(this).parent();
         $parent.find(".msg").remove();
-        //
+        //权限名称正则
         if($(this).is("#permissionName")){
             var permissionNameVal = $.trim(this.value);
-            var regPermission = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+            var regPermission = /[~#^$@%&!*()<>;'"{}【】  ]/;
             if(permissionNameVal == "" || permissionNameVal.length < 1 || permissionNameVal.length > 16 || regPermission.test(permissionNameVal)){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
@@ -148,10 +148,10 @@
                 $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
             }
         }
-        //
+        //权限名=描述正则
         if($(this).is("#permissionStr")){
             var permissionStrVal = $.trim(this.value);
-            var regPermissionStr = /[~#^$@%&!*()<>:;'"{}【】  ]/ ;
+            var regPermissionStr = /[~#^$@%&!*()<>;'"{}【】  ]/ ;
             if( permissionStrVal == "" || permissionStrVal.length < 1 || permissionStrVal.length > 30 || regPermissionStr.test(permissionStrVal) ){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
