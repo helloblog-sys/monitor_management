@@ -36,7 +36,7 @@
 	<!-- 声明式事务 -->
 	<tx:advice id="txAdvice" transaction-manager="txManage">
 		<tx:attributes>
-			<tx:method name="ins*"/>
+			<tx:method name="add*"/>
 			<tx:method name="del*"/>
 			<tx:method name="upd*"/>
 			<tx:method name="*" read-only="true"/>
