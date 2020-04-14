@@ -21,6 +21,12 @@
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <title>用户列表</title>
+    <style>
+        .high{ color: red; }
+        .msg{ font-size: 13px; }
+        .onError{ color: red; }
+        .onSuccess{ color: green; }
+    </style>
 </head>
 <body>
 <nav class="breadcrumb">
@@ -87,19 +93,20 @@
 </div>
 <!--用户新增、编辑模块-->
 <div id="user_edit" style="display: none">
-    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:480px" id="form_user">
+    <form class="form form-horizontal" style="padding-top: 5%;padding-bottom: 5%;width:480px" id="form_user" method="post">
+        <input type="hidden" name="csrf_token" value="{{ csrf_token() }}" />
         <input type="hidden" name="_method" value="PUT"/>
         <input type="hidden" name="userId" id="userId" value=""/>
         <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名称：</label>
             <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" id="userName" name="userName">
+                <input type="text" class="input-text required" value="" placeholder="1-16位字母、数字、下划线" id="userName" name="userName">
             </div>
         </div>
         <div class="row cl" style="padding-left: 50px">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户密码：</label>
             <div class="formControls col-xs-7 col-sm-7">
-                <input type="password" class="input-text" value="" placeholder="请填写用户密码" id="userPassword"
+                <input type="password" class="input-text required" value="" placeholder="6-16位字母、数字、字符" id="userPassword"
                        name="userPassword">
             </div>
         </div>
@@ -133,13 +140,72 @@
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+
+<script>
+    //此js为表单验证，tyd添加
+    //为表单的必填文本框添加提示信息（选择form中的所有后代input元素）
+    $("form :input.required").each(function () {
+        var $required = $("<strong class='high'></strong>");
+        $(this).parent().append($required);
+    });
+
+    //为表单元素添加失去焦点事件
+    $("form :input").blur(function(){
+        var $parent = $(this).parent();
+        $parent.find(".msg").remove();
+        //验证用户名
+        if($(this).is("#userName")){
+            var nameVal = $.trim(this.value);
+            var regName = /^[a-zA-Z0-9_]{1,16}$/;
+            if(nameVal == "" || ( nameVal != "" && !regName.test(nameVal))){
+                var errorMsg = " 1-16字母、数字、下划线！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+            }
+        }
+        //验证密码
+        if($(this).is("#userPassword")){
+            var passwordVal = $.trim(this.value);
+            var regPassword = /^[a-zA-Z0-9~!#$%^&*()_+{};':"<>?,./]{6,16}$/;
+            if(passwordVal== "" || (passwordVal != "" && !regPassword.test(passwordVal))){
+                var errorMsg = " 6-16位字母、数字、字符！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+            }
+        }
+    }).keyup(function(){
+        //triggerHandler 防止事件执行完后，浏览器自动为标签获得焦点
+        $(this).triggerHandler("blur");
+    }).focus(function(){
+        $(this).triggerHandler("blur");
+    });
+
+    //点击确定按钮时，通过trigger()来触发文本框的失去焦点事件
+    $("#user_save").click(function(){
+        //trigger 事件执行完后，浏览器会为submit按钮获得焦点
+        $("form .required:input").trigger("blur");
+        var numError = $("form .onError").length;
+        if(numError){
+            return false;
+        }
+    });
+</script>
+
 <script type="text/javascript">
     /*用户-添加*/
     function user_add(title) {
         $("input").remove("[name = 'userId']");
         layer.open({
             type: 1,
-            area: ['500px', 'auto'],
+            area: ['500px', '330px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -160,7 +226,7 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['500px', 'auto'],
+            area: ['500px', '330px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,

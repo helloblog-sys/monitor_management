@@ -150,16 +150,16 @@ function addImage(x, y, focusFloorNum, type) {
     var url;
     switch (type) {
         case "1":
-            url = '/assets/esmap/image/radar.png';
+            url = '/assets/esmap/image/radar_1.png';
             break;
         case "2":
-            url = '/assets/esmap/image/camera1.png';
+            url = '/assets/esmap/image/camera1_1.png';
             break;
         case "3":
-            url = '/assets/esmap/image/smoke.png';
+            url = '/assets/esmap/image/smoke_1.png';
             break;
         case "4":
-            url = '/assets/esmap/image/firealarm.png';
+            url = '/assets/esmap/image/firealarm_1.png';
     }
     im = new esmap.ESImageMarker({
         x: x,
