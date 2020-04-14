@@ -122,7 +122,7 @@
     $("form :input").blur(function(){
         var $parent = $(this).parent();
         $parent.find(".msg").remove();
-        //
+        //角色权限正则
         if($(this).is("#permissionId")){
             var permissionIdVal = $.trim(this.value);
             var regPermissionId = /^[0-9]{1,20}$/;
