@@ -97,6 +97,34 @@
     function changImg() {
         $('#checkCodeImg').attr("src", "/checkCode?t=" + Math.random());
     }
+
+    var Cookie = {
+        // 设置Cookie
+        setCookie: function(name, value, expires, path, domain){
+            document.cookie = name + "=" + escape( value ) +
+                ( ( expires ) ? ";expires=" + expires.toGMTString() : "" ) +
+                ( ( path ) ? ";path=" + path : "" ) +
+                ( ( domain ) ? ";domain=" + domain : "" );
+        },
+        // 获取Cookie
+        getCookie: function( name ){
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if(arr != null) return unescape(arr[2]); return null;
+        },
+        // 删除Cookie
+        delCookie: function( name ){
+            var d = new Date();
+            d.setTime(d.getTime() - 3600 * 1000);
+            this.setCookie(name, "", d);
+        }
+    }
+    console.log(Cookie.getCookie("a"));
+    if (Cookie.getCookie("a") != 1){
+        Cookie.setCookie("a",1);
+        console.log(Cookie.getCookie("a"));
+        window.location.reload();
+    }
+
 </script>
 </body>
 </html>

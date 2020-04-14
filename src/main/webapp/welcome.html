@@ -36,5 +36,28 @@
 <!--</footer>-->
 <script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/H-ui.min.js"></script>
+<script>
+    var Cookie = {
+        // 设置Cookie
+        setCookie: function(name, value, expires, path, domain){
+            document.cookie = name + "=" + escape( value ) +
+                ( ( expires ) ? ";expires=" + expires.toGMTString() : "" ) +
+                ( ( path ) ? ";path=" + path : "" ) +
+                ( ( domain ) ? ";domain=" + domain : "" );
+        },
+        // 获取Cookie
+        getCookie: function( name ){
+            var arr = document.cookie.match(new RegExp("(^| )" + name + "=([^;]*)(;|$)"));
+            if(arr != null) return unescape(arr[2]); return null;
+        },
+        // 删除Cookie
+        delCookie: function( name ){
+            var d = new Date();
+            d.setTime(d.getTime() - 3600 * 1000);
+            this.setCookie(name, "", d);
+        }
+    }
+    Cookie.setCookie("a",2);
+</script>
 </body>
 </html>

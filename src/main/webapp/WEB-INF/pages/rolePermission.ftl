@@ -21,6 +21,12 @@
     <script>DD_belatedPNG.fix('*');</script>
     <![endif]-->
     <title>权限管理</title>
+    <style>
+        .high{ color: red; }
+        .msg{ font-size: 13px; }
+        .onError{ color: red; }
+        .onSuccess{ color: green; }
+    </style>
 </head>
 <body>
 <nav class="breadcrumb">
@@ -81,7 +87,7 @@
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>权限ID：</label>
             <div class="formControls col-xs-7 col-sm-7">
-                <input type="text" class="input-text" value="" id="permissionId" name="permissionId">
+                <input type="text" class="input-text" value="" placeholder="仅数字" id="permissionId" name="permissionId">
             </div>
         </div>
         <div class="row cl">
@@ -104,12 +110,55 @@
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/jquery.validate.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/validate-methods.js"></script>
 <script type="text/javascript" src="/assets/lib/jquery.validation/1.14.0/messages_zh.js"></script>
+<script>
+    //此js为表单验证，tyd添加
+    //为表单的必填文本框添加提示信息（选择form中的所有后代input元素）
+    $("form :input.required").each(function () {
+        var $required = $("<strong class='high'></strong>");
+        $(this).parent().append($required);
+    });
+
+    //为表单元素添加失去焦点事件
+    $("form :input").blur(function(){
+        var $parent = $(this).parent();
+        $parent.find(".msg").remove();
+        //角色权限正则
+        if($(this).is("#permissionId")){
+            var permissionIdVal = $.trim(this.value);
+            var regPermissionId = /^[0-9]{1,20}$/;
+            if(permissionIdVal == "" || ( permissionIdVal != "" && !regPermissionId.test(permissionIdVal))){
+                var errorMsg = " 仅数字！";
+                $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
+            }
+            else{
+                var okMsg=" 输入正确";
+                $parent.find(".high").remove();
+                $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
+            }
+        }
+    }).keyup(function(){
+        //triggerHandler 防止事件执行完后，浏览器自动为标签获得焦点
+        $(this).triggerHandler("blur");
+    }).focus(function(){
+        $(this).triggerHandler("blur");
+    });
+
+    //点击确定按钮时，通过trigger()来触发文本框的失去焦点事件
+    $("#permission_save").click(function(){
+        //trigger 事件执行完后，浏览器会为submit按钮获得焦点
+        $("form .required:input").trigger("blur");
+        var numError = $("form .onError").length;
+        if(numError){
+            return false;
+        }
+    });
+</script>
 <script type="text/javascript">
     /*权限-添加*/
     function permission_add(title) {
         layer.open({
             type: 1,
-            area: ['800px', 'auto'],
+            area: ['800px', '280px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
@@ -132,7 +181,7 @@
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
-            area: ['800px', 'auto'],
+            area: ['800px', '280px'],
             fix: false, //不固定
             maxmin: true,
             shade: 0.4,
