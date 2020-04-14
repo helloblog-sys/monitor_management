@@ -153,10 +153,10 @@
     $("form :input").blur(function(){
         var $parent = $(this).parent();
         $parent.find(".msg").remove();
-        //
+        //角色名正则
         if($(this).is("#roleName")){
             var roleNameVal = $.trim(this.value);
-            var regRoleName = /[~#^$@%&!*()<>:;'"{}【】  ]/;
+            var regRoleName = /[~#^$@%&!*()<>;'"{}【】  ]/;
             if(roleNameVal == "" || roleNameVal.length < 1 || roleNameVal.length > 16 || regRoleName.test(roleNameVal)){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
@@ -167,10 +167,10 @@
                 $parent.append("<span class='msg onSuccess'>" + okMsg + "</span>");
             }
         }
-        //
+        //角色描述正则
         if($(this).is("#roleStr")){
             var roleStrVal = $.trim(this.value);
-            var regRoleStr = /[~#^$@%&!*()<>:;'"{}【】  ]/ ;
+            var regRoleStr = /[~#^$@%&!*()<>;'"{}【】  ]/ ;
             if( roleStrVal == "" || roleStrVal.length < 1 || roleStrVal.length > 30 || regRoleStr.test(roleStrVal) ){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
