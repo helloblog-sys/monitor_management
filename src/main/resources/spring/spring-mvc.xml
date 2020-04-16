@@ -47,4 +47,12 @@
         </property>
     </bean>
 
+    <!--    拦截验证http referer-->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="com.microthings.monitor_management.interceptor.RefererInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
