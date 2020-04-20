@@ -63,6 +63,7 @@
                  /assets/** = anon
                  **.html = anon
                  /checkCode=anon
+                 /getPublicKey=anon
                  /** = authc
              </value>
          </property>
