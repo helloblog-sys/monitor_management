@@ -66,6 +66,7 @@
 <div class="footer">Copyright 西安电子科技大学青岛计算技术研究院</div>
 <script type="text/javascript" src="/assets/lib/jquery/1.9.1/jquery.min.js"></script>
 <script type="text/javascript" src="/assets/js/H-ui.min.js"></script>
+<script type="text/javascript" src="/assets/js/jsencrypt.min.js"></script>
 <script type="text/javascript">
 
     //在iframe中超时跳转到主窗口
@@ -73,11 +74,39 @@
         top.location.href = location.href;
     }
 
+    //加密传输
     $("#submit").click(function () {
+        var publicKey = null;
+        //请求后台获取公钥
+        $.ajax({
+            url: "/getPublicKey",
+            type: "post",
+            dataType: "text",
+            async: false,
+            success: function(data) {
+                if(data){
+                    publicKey = data;
+                };
+                if(publicKey==null){
+                    alert("获取publicKey失败，请联系管理员！");
+                    return;
+                };
+            }
+        });
+
+        //使用公钥给密码加密
+        var encrypt = new JSEncrypt();
+        encrypt.setPublicKey(publicKey);
+        var username = $.trim($("#username").val());
+        var checkcode = $.trim($("#checkcode").val());
+        var password = $.trim($("#password").val());
+        password = encrypt.encrypt(password);
+
+        //传输加密后的数据
         $.ajax({
             url: '/login',
             type: 'POST',
-            data: $('#user').serialize(),
+            data: {"username":username,"password":password,"checkcode":checkcode},
             dataType: "json",
             success: function (data) {
                 if (data.s > 0) {
@@ -91,7 +120,9 @@
                 alert("错误代码：" + data.s + "\t" + data.d);
             },
         });
+
     });
+
 
     // 点击验证码图片刷新验证码，带一个随机参数才能实现刷新
     function changImg() {

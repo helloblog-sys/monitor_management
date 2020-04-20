@@ -7,6 +7,7 @@ import com.microthings.monitor_management.pojo.UserExample;
 import com.microthings.monitor_management.util.AjaxResponse;
 import com.microthings.monitor_management.util.Const;
 import com.microthings.monitor_management.util.MD5Util;
+import com.microthings.monitor_management.util.RSAUtils;
 import org.apache.ibatis.javassist.runtime.Desc;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
@@ -38,6 +39,14 @@ public class HomeController {
     @Resource
     private UserMapper userMapper;
 
+    //给前端返回公钥
+    @PostMapping("/getPublicKey")
+    @ResponseBody
+    public String getKey(){
+        String publicKey = RSAUtils.generateBase64PublicKey();
+        return publicKey;
+    }
+
     @PostMapping("login")
     @ResponseBody
     public AjaxResponse login(@RequestParam(value = "username") String username,
@@ -46,6 +55,8 @@ public class HomeController {
                               HttpSession session) throws Exception {
 
         logger.debug("loging username [{}] password [{}] checkcode", username, password, checkcode);
+        //解密前端传入的密码
+        password = RSAUtils.decryptBase64(password.trim());
         // 先检查验证码
         String sessionCode = (String) session.getAttribute(Const.CODE_SESSION_NAME);
         String code = checkcode.toUpperCase();
