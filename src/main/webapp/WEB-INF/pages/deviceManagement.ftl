@@ -150,7 +150,7 @@
             </div>
             <div class="form-group">
                 <label for="deviceStatus" class="control-label">设备状态:</label>
-                <select class="form-control" id="deviceType" name="deviceType" style="width: 165px">
+                <select class="form-control" id="deviceStatus" name="deviceStatus" style="width: 165px">
                     <option value="0">离线</option>
                     <option value="1">在线</option>
                     <option value="2">故障</option>
