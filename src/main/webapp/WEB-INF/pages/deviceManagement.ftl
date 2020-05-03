@@ -165,7 +165,7 @@
                 <label for="devicePositon" class="control-label">所属楼栋ID:</label>
                 <input type="text" class="form-control" id="buildingId" name="buildingId" placeholder="设备位置">
             </div>
-            <div class="form-group" style="display:none">
+            <div class="form-group">
                 <label for="devicePositon" class="control-label">设备位置:</label>
                 <input type="text" class="form-control" id="devicePosition" name="devicePosition" placeholder="设备位置">
             </div>
@@ -181,12 +181,12 @@
                 <img class="imgangel" id="cut" onclick="cutAngle()" src="/assets/esmap/image/camer/cut.png">
             </div>
             <div class="form-group">
-                <label for="mapPositionX" class="control-label">设备位置X:</label>
-                <input type="text" class="form-control" id="mapPositionX" name="mapPositionX" placeholder="地图X坐标">
+                <label for="mapPositionX" class="control-label">设备X坐标:</label>
+                <input type="text" class="form-control" id="mapPositionX" name="mapPositionX" placeholder="设备X坐标">
             </div>
             <div class="form-group">
-                <label for="mapPositionX" class="control-label">设备位置Y:</label>
-                <input type="text" class="form-control" id="mapPositionY" name="mapPositionY" placeholder="地图Y坐标">
+                <label for="mapPositionX" class="control-label">设备Y坐标:</label>
+                <input type="text" class="form-control" id="mapPositionY" name="mapPositionY" placeholder="设备Y坐标">
             </div>
             <#--<div class="form-group" style="">-->
                 <#--<label for="monitorAhead" class="control-label">监控范围-前:</label>-->
@@ -206,10 +206,10 @@
                 <#--<label for="monitorRight" class="control-label">ip:</label>-->
                 <#--<input type="text" class="form-control" id="ip" name="ip" placeholder="单位：m（可不填）">-->
             <#--</div>-->
-            <#--<div class="form-group">-->
-                <#--<label for="deviceScaling" class="control-label">地图缩放比例:</label>-->
-                <#--<input type="text" class="form-control" id="deviceScaling" name="deviceScaling" placeholder="地图缩放比例" value="">-->
-            <#--</div>-->
+            <div class="form-group">
+                <label for="deviceScaling" class="control-label">地图缩放比例:</label>
+                <input type="text" class="form-control" id="deviceScaling" name="deviceScaling" placeholder="地图缩放比例" value="1">
+            </div>
             <div class="form-group">
                 <label for="port" class="control-label">设备port:</label>
                 <input type="text" class="form-control" id="port" name="port" placeholder="摄像头标识（可不填）" value="">
