@@ -5,9 +5,10 @@ import com.microthings.monitor_management.Enum.DeviceTypeEnum;
 import com.microthings.monitor_management.util.EnumUtil;
 import org.codehaus.jackson.annotate.JsonIgnore;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class Device {
+public class Device implements Serializable {
     private Integer deviceId;
 
     private String deviceName;

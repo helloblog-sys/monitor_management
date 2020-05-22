@@ -61,6 +61,17 @@
 
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
+        <!--设置mybaits对缓存的支持-->
+        <property name="configurationProperties">
+            <props>
+                <!-- 全局映射器启用缓存 *主要将此属性设置完成即可-->
+                <prop key="cacheEnabled">true</prop>
+                <!-- 查询时，关闭关联对象即时加载以提高性能 -->
+                <prop key="lazyLoadingEnabled">false</prop>
+                <!-- 设置关联对象加载的形态，此处为按需加载字段(加载字段由SQL指 定)，不会加载关联表的所有字段，以提高性能 -->
+                <prop key="aggressiveLazyLoading">true</prop>
+            </props>
+        </property>
     </bean>
 
     <!-- mapper扫描器 -->
