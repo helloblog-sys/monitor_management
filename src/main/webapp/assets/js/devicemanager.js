@@ -17,25 +17,25 @@ switch(buildingId){
     case 28:
         mapId = "xdqd_2801";
         themeID = '2001';
-        defaultScaleLevel=16;
+        defaultScaleLevel=18;
         tiltAngle=70;
         break;
     case 29:
         mapId = "xdqd_2901";
         themeID = '2001';
-        defaultScaleLevel=16;
+        defaultScaleLevel=18;
         tiltAngle=70;
         break;
     case 2:
         mapId = "20190929";
-        themeID = '1005';
-        defaultScaleLevel=6;
+        themeID = '2001';
+        defaultScaleLevel=8;
         tiltAngle = 60;
         break;
     case 3:
         mapId = "2019_10_13";
-        themeID = '1005';
-        defaultScaleLevel=11;
+        themeID = '2001';
+        defaultScaleLevel=8;
         tiltAngle=70;
         break;
     default:
