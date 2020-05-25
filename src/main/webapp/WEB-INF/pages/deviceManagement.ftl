@@ -42,6 +42,7 @@
 
         .viewmode-group button {
             display: inline-block;
+            margin-top: -190px;
             width: 38px;
             height: 38px;
             border-radius: 4px;
@@ -129,7 +130,7 @@
 </nav>
 <div class="main">
     <div class="f-left" style="max-width:700px;float:left;">
-        <form id="putDevice" class="smart-green" style="overflow: scroll;height:590px">
+        <form id="putDevice" class="smart-green" style="overflow: scroll;height:100vh">
             <input type="hidden" name="_method" value="PUT"/>
             <input type="hidden" id="deviceId" name="deviceId"/>
             <div class="form-group">
@@ -227,7 +228,7 @@
             </div>
         </form>
     </div>
-    <div class="f-right" style="overflow: hidden;">
+    <div class="f-right" style="overflow: hidden;height:100vh">
         <div style="height:108%;background:rgba(255,186,78,0.24);float:left" id="container"></div>
         <div style="position:relative;top:610px;background:#fff;height:0px;width:100%"></div>
     </div>
