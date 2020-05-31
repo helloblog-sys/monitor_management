@@ -222,7 +222,7 @@
         var tid = index - 1;
         document.getElementById('userId').value = id;
         document.getElementById('userName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
-        document.getElementById('userPassword').value = 123456;
+        //document.getElementById('userPassword').value = 123456;
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
