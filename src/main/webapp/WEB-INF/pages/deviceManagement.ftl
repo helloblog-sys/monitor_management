@@ -35,7 +35,7 @@
         .viewmode-group {
             position: absolute;
             right: 12px;
-            top: 50%;
+            top: 55%;
             border-radius: 6px;
             border: none;
         }
@@ -190,20 +190,6 @@
                 <input type="text" class="form-control" id="mapPositionY" name="mapPositionY" placeholder="设备Y坐标">
             </div>
             <#--<div class="form-group" style="">-->
-                <#--<label for="monitorAhead" class="control-label">监控范围-前:</label>-->
-                <#--<input type="text" class="form-control" id="monitorAhead" name="monitorAhead" placeholder="单位：m（可不填）"-->
-                       <#--value="0">-->
-            <#--</div>-->
-            <#--<div class="form-group" style="">-->
-                <#--<label for="monitorLeft" class="control-label">监控范围-左:</label>-->
-                <#--<input type="text" class="form-control" id="monitorLeft" name="monitorLeft" placeholder="单位：m（可不填）">-->
-            <#--</div>-->
-            <#--<div class="form-group" style="">-->
-                <#--<label for="monitorRight" class="control-label">监控范围-右:</label>-->
-                <#--<input type="text" class="form-control" id="monitorRight" name="monitorRight" placeholder="单位：m（可不填）"-->
-                       <#--value="0">-->
-            <#--</div>-->
-            <#--<div class="form-group" style="">-->
                 <#--<label for="monitorRight" class="control-label">ip:</label>-->
                 <#--<input type="text" class="form-control" id="ip" name="ip" placeholder="单位：m（可不填）">-->
             <#--</div>-->
@@ -220,6 +206,19 @@
                 <input type="text" class="form-control" id="associationMmwaveSn" name="associationMmwaveSn"
                        placeholder="有重叠区域的雷达sn（可不填）" value="">
             </div>
+            <div class="form-group" style="display: none">
+                <label for="monitorAhead" class="control-label">监控范围-前:</label>
+                <input type="text" class="form-control" id="monitorAhead" name="monitorAhead" placeholder="单位：m（可不填）" value="0">
+            </div>
+            <div class="form-group" style="display: none">
+                <label for="monitorLeft" class="control-label">监控范围-左:</label>
+                <input type="text" class="form-control" id="monitorLeft" name="monitorLeft" placeholder="单位：m（可不填）" value="0">
+            </div>
+            <div class="form-group" style="display: none">
+                <label for="monitorRight" class="control-label">监控范围-右:</label>
+                <input type="text" class="form-control" id="monitorRight" name="monitorRight" placeholder="单位：m（可不填）" value="0">
+            </div>
+
             <div class="form-group">
                 <#--<button id="submit" type="submit" class="btn btn-success radius size-L">&nbsp;登&nbsp;&nbsp;&nbsp;&nbsp;录&nbsp;</button>-->
                 <#--<button type="reset" class="btn btn-default radius size-L">&nbsp;取&nbsp;&nbsp;&nbsp;&nbsp;消&nbsp;-->

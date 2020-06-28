@@ -3,6 +3,8 @@ var mapCoord;
 var map;
 var mapId;
 var themeID;
+var defaultScaleLevel;
+var tiltAngle;
 var floorLayer;
 var cameraFlag = false;
 var radarFlag = false;
@@ -35,8 +37,8 @@ switch(buildingId){
     case 3:
         mapId = "2019_10_13";
         themeID = '2001';
-        defaultScaleLevel=8;
-        tiltAngle=70;
+        defaultScaleLevel=16;
+        tiltAngle = 68;
         break;
     default:
         break;
@@ -55,7 +57,9 @@ map = new esmap.ESMap({
     loadLabel: false, //是否显示文字POI
     loadPoi: false, //是否显示图片POI
     token: 'xdqd2801',
-    themeID: themeID
+    themeID: themeID,
+    modelLines: true,
+    enableCollide: false,
 });
 var floorControl;
 //楼层控制控件配置参数(选几楼)

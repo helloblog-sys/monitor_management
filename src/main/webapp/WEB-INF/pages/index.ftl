@@ -98,7 +98,7 @@
                     <li><a data-href="/device/28" data-title="28号楼" href="javascript:void(0)">28号楼</a></li>
                     <li><a data-href="/device/29" data-title="29号楼" href="javascript:void(0)">29号楼</a></li>
                     <li><a data-href="/device/2" data-title="咖啡街" href="javascript:void(0)">咖啡街</a></li>
-                    <#--<li><a data-href="/device/3" data-title="主楼四区" href="javascript:void(0)">主楼四区</a></li>-->
+                    <li><a data-href="/device/3" data-title="主楼四区" href="javascript:void(0)">主楼四区</a></li>
                 </ul>
             </dd>
         </dl>
