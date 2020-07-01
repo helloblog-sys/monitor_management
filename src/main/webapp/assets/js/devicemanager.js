@@ -3,6 +3,8 @@ var mapCoord;
 var map;
 var mapId;
 var themeID;
+var defaultScaleLevel;
+var tiltAngle;
 var floorLayer;
 var cameraFlag = false;
 var radarFlag = false;
@@ -13,30 +15,50 @@ var fireFlag = false;
 var devicelayer;
 var addImagelayer;
 var im;
+var visibleFloors;
+var focusFloor;
+var loadLabel;
+var defaultAngle;
 switch(buildingId){
     case 28:
         mapId = "xdqd_2801";
         themeID = '2001';
         defaultScaleLevel=18;
         tiltAngle=70;
+        visibleFloors = "all";
+        focusFloor = 2;
+        loadLabel = false;
+        defaultAngle = 180;
         break;
     case 29:
         mapId = "xdqd_2901";
         themeID = '2001';
         defaultScaleLevel=18;
         tiltAngle=70;
+        visibleFloors = "all";
+        focusFloor = 2;
+        loadLabel = false;
+        defaultAngle = 180;
         break;
     case 2:
         mapId = "20190929";
         themeID = '2001';
         defaultScaleLevel=8;
         tiltAngle = 60;
+        visibleFloors = "all";
+        focusFloor = 2;
+        loadLabel = false;
+        defaultAngle = 180;
         break;
     case 3:
         mapId = "2019_10_13";
         themeID = '2001';
-        defaultScaleLevel=8;
-        tiltAngle=70;
+        defaultScaleLevel=12;
+        tiltAngle = 68;
+        visibleFloors = [3];
+        focusFloor = 3;
+        loadLabel = true;
+        defaultAngle = 270;
         break;
     default:
         break;
@@ -50,12 +72,15 @@ map = new esmap.ESMap({
     focusAlphaMode: true, // 对不可见图层启用透明设置 默认为true
     focusAnimateMode: true, // 开启聚焦层切换的动画显示
     focusAlpha: 0.8, // 对不聚焦图层启用透明设置，当focusAlphaMode = true时有效
-    visibleFloors: 'all',
-    focusFloor: 2,
-    loadLabel: false, //是否显示文字POI
+    visibleFloors: visibleFloors,
+    focusFloor: focusFloor,
+    loadLabel: loadLabel, //是否显示文字POI
     loadPoi: false, //是否显示图片POI
     token: 'xdqd2801',
-    themeID: themeID
+    themeID: themeID,
+    modelLines: true,
+    enableCollide: false,
+    defaultAngle: defaultAngle,
 });
 var floorControl;
 //楼层控制控件配置参数(选几楼)
@@ -63,6 +88,17 @@ var ctlOpt = new esmap.ESControlOptions({
     position: esmap.ESControlPositon.RIGHT_TOP,
     imgURL: "/assets/esmap/image/wedgets/"
 });
+if(buildingId == 3){
+    ctlOpt = new esmap.ESControlOptions({
+        position: esmap.ESControlPositon.RIGHT_TOP,
+        offset: {
+            x: -100000,
+            y: -100000
+        },
+        imgURL: "/assets/esmap/image/wedgets/"
+
+    });
+}
 
 //打开地图数据
 map.openMapById(mapId);
