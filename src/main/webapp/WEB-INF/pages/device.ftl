@@ -64,6 +64,11 @@
             <th width="100">设备角度</th>
             <th width="200">地图坐标X</th>
             <th width="200">地图坐标Y</th>
+
+            <th class="hidden">设备监控前距</th>
+            <th class="hidden">设备监控左距</th>
+            <th class="hidden">设备监控右距</th>
+
             <th width="100">设备port</th>
             <th width="100">关联sn</th>
             <th width="300">创建时间</th>
@@ -86,9 +91,16 @@
                 <td>${deviceList.deviceAngle}</td>
                 <td>${deviceList.mapPositionX}</td>
                 <td>${deviceList.mapPositionY}</td>
+
+                <#--隐藏数据-->
+                <td class="hidden">${deviceList.monitorAhead!}</td>
+                <td class="hidden">${deviceList.monitorLeft!}</td>
+                <td class="hidden">${deviceList.monitorRight!}</td>
+
                 <td>${deviceList.port}</td>
                 <td>${deviceList.associationMmwaveSn}</td>
                 <td>${deviceList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
+
                 <td class="f-14">
                     <a title="编辑" href="javascript:;"
                        onclick="device_edit('设备编辑',${deviceList.deviceId},${deviceList_index+1})"
@@ -261,7 +273,7 @@
 
         <div class="container-fluid">
             <div class="row cl">
-                <div class="col-xs-12 col-xs-offset-5" style="padding-top: 10px">
+                <div class="col-xs-12 col-xs-offset-6" style="padding-top: 10px;">
                     <button class="btn btn-success radius size-L" id="device_save">
                         <i class="icon-ok"></i> 确定
                     </button>
@@ -336,8 +348,13 @@
         document.getElementById('deviceAngle').value = $('tbody tr:eq(' + tid + ') td:eq(8)').text();
         document.getElementById('mapPositionX').value = $('tbody tr:eq(' + tid + ') td:eq(9)').text();
         document.getElementById('mapPositionY').value = $('tbody tr:eq(' + tid + ') td:eq(10)').text();
-        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
-        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
+
+        document.getElementById('monitorAhead').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
+        document.getElementById('monitorLeft').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
+        document.getElementById('monitorRight').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
+
+        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(14)').text();
+        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(15)').text();
         $("input").remove("[name = '_method']");
 
         layer.open({
