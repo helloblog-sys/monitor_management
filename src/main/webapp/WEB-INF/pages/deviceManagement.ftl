@@ -193,7 +193,7 @@
                 <#--<label for="monitorRight" class="control-label">ip:</label>-->
                 <#--<input type="text" class="form-control" id="ip" name="ip" placeholder="单位：m（可不填）">-->
             <#--</div>-->
-            <div class="form-group">
+            <div class="form-group" style="display: none">
                 <label for="deviceScaling" class="control-label">地图缩放比例:</label>
                 <input type="text" class="form-control" id="deviceScaling" name="deviceScaling" placeholder="地图缩放比例" value="1">
             </div>
@@ -286,7 +286,7 @@
         var devices = ${deviceList};
         for (i = 0; i < devices.length; i++) {
             var device = devices[i];
-            drawImage(device.mapPositionX, device.mapPositionY, device.deviceFloor, device.deviceName, device.deviceAngle, device.deviceId, device.deviceType);
+            drawImage(device.mapPositionX, device.mapPositionY, device.deviceFloor, device.deviceName, device.deviceAngle, device.deviceId, device.deviceType,device.deviceStatus,device.deviceSn,device.buildingId,device.devicePosition,device.port);
         }
     });
 </script>
