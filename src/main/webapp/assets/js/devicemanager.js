@@ -99,10 +99,16 @@ map.on('mapClickNode', function (event) {
         if (modifyFlag) {
             $("#deviceName").val(event.name);
             $("#deviceId").val(event.id_);
+            $('#deviceType').val(event.opts_.type);
+            $('#deviceStatus').val(event.opts_.deviceStatus);
+            $('#deviceSn').val(event.opts_.deviceSn);
+            $('#buildingId').val(event.opts_.buildingId);
+            $('#devicePosition').val(event.opts_.devicePosition);
             $('#deviceFloor').val(map.focusFloorNum);
             $("#deviceAngle").val(event.opts_.angle);
             $('#mapPositionX').val(event.hitCoord.x);
             $('#mapPositionY').val(event.hitCoord.y);
+            $('#port').val(event.opts_.port);
         } else if (deleteFlag) {
             toDeleteDevice(event.id_);
         }
@@ -110,7 +116,7 @@ map.on('mapClickNode', function (event) {
 });
 
 //初始化添加图片标注
-function drawImage(x, y, focusFloorNum, name, angle, id, type) {
+function drawImage(x, y, focusFloorNum, name, angle, id, type,deviceStatus,deviceSn,buildingId,devicePosition,port) {
     devicelayer = new esmap.ESLayer(esmap.ESLayerType.IMAGE_MARKER);
     floorLayer = map.getFloor(focusFloorNum); // 所在楼层
     var url;
@@ -130,6 +136,12 @@ function drawImage(x, y, focusFloorNum, name, angle, id, type) {
     var im = new esmap.ESImageMarker({
         name: name,
         id: id,
+        type:type,
+        deviceStatus:deviceStatus,
+        deviceSn:deviceSn,
+        buildingId:buildingId,
+        devicePosition:devicePosition,
+        port:port,
         x: x,
         y: y,
         height: 1.0,
@@ -177,7 +189,7 @@ function addImage(x, y, focusFloorNum, type) {
 
 
 function addAngle() { //改变角度  增加旋转角度
-    if (cameraFlag||radarFlag||modifyFlag||smokeFlag||fireFlag) {
+    if (cameraFlag||radarFlag||smokeFlag||fireFlag) {
         var angle = $("#deviceAngle").val();
         angle = Number(angle) + 10;
         $("#deviceAngle").val(angle);
@@ -187,7 +199,7 @@ function addAngle() { //改变角度  增加旋转角度
 }
 
 function cutAngle() { //改变角度  减少旋转角度
-    if (cameraFlag||radarFlag||modifyFlag||smokeFlag||fireFlag) {
+    if (cameraFlag||radarFlag||smokeFlag||fireFlag) {
         var angle = $("#deviceAngle").val();
         angle = Number(angle) - 10;
         $("#deviceAngle").val(angle);
@@ -208,6 +220,12 @@ $("#addCamera").click(function () {
     fireFlag = false;
     modifyFlag = false;
     deleteFlag = false;
+    $("#deviceName").val(null);
+    $('#deviceStatus').val(0);
+    $('#deviceSn').val(null);
+    $('#devicePosition').val(null);
+    $('#port').val(null);
+
     if (addImagelayer) addImagelayer.removeAll();
     floorLayer = map.getFloor(map.focusFloorNum);
     addImagelayer = new esmap.ESLayer('imageMarker');
@@ -221,6 +239,12 @@ $("#addRadar").click(function () {
     fireFlag = false;
     modifyFlag = false;
     deleteFlag = false;
+    $("#deviceName").val(null);
+    $('#deviceStatus').val(0);
+    $('#deviceSn').val(null);
+    $('#devicePosition').val(null);
+    $('#port').val(null);
+
     if (addImagelayer) addImagelayer.removeAll();
     floorLayer = map.getFloor(map.focusFloorNum);
     addImagelayer = new esmap.ESLayer('imageMarker');
@@ -234,6 +258,12 @@ $("#addSmoke").click(function () {
     fireFlag = false;
     modifyFlag = false;
     deleteFlag = false;
+    $("#deviceName").val(null);
+    $('#deviceStatus').val(0);
+    $('#deviceSn').val(null);
+    $('#devicePosition').val(null);
+    $('#port').val(null);
+
     if (addImagelayer) addImagelayer.removeAll();
     floorLayer = map.getFloor(map.focusFloorNum);
     addImagelayer = new esmap.ESLayer('imageMarker');
@@ -247,6 +277,12 @@ $("#addFirealarm").click(function () {
     fireFlag = true;
     modifyFlag = false;
     deleteFlag = false;
+    $("#deviceName").val(null);
+    $('#deviceStatus').val(0);
+    $('#deviceSn').val(null);
+    $('#devicePosition').val(null);
+    $('#port').val(null);
+
     if (addImagelayer) addImagelayer.removeAll();
     floorLayer = map.getFloor(map.focusFloorNum);
     addImagelayer = new esmap.ESLayer('imageMarker');
@@ -260,6 +296,8 @@ $('#modify').click(function () {
     fireFlag = false;
     modifyFlag = true;
     deleteFlag = false;
+
+    if (addImagelayer) addImagelayer.removeAll();
 });
 // 点击删除
 $('#delete').click(function () {
@@ -269,14 +307,22 @@ $('#delete').click(function () {
     fireFlag = false;
     modifyFlag = false;
     deleteFlag = true;
+
+    if (addImagelayer) addImagelayer.removeAll();
 });
 //取消
 $("#reset").click(function () {
+    $("#deviceName").val(null);
+    $('#deviceType').val(1);
+    $('#deviceStatus').val(0);
+    $('#deviceSn').val(null);
+    $('#buildingId').val(null);
+    $('#devicePosition').val(null);
+    $('#deviceFloor').val(null);
+    $("#deviceAngle").val(null);
     $('#mapPositionX').val(null);
     $('#mapPositionY').val(null);
-    $("#deviceSn").val(null);
-    $("#deviceFloor").val(null);
-    $("#deviceAngle").val(null);
+    $('#port').val(null);
 
     if (addImagelayer) addImagelayer.removeAll();
 
