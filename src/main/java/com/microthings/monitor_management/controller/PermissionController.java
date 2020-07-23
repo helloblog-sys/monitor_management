@@ -1,6 +1,5 @@
 package com.microthings.monitor_management.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.microthings.monitor_management.pojo.Permission;
 import com.microthings.monitor_management.service.PermissionService;
 import com.microthings.monitor_management.util.AjaxResponse;
@@ -37,12 +36,11 @@ public class PermissionController {
     @PutMapping()
     public AjaxResponse addPermission(Permission permission){
         try {
-            permissionService.addPermission(permission);
+            return permissionService.addPermission(permission);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("添加失败!请重试！");
         }
-        return AjaxResponse.OK;
     }
 
     /**
@@ -96,12 +94,11 @@ public class PermissionController {
     @PostMapping
     public AjaxResponse updatePermission(Permission permission){
         try {
-            permissionService.updatePermission(permission);
+            return permissionService.updatePermission(permission);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("修改失败！请重试！");
         }
-        return AjaxResponse.OK;
     }
 
     /**

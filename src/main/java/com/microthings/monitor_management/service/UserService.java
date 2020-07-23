@@ -65,9 +65,19 @@ public class UserService {
     * @Author: hms
     * @Date: 2019/10/22 16:02
     */
-    public void updateUser(User user){
-        user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
-        userMapper.updateByPrimaryKeySelective(user);
+    public AjaxResponse updateUser(User user){UserExample example = new UserExample();
+        example.or().andUserNameEqualTo(user.getUserName());
+
+        List<User> userList = userMapper.selectByExample(example);
+
+        if(!userList.isEmpty()){
+            return AjaxResponse.ADD_ACCOUNT_EXIST;
+        }
+        else {
+            user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
+            userMapper.updateByPrimaryKeySelective(user);
+            return AjaxResponse.OK;
+        }
     }
 
     /**

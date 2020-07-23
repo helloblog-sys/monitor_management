@@ -23,9 +23,14 @@ public class AjaxResponse implements Serializable {
     public static final AjaxResponse CHECKCODE_NOT_CHECKED = new AjaxResponse(
             -100103, "您输入的验证码不正确");
     public static final AjaxResponse ADD_ACCOUNT_EXIST = new AjaxResponse(
-            -100104, "您添加的用户已存在");
+            -100104, "该用户已存在");
+    public static final AjaxResponse ADD_PERMISSION_EXIST = new AjaxResponse(
+            -100105, "该权限已存在");
+    public static final AjaxResponse ADD_ROLE_EXIST = new AjaxResponse(
+            -100106, "该角色已存在");
     public static final AjaxResponse ADD_DEVICE_EXIST = new AjaxResponse(
             -100201, "该设备sn号已被注册");
+
 
     /**
      * 状态码

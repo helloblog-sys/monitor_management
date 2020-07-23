@@ -4,8 +4,10 @@ import com.microthings.monitor_management.mapper.PermissionMapper;
 import com.microthings.monitor_management.mapper.RolePermissionMapper;
 import com.microthings.monitor_management.mapper.RolePermissionMapperCustom;
 import com.microthings.monitor_management.pojo.Permission;
+import com.microthings.monitor_management.pojo.PermissionExample;
 import com.microthings.monitor_management.pojo.RolePermission;
 import com.microthings.monitor_management.pojo.RolePermissionExample;
+import com.microthings.monitor_management.util.AjaxResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -36,8 +38,20 @@ public class PermissionService {
     * @Author: hms
     * @Date: 2019/10/25 10:07
     */
-    public void addPermission(Permission permission){
-        permissionMapper.insert(permission);
+    public AjaxResponse addPermission(Permission permission){
+
+        PermissionExample permissionExample = new PermissionExample();
+
+        permissionExample.or().andPermissionNameEqualTo(permission.getPermissionName());
+
+        List<Permission> permissionList = permissionMapper.selectByExample(permissionExample);
+
+        if(!permissionList.isEmpty()){
+            return AjaxResponse.ADD_PERMISSION_EXIST;
+        } else {
+            permissionMapper.insert(permission);
+            return AjaxResponse.OK;
+        }
     }
 
     /**
@@ -67,8 +81,19 @@ public class PermissionService {
     * @Author: hms
     * @Date: 2019/10/25 10:07
     */
-    public void updatePermission(Permission permission){
-        permissionMapper.updateByPrimaryKeySelective(permission);
+    public AjaxResponse updatePermission(Permission permission){
+        PermissionExample permissionExample = new PermissionExample();
+
+        permissionExample.or().andPermissionNameEqualTo(permission.getPermissionName());
+
+        List<Permission> permissionList = permissionMapper.selectByExample(permissionExample);
+
+        if(!permissionList.isEmpty()){
+            return AjaxResponse.ADD_PERMISSION_EXIST;
+        } else {
+            permissionMapper.updateByPrimaryKeySelective(permission);
+            return AjaxResponse.OK;
+        }
     }
 
     /**

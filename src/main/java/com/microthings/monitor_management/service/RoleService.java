@@ -1,11 +1,12 @@
 package com.microthings.monitor_management.service;
 
 
+import com.microthings.monitor_management.exception.CanntDeleteException;
 import com.microthings.monitor_management.mapper.RoleMapper;
 import com.microthings.monitor_management.mapper.RolePermissionMapper;
 import com.microthings.monitor_management.mapper.UserMapper;
 import com.microthings.monitor_management.pojo.*;
-import com.microthings.monitor_management.exception.CanntDeleteException;
+import com.microthings.monitor_management.util.AjaxResponse;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -34,8 +35,19 @@ public class RoleService {
     * @Author: hms
     * @Date: 2019/10/24 22:16
     */
-    public void addRole(Role role){
-        roleMapper.insert(role);
+    public AjaxResponse addRole(Role role){
+        RoleExample roleExample = new RoleExample();
+
+        roleExample.or().andRoleNameEqualTo(role.getRoleName());
+
+        List<Role> roleList = roleMapper.selectByExample(roleExample);
+
+        if(!roleList.isEmpty()){
+            return AjaxResponse.ADD_ROLE_EXIST;
+        } else{
+            roleMapper.insert(role);
+            return AjaxResponse.OK;
+        }
     }
 
     /**
@@ -75,8 +87,19 @@ public class RoleService {
     * @Author: hms
     * @Date: 2019/10/24 22:19
     */
-    public void updateRole(Role role){
-        roleMapper.updateByPrimaryKeySelective(role);
+    public AjaxResponse updateRole(Role role){
+        RoleExample roleExample = new RoleExample();
+
+        roleExample.or().andRoleNameEqualTo(role.getRoleName());
+
+        List<Role> roleList = roleMapper.selectByExample(roleExample);
+
+        if(!roleList.isEmpty()){
+            return AjaxResponse.ADD_ROLE_EXIST;
+        } else{
+            roleMapper.updateByPrimaryKeySelective(role);
+            return AjaxResponse.OK;
+        }
     }
 
     /**

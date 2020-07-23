@@ -69,8 +69,8 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${roleList.roleId}" name="checkbox"></td>
                 <td>${roleList_index+1}</td>
-                <td>${roleList.roleStr}</td>
                 <td>${roleList.roleName}</td>
+                <td>${roleList.roleStr}</td>
                 <td><a onclick="role_permission(${roleList.roleId},${roleList_index+1})">
                         <span class="label label-success radius">点击查看</span></a></td>
                 <td>${roleList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
@@ -156,8 +156,8 @@
         //角色名正则
         if($(this).is("#roleName")){
             var roleNameVal = $.trim(this.value);
-            var regRoleName = /[~#^$@%&!*()<>;'"{}【】  ]/;
-            if(roleNameVal == "" || roleNameVal.length < 1 || roleNameVal.length > 16 || regRoleName.test(roleNameVal)){
+            var regRoleName = /[~#^$@%&!*()<>;'"{}【】 ]/;
+            if(roleNameVal == "" || roleNameVal.length < 1 || roleNameVal.length > 20 || regRoleName.test(roleNameVal)){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
             }
@@ -170,7 +170,7 @@
         //角色描述正则
         if($(this).is("#roleStr")){
             var roleStrVal = $.trim(this.value);
-            var regRoleStr = /[~#^$@%&!*()<>;'"{}【】  ]/ ;
+            var regRoleStr = /[~#^$@%&!*()<>;'"{}【】 ]/ ;
             if( roleStrVal == "" || roleStrVal.length < 1 || roleStrVal.length > 30 || regRoleStr.test(roleStrVal) ){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
@@ -322,7 +322,7 @@
                                 window.location.reload();
                             }, 1000)
                         } else {
-                            alert("提示： " + data.data);
+                            layer.msg(data.d + '!', {icon: 5, time: 1000});
                         }
                     },
                     error: function () {
