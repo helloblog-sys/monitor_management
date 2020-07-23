@@ -1,6 +1,8 @@
 package com.microthings.monitor_management.Enum;
 
-public enum DeviceStatusEnum implements ILongEnum{
+import java.io.Serializable;
+
+public enum DeviceStatusEnum implements ILongEnum , Serializable {
     OFFLINE((long)0,"离线"),
     ONLINE((long)1,"在线"),
     BREAKDOWN((long)2,"故障")
