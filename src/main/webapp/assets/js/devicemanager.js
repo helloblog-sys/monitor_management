@@ -403,9 +403,8 @@ submit.onclick = function () {
                 setTimeout(function () {
                     window.location.reload();
                 }, 1000);
-            }
-            if (data.s == -1) {
-                alert(data.data);
+            } else {
+                alert(data.d + '!');
             }
         },
         error: function () {

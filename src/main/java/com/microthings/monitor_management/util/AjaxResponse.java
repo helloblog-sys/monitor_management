@@ -22,6 +22,10 @@ public class AjaxResponse implements Serializable {
             -100102, "您输入的账号密码不正确");
     public static final AjaxResponse CHECKCODE_NOT_CHECKED = new AjaxResponse(
             -100103, "您输入的验证码不正确");
+    public static final AjaxResponse ADD_ACCOUNT_EXIST = new AjaxResponse(
+            -100104, "您添加的用户已存在");
+    public static final AjaxResponse ADD_DEVICE_EXIST = new AjaxResponse(
+            -100201, "该设备sn号已被注册");
 
     /**
      * 状态码
@@ -35,6 +39,7 @@ public class AjaxResponse implements Serializable {
      * 响应数据
      */
     private Object data;
+
 
     /**
      * 构造一个有状态码和描述的Ajax响应

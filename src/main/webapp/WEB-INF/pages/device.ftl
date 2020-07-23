@@ -457,16 +457,16 @@
                                 window.location.reload();
                             }, 1000)
                         } else {
-                            alert("提示： " + data.data);
+                            layer.msg(data.d + '!', {icon: 5, time: 2000});
                         }
                     },
                     error: function () {
                         alert("请检查网络连接");
                     }
                 });
-}
-})
-})
+            }
+        })
+    })
 function switchToMap() {
 window.location.href="/device/map/"+buildingId;
 }

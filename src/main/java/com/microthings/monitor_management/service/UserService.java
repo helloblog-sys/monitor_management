@@ -2,6 +2,8 @@ package com.microthings.monitor_management.service;
 
 import com.microthings.monitor_management.mapper.UserMapper;
 import com.microthings.monitor_management.pojo.User;
+import com.microthings.monitor_management.pojo.UserExample;
+import com.microthings.monitor_management.util.AjaxResponse;
 import com.microthings.monitor_management.util.MD5Util;
 import org.springframework.stereotype.Service;
 
@@ -28,9 +30,21 @@ public class UserService {
     * @Author: hms
     * @Date: 2019/10/22 15:58
     */
-    public void addUser(User user){
-        user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
-        userMapper.insert(user);
+    public AjaxResponse addUser(User user){
+
+        UserExample example = new UserExample();
+        example.or().andUserNameEqualTo(user.getUserName());
+
+        List<User> userList = userMapper.selectByExample(example);
+
+        if(!userList.isEmpty()){
+            return AjaxResponse.ADD_ACCOUNT_EXIST;
+        }
+        else {
+            user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
+            userMapper.insert(user);
+            return AjaxResponse.OK;
+        }
     }
 
     /**
