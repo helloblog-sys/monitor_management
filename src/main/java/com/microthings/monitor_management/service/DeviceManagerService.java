@@ -91,7 +91,7 @@ public class DeviceManagerService {
         deviceExample.or().andDeviceSnEqualTo(device.getDeviceSn());
 
         List<Device> deviceList = deviceMapper.selectByExample(deviceExample);
-        if(!deviceList.isEmpty()){
+        if(!deviceList.isEmpty() && (!deviceList.get(0).getDeviceId().equals(device.getDeviceId()))){
             return AjaxResponse.ADD_DEVICE_EXIST;
         } else {
             deviceMapper.updateByPrimaryKeySelective(device);

@@ -88,7 +88,7 @@ public class PermissionService {
 
         List<Permission> permissionList = permissionMapper.selectByExample(permissionExample);
 
-        if(!permissionList.isEmpty()){
+        if(!permissionList.isEmpty() && (!permissionList.get(0).getPermissionId().equals(permission.getPermissionId()))){
             return AjaxResponse.ADD_PERMISSION_EXIST;
         } else {
             permissionMapper.updateByPrimaryKeySelective(permission);

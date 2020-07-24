@@ -94,7 +94,7 @@ public class RoleService {
 
         List<Role> roleList = roleMapper.selectByExample(roleExample);
 
-        if(!roleList.isEmpty()){
+        if(!roleList.isEmpty() && (!roleList.get(0).getRoleId().equals(role.getRoleId()))){
             return AjaxResponse.ADD_ROLE_EXIST;
         } else{
             roleMapper.updateByPrimaryKeySelective(role);
