@@ -1,6 +1,8 @@
 package com.microthings.monitor_management.Enum;
 
-public enum  DeviceTypeEnum implements ILongEnum{
+import java.io.Serializable;
+
+public enum  DeviceTypeEnum implements ILongEnum , Serializable {
     RADAR((long)1,"雷达"),
     CAMERA((long)2,"摄像头"),
     SMOKE_SENSING((long)3,"烟感设备"),
