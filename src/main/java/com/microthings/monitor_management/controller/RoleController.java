@@ -36,12 +36,11 @@ public class RoleController {
     @PutMapping()
     public AjaxResponse addRole(Role role){
         try {
-            roleService.addRole(role);
+            return roleService.addRole(role);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("添加失败!请重试！");
         }
-        return AjaxResponse.OK;
     }
 
     /**
@@ -101,12 +100,11 @@ public class RoleController {
     @PostMapping
     public AjaxResponse updateRole(Role role){
         try {
-            roleService.updateRole(role);
+            return roleService.updateRole(role);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("修改失败！请重试！");
         }
-        return AjaxResponse.OK;
     }
 
     /**

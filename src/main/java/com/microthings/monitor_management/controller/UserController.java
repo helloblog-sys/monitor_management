@@ -50,12 +50,11 @@ public class UserController {
     @ResponseBody
     public AjaxResponse addUser(User user) {
         try {
-            userService.addUser(user);
+            return userService.addUser(user);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("添加失败！请重试！");
         }
-        return AjaxResponse.OK;
     }
 
     /**
@@ -108,11 +107,10 @@ public class UserController {
     @ResponseBody
     public AjaxResponse updateUser(User user) {
         try {
-            userService.updateUser(user);
+            return userService.updateUser(user);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("修改失败！请重试！");
         }
-        return AjaxResponse.OK;
     }
 }

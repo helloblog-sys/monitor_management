@@ -2,7 +2,10 @@ package com.microthings.monitor_management.service;
 
 import com.microthings.monitor_management.mapper.UserMapper;
 import com.microthings.monitor_management.pojo.User;
+import com.microthings.monitor_management.pojo.UserExample;
+import com.microthings.monitor_management.util.AjaxResponse;
 import com.microthings.monitor_management.util.MD5Util;
+import org.apache.shiro.SecurityUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
@@ -28,9 +31,21 @@ public class UserService {
     * @Author: hms
     * @Date: 2019/10/22 15:58
     */
-    public void addUser(User user){
-        user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
-        userMapper.insert(user);
+    public AjaxResponse addUser(User user){
+
+        UserExample example = new UserExample();
+        example.or().andUserNameEqualTo(user.getUserName());
+
+        List<User> userList = userMapper.selectByExample(example);
+
+        if(!userList.isEmpty()){
+            return AjaxResponse.ADD_ACCOUNT_EXIST;
+        }
+        else {
+            user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
+            userMapper.insert(user);
+            return AjaxResponse.OK;
+        }
     }
 
     /**
@@ -51,9 +66,33 @@ public class UserService {
     * @Author: hms
     * @Date: 2019/10/22 16:02
     */
-    public void updateUser(User user){
-        user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
-        userMapper.updateByPrimaryKeySelective(user);
+    public AjaxResponse updateUser(User user){
+
+        UserExample example = new UserExample();
+        example.or().andUserNameEqualTo(user.getUserName());
+
+        List<User> userList = userMapper.selectByExample(example);
+
+        //要修改的用户名存在(不包括自身)
+        if((!userList.isEmpty()) && (!userList.get(0).getUserId().equals(user.getUserId()))){
+            return AjaxResponse.ADD_ACCOUNT_EXIST;
+        }
+        //要修改的用户名不存在
+        else {
+            //修改前后密码
+            String oldPassword = userMapper.selectByPrimaryKey(user.getUserId()).getUserPassword();
+            user.setUserPassword(MD5Util.encodePassword(user.getUserPassword()));
+            String newPassword = user.getUserPassword();
+            //进行修改
+            userMapper.updateByPrimaryKeySelective(user);
+            //获取当前登录的用户Id
+            Integer loginUserId = (Integer) SecurityUtils.getSubject().getPrincipals().asList().get(1);
+            //当前登录用户的密码是否修改，修改需要重新登录
+            if((!oldPassword.equals(newPassword)) && (loginUserId.equals(user.getUserId()))){
+                return AjaxResponse.UPDATE_PASSWORD_SUCCESS;
+            }
+            return AjaxResponse.OK;
+        }
     }
 
     /**

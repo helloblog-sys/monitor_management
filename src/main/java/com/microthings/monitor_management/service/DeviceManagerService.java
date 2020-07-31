@@ -3,6 +3,7 @@ package com.microthings.monitor_management.service;
 import com.microthings.monitor_management.mapper.DeviceMapper;
 import com.microthings.monitor_management.pojo.Device;
 import com.microthings.monitor_management.pojo.DeviceExample;
+import com.microthings.monitor_management.util.AjaxResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
@@ -54,8 +55,18 @@ public class DeviceManagerService {
     * @Author: hms
     * @Date: 2019/8/28 22:52
     */
-    public void addDevice(Device device){
-        deviceMapper.insert(device);
+    public AjaxResponse addDevice(Device device){
+
+        DeviceExample deviceExample = new DeviceExample();
+        deviceExample.or().andDeviceSnEqualTo(device.getDeviceSn());
+
+        List<Device> deviceList = deviceMapper.selectByExample(deviceExample);
+        if(!deviceList.isEmpty()){
+            return AjaxResponse.ADD_DEVICE_EXIST;
+        } else {
+            deviceMapper.insert(device);
+            return AjaxResponse.OK;
+        }
     }
     /**
     * @Description: 删除设备
@@ -74,7 +85,17 @@ public class DeviceManagerService {
     * @Author: hms
     * @Date: 2019/8/29 10:09
     */
-    public void updateDevice(Device device){
-        deviceMapper.updateByPrimaryKeySelective(device);
+    public AjaxResponse updateDevice(Device device){
+
+        DeviceExample deviceExample = new DeviceExample();
+        deviceExample.or().andDeviceSnEqualTo(device.getDeviceSn());
+
+        List<Device> deviceList = deviceMapper.selectByExample(deviceExample);
+        if(!deviceList.isEmpty() && (!deviceList.get(0).getDeviceId().equals(device.getDeviceId()))){
+            return AjaxResponse.ADD_DEVICE_EXIST;
+        } else {
+            deviceMapper.updateByPrimaryKeySelective(device);
+            return AjaxResponse.OK;
+        }
     }
 }

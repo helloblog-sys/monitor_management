@@ -319,13 +319,19 @@
                     type: 'post',
                     success: function (data) {
                         if (data.s == 1) {
+                            //当前登录用户修改自己的账户密码时重新登录
                             layer.msg('操作成功!', {icon: 6, time: 1000});
                             setTimeout(function () {
                                 layer.close(layer.index);
                                 window.location.reload();
                             }, 1000)
+                        } else if(data.s == 2){
+                            layer.msg('操作成功,请重新登录!', {icon: 6, time: 1000});
+                            setTimeout(function () {
+                                location.href = "/logout";
+                            }, 1000);
                         } else {
-                            alert("提示： " + data.data);
+                            layer.msg(data.d + '!', {icon: 5, time: 2000});
                         }
                     },
                     error: function () {

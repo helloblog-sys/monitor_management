@@ -67,8 +67,8 @@
             <tr class="text-c">
                 <td><input type="checkbox" value="${permissionList.permissionId}" name="checkbox"></td>
                 <td>${permissionList_index+1}</td>
-                <td>${permissionList.permissionStr}</td>
                 <td>${permissionList.permissionName}</td>
+                <td>${permissionList.permissionStr}</td>
                 <td>${permissionList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
                     <a title="编辑" href="javascript:;" onclick="permission_edit('权限编辑',${permissionList.permissionId},${permissionList_index+1})"
@@ -137,8 +137,8 @@
         //权限名称正则
         if($(this).is("#permissionName")){
             var permissionNameVal = $.trim(this.value);
-            var regPermission = /[~#^$@%&!*()<>;'"{}【】  ]/;
-            if(permissionNameVal == "" || permissionNameVal.length < 1 || permissionNameVal.length > 16 || regPermission.test(permissionNameVal)){
+            var regPermission = /[~#^$@%&!*()<>;'"{}【】 ]/;
+            if(permissionNameVal == "" || permissionNameVal.length < 1 || permissionNameVal.length > 20 || regPermission.test(permissionNameVal)){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
             }
@@ -151,7 +151,7 @@
         //权限名=描述正则
         if($(this).is("#permissionStr")){
             var permissionStrVal = $.trim(this.value);
-            var regPermissionStr = /[~#^$@%&!*()<>;'"{}【】  ]/ ;
+            var regPermissionStr = /[~#^$@%&!*()<>;'"{}【】 ]/ ;
             if( permissionStrVal == "" || permissionStrVal.length < 1 || permissionStrVal.length > 30 || regPermissionStr.test(permissionStrVal) ){
                 var errorMsg = " 长度不符或包含特殊字符！";
                 $parent.append("<span class='msg onError'>" + errorMsg + "</span>");
@@ -302,7 +302,7 @@
                                 window.location.reload();
                             }, 1000)
                         } else {
-                            alert("提示： " + data.data);
+                            layer.msg(data.d + '!', {icon: 5, time: 1000});
                         }
                     },
                     error: function () {

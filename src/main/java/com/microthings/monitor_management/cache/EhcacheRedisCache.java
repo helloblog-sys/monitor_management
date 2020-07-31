@@ -60,12 +60,12 @@ public class EhcacheRedisCache implements Cache{
         try{
             //先存入redis二级缓存
             if(null!=value){
-                logger.info("Cache-L2>>>>>>>>>>>>>>>>>>>>putObject: \n key="+key+"\n value="+value);
+                //logger.info("Cache-L2>>>>>>>>>>>>>>>>>>>>putObject: \n key="+key+"\n value="+value);
                 redisTemplate.opsForValue().set(key.toString(), value,2, TimeUnit.DAYS);
             }
             //再存入ehcache一级缓存
             if(null!=value){
-                logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>putObject: \n key="+key+"\n value="+value);
+                //logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>putObject: \n key="+key+"\n value="+value);
                 ehcache.put(new Element(key, value));
             }
         }catch (Exception e){
@@ -80,17 +80,17 @@ public class EhcacheRedisCache implements Cache{
             //先查看ehcache是否有缓存
             Element cachedElement = ehcache.get(key);
             if (null!=cachedElement) {
-                logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>getObject: key="+key);
+                //logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>getObject: key="+key);
                 return cachedElement.getObjectValue();
             }
             //再查看redis是否有缓存
             if(null!=redisTemplate.opsForValue().get(key.toString())){
-                logger.info("Cache-L2>>>>>>>>>>>>>>>>>>>>getObject: key="+key);
+                //logger.info("Cache-L2>>>>>>>>>>>>>>>>>>>>getObject: key="+key);
 
                 //将redis中的缓存存入ehcache
                 Object value = redisTemplate.opsForValue().get(key.toString());
                 ehcache.put(new Element(key, value));
-                logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>putObject: \n key="+key+"\n value="+redisTemplate.opsForValue().get(key.toString()));
+                //logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>putObject: \n key="+key+"\n value="+redisTemplate.opsForValue().get(key.toString()));
 
                 return redisTemplate.opsForValue().get(key.toString());
             }
@@ -126,7 +126,7 @@ public class EhcacheRedisCache implements Cache{
 
         //ehcache
         ehcache.removeAll();
-        logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>clear: 清除了" + ehcache.getSize() + "个对象");
+        //logger.info("Cache-L1>>>>>>>>>>>>>>>>>>>>clear: 清除了" + ehcache.getSize() + "个对象");
 
         //redis
         Long size=redisTemplate.execute(new RedisCallback<Long>() {
@@ -139,7 +139,7 @@ public class EhcacheRedisCache implements Cache{
                 return size;
             }
         });
-        logger.info("Cache-L2>>>>>>>>>>>>>>>>>>>>clear: 清除了" + size + "个对象");
+        //logger.info("Cache-L2>>>>>>>>>>>>>>>>>>>>clear: 清除了" + size + "个对象");
     }
 
     @Override

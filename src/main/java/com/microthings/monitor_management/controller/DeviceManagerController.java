@@ -99,12 +99,11 @@ public class DeviceManagerController {
     @ResponseBody
     private AjaxResponse addDevice(Device device) {
         try {
-            deviceManagerService.addDevice(device);
+            return deviceManagerService.addDevice(device);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("添加失败，请稍后重试！");
         }
-        return AjaxResponse.OK;
     }
 
     /**
@@ -139,11 +138,10 @@ public class DeviceManagerController {
     @ResponseBody
     public AjaxResponse updateDevice(Device device) {
         try {
-            deviceManagerService.updateDevice(device);
+            return deviceManagerService.updateDevice(device);
         } catch (Exception e) {
             e.printStackTrace();
             return AjaxResponse.FAILED("修改失败，请检查后重试！");
         }
-        return AjaxResponse.OK;
     }
 }
