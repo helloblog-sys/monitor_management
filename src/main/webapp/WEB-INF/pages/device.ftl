@@ -93,6 +93,7 @@
                 <td>${deviceList.mapPositionY}</td>
 
                 <#--隐藏数据-->
+                <td class="hidden">${deviceList.deviceScaling!}</td>
                 <td class="hidden">${deviceList.monitorAhead!}</td>
                 <td class="hidden">${deviceList.monitorLeft!}</td>
                 <td class="hidden">${deviceList.monitorRight!}</td>
@@ -223,7 +224,7 @@
             <div class="row col-sm-6">
                 <label class="form-label col-xs-5 col-sm-5" for="deviceScaling"><span class="c-red">*</span>坐标缩放：</label>
                 <div class="formControls col-xs-7 col-sm-7">
-                    <input type="text" class="input-text" value="1" placeholder="请填写坐标缩放比例" id="deviceScaling"
+                    <input type="text" class="input-text" value="" placeholder="请填写坐标缩放比例" id="deviceScaling"
                            name="deviceScaling">
                 </div>
             </div>
@@ -348,13 +349,13 @@
         document.getElementById('deviceAngle').value = $('tbody tr:eq(' + tid + ') td:eq(8)').text();
         document.getElementById('mapPositionX').value = $('tbody tr:eq(' + tid + ') td:eq(9)').text();
         document.getElementById('mapPositionY').value = $('tbody tr:eq(' + tid + ') td:eq(10)').text();
+        document.getElementById('deviceScaling').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
+        document.getElementById('monitorAhead').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
+        document.getElementById('monitorLeft').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
+        document.getElementById('monitorRight').value = $('tbody tr:eq(' + tid + ') td:eq(14)').text();
 
-        document.getElementById('monitorAhead').value = $('tbody tr:eq(' + tid + ') td:eq(11)').text();
-        document.getElementById('monitorLeft').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
-        document.getElementById('monitorRight').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
-
-        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(14)').text();
-        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(15)').text();
+        document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(15)').text();
+        document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(16)').text();
         $("input").remove("[name = '_method']");
 
         layer.open({
