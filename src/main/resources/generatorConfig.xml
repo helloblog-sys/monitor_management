@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC
+        "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+        "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <context id="simple" targetRuntime="MyBatis3">
+        <!--生成文件去掉注释-->
+        <commentGenerator>
+            <property name="suppressAllComments" value="true" />
+        </commentGenerator>
+        <!--配置数据库连接信息-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver"
+                        connectionURL="jdbc:mysql://localhost:3306/monitor"
+                        userId="root"
+                        password="123456"/>
+        <!--指定pojo生成位置-->
+        <javaModelGenerator targetPackage="com.microthings.monitor_management.pojo" targetProject="src/main/java"/>
+        <!--指定sql映射文件生成位置-->
+        <sqlMapGenerator targetPackage="com.microthings.monitor_management.mapper" targetProject="src/main/java"/>
+        <!--指定mapper接口的生成位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.microthings.monitor_management.mapper" targetProject="src/main/java"/>
+        <!--指定每个表的生成策略-->
+        <table tableName="description" domainObjectName="Description"/>
+    </context>
+</generatorConfiguration>

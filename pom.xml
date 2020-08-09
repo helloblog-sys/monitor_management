@@ -167,6 +167,12 @@
             <artifactId>druid</artifactId>
             <version>1.1.10</version>
         </dependency>
+        <!-- mybatis.generator -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>1.3.7</version>
+        </dependency>
         <!-- 导入Mysql数据库连接包 -->
         <dependency>
             <groupId>mysql</groupId>
@@ -260,7 +266,7 @@
             <artifactId>mybatis-redis</artifactId>
             <version>1.0.0-beta2</version>
         </dependency>
-<!--        RSA加密相关-->
+        <!--RSA加密相关-->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
@@ -270,6 +276,17 @@
             <groupId>org.bouncycastle</groupId>
             <artifactId>bcprov-jdk15on</artifactId>
             <version>1.60</version>
+        </dependency>
+        <!-- commonmark -->
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-heading-anchor</artifactId>
+            <version>0.13.1</version>
+        </dependency>
+        <dependency>
+            <groupId>com.atlassian.commonmark</groupId>
+            <artifactId>commonmark-ext-gfm-tables</artifactId>
+            <version>0.13.1</version>
         </dependency>
 
     </dependencies>
