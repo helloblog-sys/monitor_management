@@ -94,8 +94,8 @@
             <dt><i class="Hui-iconfont">&#xe720;</i> 使用手册<i class="Hui-iconfont menu_dropdown-arrow">&#xe6d5;</i></dt>
             <dd>
                 <ul>
-                    <li><a data-href="/description/front" data-title="前台展示系统使用说明" href="javascript:void(0)">前台系统使用说明</a></li>
-                    <li><a data-href="/description/back" data-title="后台管理系统使用说明" href="javascript:void(0)">后台系统使用说明</a></li>
+                    <li><a data-href="/description/1" data-title="前台展示系统使用说明" href="javascript:void(0)">前台系统使用说明</a></li>
+                    <li><a data-href="/description/2" data-title="后台管理系统使用说明" href="javascript:void(0)">后台系统使用说明</a></li>
                 </ul>
             </dd>
         </dl>

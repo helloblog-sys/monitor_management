@@ -130,11 +130,11 @@
     document.getElementById("submit").onclick = function(){
         var mdCode = contentEditor.getMarkdown();
         var description = {
-            descriptionId : 1,
+            descriptionId : ${descriptionId},
             descriptionContent : mdCode
         };
         $.ajax({
-            url: '/description/data',
+            url: '/description/update',
             dataType: "json",
             data: JSON.stringify(description),
             type: 'post',

@@ -24,21 +24,15 @@ public class DescriptionController {
 
     private static Logger logger = LoggerFactory.getLogger(DescriptionController.class);
 
-    @GetMapping("front")
-    public String getFrontManual(ModelMap model){
-        Description description = descriptionService.getDescription(1);
+    @GetMapping("/{descriptionId}")
+    public String getFrontManual(@PathVariable int descriptionId, ModelMap model){
+        Description description = descriptionService.getDescription(descriptionId);
+        model.put("descriptionId", descriptionId);
         model.put("content", description.getDescriptionContent());
-        return "/manualOfFront";
+        return "/description";
     }
 
-    @GetMapping("back")
-    public String getBackManual(ModelMap model){
-        Description description = descriptionService.getDescription(2);
-        model.put("content", description.getDescriptionContent());
-        return "/manualOfBack";
-    }
-
-    @RequestMapping(value="/data", method = RequestMethod.POST)
+    @RequestMapping(value="/update", method = RequestMethod.POST)
     @ResponseBody
     public AjaxResponse updateDescription(@RequestBody Description description) {
         try {
