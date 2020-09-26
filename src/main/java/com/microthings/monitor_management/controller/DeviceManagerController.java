@@ -4,6 +4,8 @@ import com.alibaba.fastjson.JSON;
 import com.microthings.monitor_management.pojo.Device;
 import com.microthings.monitor_management.service.DeviceManagerService;
 import com.microthings.monitor_management.util.AjaxResponse;
+import org.apache.shiro.authz.annotation.Logical;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -38,6 +40,7 @@ public class DeviceManagerController {
      */
     @GetMapping()
     @ResponseBody
+    @RequiresRoles(value = "super_administrator")
     public AjaxResponse getDeviceList() {
         List<Device> list = deviceManagerService.getDeviceList();
         return AjaxResponse.OK(list);
@@ -51,6 +54,7 @@ public class DeviceManagerController {
      * @Date: 2019/8/28 22:38
      */
     @GetMapping("/all")
+    @RequiresRoles(value = "super_administrator")
     public String getDeviceList(ModelMap model) {
         List<Device> deviceList = deviceManagerService.getDeviceList();
         model.put("deviceList", deviceList);
@@ -67,10 +71,10 @@ public class DeviceManagerController {
     */
     @GetMapping("/{buildingId}")
     public String getBuildingDeviceList(@PathVariable int buildingId, ModelMap model){
-        List<Device> deviceList = deviceManagerService.getBuildingDeviceList(buildingId);
-        model.put("deviceList", deviceList);
-        model.put("buildingId", buildingId);
-        return  "/device";
+            List<Device> deviceList = deviceManagerService.getBuildingDeviceList(buildingId);
+            model.put("deviceList", deviceList);
+            model.put("buildingId", buildingId);
+            return "/device";
     }
 
     /**
@@ -97,6 +101,7 @@ public class DeviceManagerController {
      */
     @PutMapping
     @ResponseBody
+    @RequiresRoles(value = {"super_administrator","coffee_admin"},logical=Logical.AND)
     private AjaxResponse addDevice(Device device) {
         try {
             return deviceManagerService.addDevice(device);
@@ -115,6 +120,7 @@ public class DeviceManagerController {
      */
     @DeleteMapping("{deviceIds}")
     @ResponseBody
+    @RequiresRoles(value = {"super_administrator","coffee_admin"},logical=Logical.AND)
     public AjaxResponse deleteDevice(@PathVariable int[] deviceIds) {
         try {
             for (int deviceId : deviceIds) {
@@ -136,6 +142,7 @@ public class DeviceManagerController {
      */
     @PostMapping
     @ResponseBody
+    @RequiresRoles(value = {"super_administrator","coffee_admin"},logical=Logical.AND)
     public AjaxResponse updateDevice(Device device) {
         try {
             return deviceManagerService.updateDevice(device);

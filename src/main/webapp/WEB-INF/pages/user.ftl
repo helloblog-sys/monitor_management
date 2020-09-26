@@ -56,9 +56,10 @@
         <tr class="text-c">
             <th width="25"><input type="checkbox" value="" name=""></th>
             <th width="40">序号</th>
-            <th width="240">用户名称</th>
-            <th>用户角色</th>
-            <th width="300">创建时间</th>
+            <th width="200">用户名称</th>
+            <th width="150">用户邮箱</th>
+            <th width="100">用户角色</th>
+            <th width="200">创建时间</th>
             <th width="70">操作</th>
         </tr>
         </thead>
@@ -68,12 +69,7 @@
                 <td><input type="checkbox" value="${userList.userId}" name="checkbox"></td>
                 <td>${userList_index+1}</td>
                 <td>${userList.userName}</td>
-                <#--<#if userList.roleId==1>-->
-                    <#--<td>超级管理员</td>-->
-                <#--<#elseif userList.roleId==2>-->
-                    <#--<td>普通用户</td>-->
-                <#--<#elseif userList.roleId==3>-->
-                    <#--<td>咖啡街管理员</td></#if>-->
+                <td>${userList.userEmail}</td>
                 <td>${userList.getRoleTypeEnum().message}</td>
                 <td>${userList.createTime?string('yyyy-MM-dd HH:mm:ss')}</td>
                 <td class="f-14">
@@ -108,6 +104,13 @@
             <div class="formControls col-xs-7 col-sm-7">
                 <input type="password" class="input-text required" value="" placeholder="6-16位字母、数字、字符" id="userPassword"
                        name="userPassword">
+            </div>
+        </div>
+        <div class="row cl" style="padding-left: 50px">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户邮箱：</label>
+            <div class="formControls col-xs-7 col-sm-7">
+                <input type="text" class="input-text required" value="" placeholder="电子邮箱" id="userEmail"
+                       name="userEmail">
             </div>
         </div>
         <div class="row cl" style="padding-left: 50px">
@@ -222,7 +225,7 @@
         var tid = index - 1;
         document.getElementById('userId').value = id;
         document.getElementById('userName').value = $('tbody tr:eq(' + tid + ') td:eq(2)').text();
-        //document.getElementById('userPassword').value = 123456;
+        document.getElementById('userEmail').value = $('tbody tr:eq(' + tid + ') td:eq(3)').text();
         $("input").remove("[name = '_method']");
         layer.open({
             type: 1,
@@ -302,6 +305,9 @@
                     required: true,
                 },
                 userPassword: {
+                    required: true,
+                },
+                userEmail: {
                     required: true,
                 },
                 roleId: {

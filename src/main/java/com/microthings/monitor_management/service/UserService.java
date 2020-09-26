@@ -18,6 +18,8 @@ import java.util.List;
  * @Date 2019/10/22 15:44
  * @Version 1.0
  **/
+
+
 @Service
 public class UserService {
 
@@ -35,7 +37,6 @@ public class UserService {
 
         UserExample example = new UserExample();
         example.or().andUserNameEqualTo(user.getUserName());
-
         List<User> userList = userMapper.selectByExample(example);
 
         if(!userList.isEmpty()){
@@ -70,7 +71,6 @@ public class UserService {
 
         UserExample example = new UserExample();
         example.or().andUserNameEqualTo(user.getUserName());
-
         List<User> userList = userMapper.selectByExample(example);
 
         //要修改的用户名存在(不包括自身)

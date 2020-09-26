@@ -42,6 +42,13 @@
                        name="userPassword">
             </div>
         </div>
+        <div class="row cl" style="padding-left: 50px">
+            <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户邮箱：</label>
+            <div class="formControls col-xs-7 col-sm-7">
+                <input type="text" class="input-text required" value="" placeholder="电子邮箱" id="userEmail"
+                       name="userEmail">
+            </div>
+        </div>
         <div class="row cl">
             <label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户角色：</label>
             <div class="formControls col-xs-7 col-sm-8"> <span class="select-box" style="width:150px;">
@@ -79,6 +86,9 @@
                     required: true,
                 },
                 userPassword: {
+                    required: true,
+                },
+                userEmail: {
                     required: true,
                 },
                 roleId: {

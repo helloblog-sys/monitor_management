@@ -3,6 +3,7 @@ package com.microthings.monitor_management.controller;
 import com.microthings.monitor_management.pojo.Permission;
 import com.microthings.monitor_management.service.PermissionService;
 import com.microthings.monitor_management.util.AjaxResponse;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("permission")
+@RequiresRoles(value = "super_administrator")
 public class PermissionController {
 
     @Resource

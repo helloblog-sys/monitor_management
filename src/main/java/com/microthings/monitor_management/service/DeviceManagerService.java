@@ -59,7 +59,6 @@ public class DeviceManagerService {
 
         DeviceExample deviceExample = new DeviceExample();
         deviceExample.or().andDeviceSnEqualTo(device.getDeviceSn());
-
         List<Device> deviceList = deviceMapper.selectByExample(deviceExample);
         if(!deviceList.isEmpty()){
             return AjaxResponse.ADD_DEVICE_EXIST;
@@ -89,7 +88,6 @@ public class DeviceManagerService {
 
         DeviceExample deviceExample = new DeviceExample();
         deviceExample.or().andDeviceSnEqualTo(device.getDeviceSn());
-
         List<Device> deviceList = deviceMapper.selectByExample(deviceExample);
         if(!deviceList.isEmpty() && (!deviceList.get(0).getDeviceId().equals(device.getDeviceId()))){
             return AjaxResponse.ADD_DEVICE_EXIST;

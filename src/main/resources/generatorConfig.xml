@@ -20,6 +20,6 @@
         <!--指定mapper接口的生成位置-->
         <javaClientGenerator type="XMLMAPPER" targetPackage="com.microthings.monitor_management.mapper" targetProject="src/main/java"/>
         <!--指定每个表的生成策略-->
-        <table tableName="description" domainObjectName="Description"/>
+        <table tableName="user" domainObjectName="User"/>
     </context>
 </generatorConfiguration>

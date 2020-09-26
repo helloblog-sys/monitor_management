@@ -353,7 +353,6 @@
         document.getElementById('monitorAhead').value = $('tbody tr:eq(' + tid + ') td:eq(12)').text();
         document.getElementById('monitorLeft').value = $('tbody tr:eq(' + tid + ') td:eq(13)').text();
         document.getElementById('monitorRight').value = $('tbody tr:eq(' + tid + ') td:eq(14)').text();
-
         document.getElementById('port').value = $('tbody tr:eq(' + tid + ') td:eq(15)').text();
         document.getElementById('associationMmwaveSn').value = $('tbody tr:eq(' + tid + ') td:eq(16)').text();
         $("input").remove("[name = '_method']");

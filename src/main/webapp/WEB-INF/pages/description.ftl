@@ -87,8 +87,9 @@
     //内容展示
     var contentShow;
     $(function() {
+        //MarkDown格式的语法转化成html格式，第一个参数是上面的div的id
         contentShow = editormd.markdownToHTML("md-show", {
-            htmlDecode      : "style,script,iframe",  // you can filter tags decode
+            htmlDecode      : "style,script,iframe",  //可以过滤标签解码
             emoji           : true,
             taskList        : true,
             tex             : true,  // 默认不解析
@@ -110,7 +111,7 @@
         contentEditor.hide();
     });
 
-    //编辑
+    //编辑按钮
     document.getElementById("editor").onclick = function(){
         contentShow.hide();
         contentEditor.show();
@@ -128,6 +129,7 @@
 
     //将文本持久化（确认按钮）
     document.getElementById("submit").onclick = function(){
+        // 在js中调用getMarkdown这个方法可以获得Markdown格式的文本
         var mdCode = contentEditor.getMarkdown();
         var description = {
             descriptionId : ${descriptionId},
@@ -156,7 +158,7 @@
         });
     }
 
-    //取消
+    //取消按钮
     document.getElementById("cancel").onclick = function() {
         window.location.reload();
     }

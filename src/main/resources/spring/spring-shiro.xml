@@ -6,15 +6,12 @@
        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
 
     <!-- spring-shiro.xml需要配置在spring的context下-->
-
     <!-- Shiro 核心配置  -->
     <bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
         <!--1 配置缓存 -->
         <property name="cacheManager" ref="cacheManager"/>
         <property name="realm" ref="jdbcRealm"/>
     </bean>
-
-
 
     <!-- 1配置缓存-->
     <bean id="cacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager">
@@ -25,9 +22,7 @@
      Shiro 从 Realm 获取安全数据（如用户、角色、权限）
      -->
     <bean id="jdbcRealm" class="com.microthings.monitor_management.shiro.ShiroRealm">
-
     </bean>
-
     <!-- =========================================================
         Shiro Spring特定的集成
          ========================================================= -->
@@ -44,20 +39,15 @@
         <property name="securityManager" ref="securityManager"/>
     </bean>
 
-
-
     <!--  bean id必须要和 web.xml Filter name 要一致  -->
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <property name="securityManager" ref="securityManager"/>
         <property name="loginUrl" value="/login.html"/>    <!--未认证  登录页面 -->
         <property name="successUrl" value="/index.ftl"/>    <!-- 认证成功后访问页面 -->
-
-
-
+        <property name="unauthorizedUrl" value="/unauthorized.html"/>
         <!--在程序中编写授权拦截器-->
         <property name="filterChainDefinitions">
              <value>
-
                  /login= anon
                  /logout= logout
                  /assets/** = anon

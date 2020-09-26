@@ -24,6 +24,8 @@ public class AjaxResponse implements Serializable {
             -100103, "您输入的验证码不正确");
     public static final AjaxResponse ADD_ACCOUNT_EXIST = new AjaxResponse(
             -100104, "该用户已存在");
+    public static final AjaxResponse ADD_ACCOUNT_NOTEXIST = new AjaxResponse(
+            -100107, "该用户不存在");
     public static final AjaxResponse ADD_PERMISSION_EXIST = new AjaxResponse(
             -100105, "该权限已存在");
     public static final AjaxResponse ADD_ROLE_EXIST = new AjaxResponse(
@@ -32,6 +34,10 @@ public class AjaxResponse implements Serializable {
             2, "修改成功，请重新登录");
     public static final AjaxResponse ADD_DEVICE_EXIST = new AjaxResponse(
             -100201, "该设备sn号已被注册");
+    public static final AjaxResponse ADD_ALARM_EXIST = new AjaxResponse(
+            -100202, "该告警信息已经存在");
+    public static final AjaxResponse Emial_NOT_NULL= new AjaxResponse(
+            -100203, "用户邮箱不能为空");
 
 
     /**

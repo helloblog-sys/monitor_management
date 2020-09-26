@@ -120,5 +120,7 @@ public class RoleService {
     * @Author: hms
     * @Date: 2019/10/26 19:35
     */
-    public Role selectRole(int roleId){return roleMapper.selectByPrimaryKey(roleId);}
+    public Role selectRole(int roleId) {
+        return roleMapper.selectByPrimaryKey(roleId);
+    }
 }

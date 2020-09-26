@@ -4,6 +4,7 @@ package com.microthings.monitor_management.controller;
 import com.microthings.monitor_management.pojo.User;
 import com.microthings.monitor_management.service.UserService;
 import com.microthings.monitor_management.util.AjaxResponse;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("user")
+@RequiresRoles(value = "super_administrator")
 public class UserController {
 
     @Resource
@@ -49,6 +51,9 @@ public class UserController {
     @PutMapping
     @ResponseBody
     public AjaxResponse addUser(User user) {
+        if(user.getUserEmail().isEmpty()){
+            return AjaxResponse.Emial_NOT_NULL;
+        }
         try {
             return userService.addUser(user);
         } catch (Exception e) {
@@ -106,6 +111,9 @@ public class UserController {
     @PostMapping
     @ResponseBody
     public AjaxResponse updateUser(User user) {
+        if(user.getUserEmail().isEmpty()){
+            return AjaxResponse.Emial_NOT_NULL;
+        }
         try {
             return userService.updateUser(user);
         } catch (Exception e) {

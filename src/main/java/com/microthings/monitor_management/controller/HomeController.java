@@ -1,14 +1,11 @@
 package com.microthings.monitor_management.controller;
 
-import com.alibaba.druid.util.StringUtils;
 import com.microthings.monitor_management.mapper.UserMapper;
-import com.microthings.monitor_management.pojo.User;
-import com.microthings.monitor_management.pojo.UserExample;
+import com.microthings.monitor_management.service.RoleService;
 import com.microthings.monitor_management.util.AjaxResponse;
 import com.microthings.monitor_management.util.Const;
 import com.microthings.monitor_management.util.MD5Util;
 import com.microthings.monitor_management.util.RSAUtils;
-import org.apache.ibatis.javassist.runtime.Desc;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.UnknownAccountException;
@@ -17,27 +14,28 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.*;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
-import java.io.BufferedInputStream;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.List;
-import java.util.Properties;
 
 import static com.microthings.monitor_management.util.AjaxResponse.*;
 
 
 @Controller
+
 public class HomeController {
 
     private static Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     @Resource
     private UserMapper userMapper;
+
+    @Resource
+    private RoleService roleService;
 
     //给前端返回公钥
     @PostMapping("/getPublicKey")
@@ -53,8 +51,8 @@ public class HomeController {
                               @RequestParam(value = "password") String password,
                               @RequestParam(value = "checkcode") String checkcode,
                               HttpSession session) throws Exception {
-
         logger.debug("loging username [{}] password [{}] checkcode", username, password, checkcode);
+
         //解密前端传入的密码
         password = RSAUtils.decryptBase64(password.trim());
         // 先检查验证码
@@ -85,7 +83,7 @@ public class HomeController {
         session.removeAttribute(Const.SESSION_SUBJECT);
         session.setAttribute(Const.SESSION_SUBJECT, subject);
         session.setAttribute(Const.SESSION_USER_PASSWORD, MD5Util.encodePassword(password));
-
+        //shiro中获取session的方法，设置session的生命周期时间。
         SecurityUtils.getSubject().getSession().setTimeout(-2000);
         return AjaxResponse.OK;
     }

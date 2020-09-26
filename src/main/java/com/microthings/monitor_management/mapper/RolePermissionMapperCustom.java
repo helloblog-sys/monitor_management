@@ -12,7 +12,7 @@ import java.util.List;
 public interface RolePermissionMapperCustom {
 
     /**
-    * @Description: 根据角色ID查看角色权限
+    * @Description: 根据角色ID查看角色权限信息，及就是permission_name
     * @Param: [roleId]
     * @return: java.util.List<java.lang.String>
     * @Author: hms

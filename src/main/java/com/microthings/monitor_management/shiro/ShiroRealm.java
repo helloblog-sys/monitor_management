@@ -6,7 +6,9 @@ import com.microthings.monitor_management.mapper.UserMapper;
 import com.microthings.monitor_management.pojo.Role;
 import com.microthings.monitor_management.pojo.User;
 import com.microthings.monitor_management.pojo.UserExample;
+import com.microthings.monitor_management.service.RoleService;
 import org.apache.commons.lang3.StringUtils;
+import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
@@ -41,6 +43,9 @@ public class ShiroRealm extends AuthorizingRealm {
     @Resource
     private RolePermissionMapperCustom rolePermissionMapperCustom;
 
+    @Resource
+    private RoleService roleService;
+
     /***
      * @Description: 认证方法
      * @Param: [authenticationToken]
@@ -51,8 +56,8 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken authenticationToken) throws AuthenticationException {
         log.debug("do authentication ，token data [{}]", authenticationToken);
-        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
 
+        UsernamePasswordToken token = (UsernamePasswordToken) authenticationToken;
         if (token.getUsername() == null) {
             return null;
         }
@@ -65,6 +70,10 @@ public class ShiroRealm extends AuthorizingRealm {
             throw  new UnknownAccountException("用户名不存在");
         }
         User user = userList.get(0);
+        Role role = roleService.selectRole(user.getRoleId());
+        SecurityUtils.getSubject().getSession().setAttribute("roleName",role.getRoleName());
+        SecurityUtils.getSubject().getSession().setAttribute("userName",user.getUserName());
+
         // 当密码错误
         if (!StringUtils.equals(user.getUserPassword(),
                 new String(token.getPassword()))) {
@@ -89,8 +98,8 @@ public class ShiroRealm extends AuthorizingRealm {
     @Override
     protected AuthorizationInfo doGetAuthorizationInfo(PrincipalCollection principalCollection) {
         log.debug("do authortization , principals data [{}]", principalCollection);
+
         String username = (String) principalCollection.fromRealm(getName()).iterator().next();
-        User user;
         // 根据账户名获得账户
         UserExample userExample = new UserExample();
         userExample.createCriteria().andUserNameEqualTo(username);
@@ -100,9 +109,8 @@ public class ShiroRealm extends AuthorizingRealm {
             log.debug("account not exist.");
             throw new UnknownAccountException("用户名不存在");
         }
-        //获取权限字符列表Z
-        List<String> permissionStrList = rolePermissionMapperCustom
-                .selectPermissionStrByRoleId(userList.get(0).getRoleId());
+        //获取权限字符列表
+        List<String> permissionStrList = rolePermissionMapperCustom.selectPermissionStrByRoleId(userList.get(0).getRoleId());
         // 封装授权信息
         SimpleAuthorizationInfo info = new SimpleAuthorizationInfo();
         // 将用户的权限字符，进行授权
@@ -113,7 +121,6 @@ public class ShiroRealm extends AuthorizingRealm {
         Set<String> roleStrList = new HashSet<>();
         roleStrList.add(role.getRoleStr());
         info.addRoles(roleStrList);
-
         return info;
     }
 

@@ -33,9 +33,9 @@
             <a aria-hidden="false" class="nav-toggle Hui-iconfont visible-xs" href="javascript:;">&#xe667;</a>
             <nav id="Hui-userbar" class="nav navbar-nav navbar-userbar hidden-xs">
                 <ul class="cl">
-                    <li>超级管理员</li>
+                    <li>${roleName}</li>
                     <li class="dropDown dropDown_hover">
-                        <a href="#" class="dropDown_A">admin <i class="Hui-iconfont">&#xe6d5;</i></a>
+                        <a href="#" class="dropDown_A">${userName} <i class="Hui-iconfont">&#xe6d5;</i></a>
                         <ul class="dropDown-menu menu radius box-shadow">
                             <li><a href="/logout">退出</a></li>
                         </ul>
@@ -86,7 +86,7 @@
             <dd>
                 <ul>
                     <li><a data-href="" data-title="摄像头告警信息" href="javascript:void(0)">摄像头告警信息</a></li>
-                    <li><a data-href="" data-title="雷达告警信息" href="javascript:void(0)">雷达告警信息</a></li>
+                    <li><a data-href="/alarm/all" data-title="雷达告警信息" href="javascript:void(0)">雷达告警信息</a></li>
                 </ul>
             </dd>
         </dl>

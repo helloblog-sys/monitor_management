@@ -1,9 +1,10 @@
 package com.microthings.monitor_management.controller;
 
+import com.microthings.monitor_management.exception.CanntDeleteException;
 import com.microthings.monitor_management.pojo.Role;
 import com.microthings.monitor_management.service.RoleService;
 import com.microthings.monitor_management.util.AjaxResponse;
-import com.microthings.monitor_management.exception.CanntDeleteException;
+import org.apache.shiro.authz.annotation.RequiresRoles;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
@@ -20,6 +21,7 @@ import java.util.List;
  **/
 @Controller
 @RequestMapping("role")
+@RequiresRoles(value = "super_administrator")
 public class RoleController {
 
     @Resource

@@ -47,6 +47,17 @@
         </property>
     </bean>
 
+    <!--shiro认证失败后跳转到失败页面-->
+    <bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="exceptionMappings">
+            <props>
+                <!-- 这里你可以根据需要定义N多个错误异常转发 -->
+                <prop key="org.apache.shiro.authz.UnauthorizedException">redirect:/unauthorized.html</prop>
+                <prop key="org.apache.shiro.authz.UnauthenticatedException">redirect:/unauthorized.html</prop>
+            </props>
+        </property>
+    </bean>
+
     <!--    拦截验证http referer-->
     <mvc:interceptors>
         <mvc:interceptor>

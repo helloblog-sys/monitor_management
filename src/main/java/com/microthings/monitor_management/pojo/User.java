@@ -1,8 +1,8 @@
 package com.microthings.monitor_management.pojo;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.microthings.monitor_management.Enum.RoleTypeEnum;
 import com.microthings.monitor_management.util.EnumUtil;
-import org.codehaus.jackson.annotate.JsonIgnore;
 
 import java.util.Date;
 
@@ -12,6 +12,8 @@ public class User {
     private String userName;
 
     private String userPassword;
+
+    private String userEmail;
 
     private Integer roleId;
 
@@ -30,7 +32,7 @@ public class User {
     }
 
     public void setUserName(String userName) {
-        this.userName = userName == null ? null : userName.trim();
+        this.userName = userName;
     }
 
     public String getUserPassword() {
@@ -38,7 +40,15 @@ public class User {
     }
 
     public void setUserPassword(String userPassword) {
-        this.userPassword = userPassword == null ? null : userPassword.trim();
+        this.userPassword = userPassword;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
     }
 
     public Integer getRoleId() {
@@ -56,7 +66,6 @@ public class User {
     public void setCreateTime(Date createTime) {
         this.createTime = createTime;
     }
-
     /**
      * 角色枚举方法
      * @return
